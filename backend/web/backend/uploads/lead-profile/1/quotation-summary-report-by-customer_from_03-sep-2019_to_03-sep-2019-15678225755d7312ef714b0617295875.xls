@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>    
+<style>
+    body {
+        padding-top: -20px;
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        font: 12px "Tahoma";
+    }
+
+    .pageA4 {
+        padding: 0.05cm;
+        margin: 0cm auto;
+        
+    } 
+    TD{font-size: 10pt;}
+    TH{font-size: 10pt;color:black;}
+    table thead tr th{
+        font-weight: inherit;
+	    font-size: 10px;
+	    padding: 5px;
+    }
+    td{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow:ellipsis;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    tr, td {
+        padding: 5px;
+    }
+    .text-center{
+        text-align: center;
+    }    
+    .text-right{
+        text-align: right;   
+    }
+    .text-left{
+        text-align: left;   
+    }
+</style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+ 
+<body>
+<div class="pageA4"> 
+    <center><label style="font-size: 14px; font-weight: bold;">Quotation Summary Report by Customer</label></center><br>
+    <center><label style="font-size: 14px; font-weight: bold;">From 03-Sep-2019 - To 03-Sep-2019</label></center><br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Agent Name:</th>
+                <th class="text-center">Country</th>
+                <th class="text-right">Quoted</th>                    
+                <th class="text-right">Est. Value ($)</th>
+                <th class="text-right">Reserved</th>
+                <th class="text-right">Bookable (%)</th>
+            </tr>
+        </thead>
+        <tbody>
+                        <tr>
+                <td colspan="2" class="text-right">Total:</td>
+                <td class="text-right">9</td>
+                <td class="text-right">0.00$</td>
+                <td class="text-right">0</td>
+                <td class="text-right">0.00%</td>
+            </tr>            
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

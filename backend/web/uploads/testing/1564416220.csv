@@ -1,0 +1,4 @@
+Lead Name  *,Company Name *,Address *,Email *,Phone Number,Zip Code,Billing Address,Shipping Address
+ex: 1 (data),ex: 1 (data),ex: 1 (data),testing1@eo.com,0987654321,ex: 1 (data),ex: 1 (data),ex: 1 (data)
+ex: 2 (data),ex: 2 (data),ex: 2 (data),testing2@eo.com,0123456789,ex: 2 (data),ex: 2 (data),ex: 2 (data)
+ex: 3 (data),ex: 3 (data),ex: 3 (data),testing3@eo.com,0681234567,ex: 3 (data),ex: 3 (data),ex: 3 (data)

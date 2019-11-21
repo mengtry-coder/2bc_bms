@@ -1,0 +1,76 @@
+/* add red stat for field required */
+form div.required label.control-label:after {
+    font-family: FontAwesome;
+    content: " \f2dc ";
+    /*content: " * ";*/
+    color: red;
+    font-size: 50%;
+    vertical-align: top;
+}
+/* end add red stat for field required */
+ 
+/*----------------------- Start Material Design --------------------*/
+input[type='text'], input[type='password'], input[type='number'], input[type='email'], select, textarea{
+    border-radius: 0px;
+    border: none !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid gainsboro !important;
+    }
+    .form-control:focus, .has-error .form-control, .has-error .form-control:focus {
+    box-shadow: none;
+    }
+    .form-control[readonly] {
+        background: #f9f9f9 !important;
+        cursor: text !important;
+        border-bottom: 1px solid #dcdcdc !important;
+    }
+    .form-control[disabled], fieldset[disabled] .form-control, .select2-container--default.select2-container--disabled .select2-selection--single {
+    background: transparent !important;
+    cursor: not-allowed;
+    border-bottom: 1px solid #a59faffa !important;
+    }
+    
+    .input-group-addon:first-child {
+    border: 0;
+    background: #eeeeee4f;
+    border-bottom: 1px solid gainsboro;
+    }
+    
+    .select2-selection {
+    border: none !important;
+    border-bottom: 1px solid gainsboro !important;
+    }
+    .select2-results {
+    border: 1px solid gainsboro !important;
+    }
+    .select2-container > * {
+    border: none !important;
+    }
+    span.select2-selection.select2-selection--single {
+    outline: none;
+    } 
+    /*----------------------- End Material Design --------------------*/
+
+    /* Alert style */
+    .swal2-popup.swal2-toast{
+        font-size: 13px !important;
+        padding: 10px !important;
+        
+    }
+    body.swal2-toast-shown .swal2-container.swal2-top-end, body.swal2-toast-shown .swal2-container.swal2-top-right{
+        z-index: 1000000 !important;
+    }
+
+    /* Start Select2 */
+    .select2-container { 
+        z-index: 10000;
+    }
+    /* End Select2 */
+
+    /*Start Date Picker */
+    .datepicker-dropdown {
+        padding: 0;
+        z-index: 100001 !important;
+    }
+    /*End Date Picker */
+    

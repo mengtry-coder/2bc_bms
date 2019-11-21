@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+ 
+<body> 
+    <p align="center">
+        <font size="10" > SALE REPORT by QUOTATION </font>
+        <br>
+        <font size="5" > From  To  </font>
+    </p> 
+    <table border="1px" width="100%">
+        <thead border="1px">
+            <tr border="1px">
+                <th border="1px" align="left">No.</th>
+                <th border="1px" align="left">Code</th>
+                <th border="1px" align="left">Customer</th>  
+                <th border="1px" align="center">Date</th>
+                <th border="1px" align="center">Open Till</th>
+                <th border="1px" align="center">Is Converted</th> 
+                <th border="1px" align="center">Status</th> 
+                <th border="1px" align="right">Total</th> 
+            </tr>
+        </thead>
+        <tbody>
+                        <tr border="1px">
+                <td border="1px" align="right" colspan="7">
+                    <div class="text-bold text-right">Total</div>
+                </td>
+                <td border="1px" align="right" colspan="1">
+                    <div class="text-bold text-right">$ 0.00</div>
+                </td>  
+            </tr>
+        </tbody>
+    </table>
+    <div class='text-sm text-left'>System Admin, Mon Sep 2 2019 13:26:13</div></body>
+</html>
