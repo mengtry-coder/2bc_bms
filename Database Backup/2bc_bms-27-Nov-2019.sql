@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhost
+ Source Server         : localhost_3306
  Source Server Type    : MySQL
- Source Server Version : 100132
+ Source Server Version : 100133
  Source Host           : localhost:3306
- Source Schema         : test
+ Source Schema         : 2bc_bms
 
  Target Server Type    : MySQL
- Target Server Version : 100132
+ Target Server Version : 100133
  File Encoding         : 65001
 
- Date: 05/10/2019 08:58:47
+ Date: 27/11/2019 08:21:04
 */
 
 SET NAMES utf8mb4;
@@ -21,23 +21,22 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- Table structure for account_type
 -- ----------------------------
 DROP TABLE IF EXISTS `account_type`;
-CREATE TABLE `account_type` (
+CREATE TABLE `account_type`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `is_parent` int(11) DEFAULT NULL,
-  `names` varchar(250) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `detail_type` varchar(255) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
+  `is_parent` int(11) NULL DEFAULT NULL,
+  `names` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `detail_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 48 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of account_type
 -- ----------------------------
-BEGIN;
 INSERT INTO `account_type` VALUES (1, 0, 'Income', 1, '2017-12-13 12:01:22', 1, '', 1, '2017-12-13 12:01:22');
 INSERT INTO `account_type` VALUES (2, 0, 'Expense', 1, '2017-12-13 12:06:49', 1, '', 1, '2017-12-13 12:01:22');
 INSERT INTO `account_type` VALUES (3, 0, 'Bank', 1, '2017-12-13 12:07:12', 1, '', 1, '2017-12-13 12:01:22');
@@ -85,173 +84,167 @@ INSERT INTO `account_type` VALUES (44, 0, 'Account Payable', 1, '2017-12-14 00:0
 INSERT INTO `account_type` VALUES (45, 0, 'Account Receivable', 1, '2017-12-14 00:00:00', 1, '', 1, '2017-12-14 00:00:00');
 INSERT INTO `account_type` VALUES (46, 0, 'Fixed Asset', 1, '2017-12-14 00:00:00', 1, '', 1, '2017-12-14 00:00:00');
 INSERT INTO `account_type` VALUES (47, 8, 'Tax Payable Liabilities', 1, '2018-08-17 08:47:01', 1, 'For all kind of Tax Payable Liabilities', 1, '2018-08-17 00:00:00');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for bank
 -- ----------------------------
 DROP TABLE IF EXISTS `bank`;
-CREATE TABLE `bank` (
+CREATE TABLE `bank`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `bank_name` varchar(200) NOT NULL,
-  `account_type` int(11) DEFAULT NULL,
-  `bank_address` varchar(250) NOT NULL,
-  `account_name` varchar(250) NOT NULL,
-  `account_number` varchar(200) NOT NULL,
-  `remark` text NOT NULL,
-  `default` int(11) NOT NULL DEFAULT '0',
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `swift_code` varchar(50) DEFAULT NULL,
+  `bank_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `account_type` int(11) NULL DEFAULT NULL,
+  `bank_address` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `account_name` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `account_number` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `remark` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `default` int(11) NOT NULL DEFAULT 0,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `swift_code` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for bank_account_type
 -- ----------------------------
 DROP TABLE IF EXISTS `bank_account_type`;
-CREATE TABLE `bank_account_type` (
+CREATE TABLE `bank_account_type`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `names` varchar(200) NOT NULL,
+  `names` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of bank_account_type
 -- ----------------------------
-BEGIN;
 INSERT INTO `bank_account_type` VALUES (1, 'Saving Account');
 INSERT INTO `bank_account_type` VALUES (2, 'Current Account');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for billing_type
 -- ----------------------------
 DROP TABLE IF EXISTS `billing_type`;
-CREATE TABLE `billing_type` (
+CREATE TABLE `billing_type`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of billing_type
 -- ----------------------------
-BEGIN;
 INSERT INTO `billing_type` VALUES (1, 'Fixed Rate');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for budget_set_up
 -- ----------------------------
 DROP TABLE IF EXISTS `budget_set_up`;
-CREATE TABLE `budget_set_up` (
+CREATE TABLE `budget_set_up`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_department` int(11) DEFAULT NULL,
-  `id_position` int(11) DEFAULT NULL,
-  `id_employee` int(11) DEFAULT NULL,
-  `year` int(111) DEFAULT NULL,
-  `unit_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `budget_value` decimal(10,2) DEFAULT NULL,
-  `actual` decimal(10,2) DEFAULT NULL,
-  `under_or_over` decimal(10,2) DEFAULT NULL,
-  `note` text COLLATE utf8_unicode_ci,
-  `status` int(11) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `quarter_1` decimal(10,2) DEFAULT NULL,
-  `quarter_2` decimal(10,2) DEFAULT NULL,
-  `quarter_3` decimal(10,2) DEFAULT NULL,
-  `quarter_4` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id_department` int(11) NULL DEFAULT NULL,
+  `id_position` int(11) NULL DEFAULT NULL,
+  `id_employee` int(11) NULL DEFAULT NULL,
+  `year` int(111) NULL DEFAULT NULL,
+  `unit_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `budget_value` decimal(10, 2) NULL DEFAULT NULL,
+  `actual` decimal(10, 2) NULL DEFAULT NULL,
+  `under_or_over` decimal(10, 2) NULL DEFAULT NULL,
+  `note` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
+  `status` int(11) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `quarter_1` decimal(10, 2) NULL DEFAULT NULL,
+  `quarter_2` decimal(10, 2) NULL DEFAULT NULL,
+  `quarter_3` decimal(10, 2) NULL DEFAULT NULL,
+  `quarter_4` decimal(10, 2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for budget_set_up_data
 -- ----------------------------
 DROP TABLE IF EXISTS `budget_set_up_data`;
-CREATE TABLE `budget_set_up_data` (
+CREATE TABLE `budget_set_up_data`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_budget_set_up` int(11) DEFAULT NULL,
-  `id_month` int(11) DEFAULT NULL,
-  `daily` decimal(10,2) DEFAULT NULL,
-  `weekly` decimal(10,2) DEFAULT NULL,
-  `monthly` decimal(10,2) DEFAULT NULL,
-  `quarterly` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_budget_set_up` int(11) NULL DEFAULT NULL,
+  `id_month` int(11) NULL DEFAULT NULL,
+  `daily` decimal(10, 2) NULL DEFAULT NULL,
+  `weekly` decimal(10, 2) NULL DEFAULT NULL,
+  `monthly` decimal(10, 2) NULL DEFAULT NULL,
+  `quarterly` decimal(10, 2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for budget_setup_value
 -- ----------------------------
 DROP TABLE IF EXISTS `budget_setup_value`;
-CREATE TABLE `budget_setup_value` (
+CREATE TABLE `budget_setup_value`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_budget_set_up` int(11) DEFAULT NULL,
-  `for_month` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `daily_budget` decimal(10,2) DEFAULT NULL,
-  `weekly_budget` decimal(10,2) DEFAULT NULL,
-  `monthly_budget` decimal(10,2) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id_budget_set_up` int(11) NULL DEFAULT NULL,
+  `for_month` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `daily_budget` decimal(10, 2) NULL DEFAULT NULL,
+  `weekly_budget` decimal(10, 2) NULL DEFAULT NULL,
+  `monthly_budget` decimal(10, 2) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for cash_advance_request
 -- ----------------------------
 DROP TABLE IF EXISTS `cash_advance_request`;
-CREATE TABLE `cash_advance_request` (
+CREATE TABLE `cash_advance_request`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `doc_id` varchar(50) DEFAULT NULL,
-  `date` date DEFAULT NULL,
-  `id_employee` int(11) DEFAULT NULL,
-  `chart_of_account` int(11) DEFAULT NULL,
-  `amount` decimal(10,2) DEFAULT NULL,
-  `amount_in_word` varchar(255) DEFAULT NULL,
-  `reason` varchar(255) DEFAULT NULL,
-  `id_pay_type` int(11) DEFAULT NULL,
-  `approved_by` int(11) DEFAULT NULL,
-  `status` tinyint(4) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `doc_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `date` date NULL DEFAULT NULL,
+  `id_employee` int(11) NULL DEFAULT NULL,
+  `chart_of_account` int(11) NULL DEFAULT NULL,
+  `amount` decimal(10, 2) NULL DEFAULT NULL,
+  `amount_in_word` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `reason` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_pay_type` int(11) NULL DEFAULT NULL,
+  `approved_by` int(11) NULL DEFAULT NULL,
+  `status` tinyint(4) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for chart_account
 -- ----------------------------
 DROP TABLE IF EXISTS `chart_account`;
-CREATE TABLE `chart_account` (
+CREATE TABLE `chart_account`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `names` varchar(250) NOT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `id_account_type` int(11) DEFAULT NULL,
-  `id_is_parent` int(11) DEFAULT NULL,
-  `is_parent` int(11) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `id_bank` int(11) DEFAULT NULL,
-  `number_code` int(5) DEFAULT NULL,
+  `names` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `id_account_type` int(11) NULL DEFAULT NULL,
+  `id_is_parent` int(11) NULL DEFAULT NULL,
+  `is_parent` int(11) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `id_bank` int(11) NULL DEFAULT NULL,
+  `number_code` int(5) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=276 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 278 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of chart_account
 -- ----------------------------
-BEGIN;
 INSERT INTO `chart_account` VALUES (1, 'Sales Income', 1, '2018-08-17 14:06:23', 1, 1, NULL, 0, 1, '2018-07-02 16:23:21', NULL, 40000);
 INSERT INTO `chart_account` VALUES (2, 'Franchise Sales Revenue', 1, '2018-08-26 15:56:39', 1, 6, NULL, 0, 1, '2018-07-02 16:23:21', NULL, 41000);
 INSERT INTO `chart_account` VALUES (3, 'Interest Income', 1, '2018-08-26 15:57:00', 1, 6, NULL, 0, 1, '2018-07-02 16:23:21', NULL, 42000);
@@ -496,38 +489,38 @@ INSERT INTO `chart_account` VALUES (272, 'Lease ? Building', 1, '2018-08-27 22:4
 INSERT INTO `chart_account` VALUES (273, 'Opening Balance Equity', 1, '2019-01-13 16:53:06', 1, 7, 26, 42, 1, '2019-01-13 16:52:24', NULL, 34000);
 INSERT INTO `chart_account` VALUES (274, 'Sacom Bank : eOcambo Technology | 00032882', 1, '2019-06-26 13:45:42', 1, 3, NULL, 64, 1, '2018-07-02 16:23:21', 13, 11101);
 INSERT INTO `chart_account` VALUES (275, 'ABA Bank: PHICH SOKDA (No. 000120354)', 1, '2019-06-24 08:16:55', 1, 3, NULL, 64, 1, '2018-08-11 19:18:30', 1, 11102);
-COMMIT;
+INSERT INTO `chart_account` VALUES (276, 'THEOM BUNTHEOUN ABA | 000270506', 1, '2019-10-19 08:23:07', 1, 3, NULL, 64, NULL, NULL, 16, 11103);
+INSERT INTO `chart_account` VALUES (277, 'Cost of Domain and Hosting', 1, '2019-10-19 09:01:22', 1, 46, NULL, 232, NULL, NULL, NULL, 17322);
 
 -- ----------------------------
 -- Table structure for city
 -- ----------------------------
 DROP TABLE IF EXISTS `city`;
-CREATE TABLE `city` (
+CREATE TABLE `city`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_country` int(11) DEFAULT NULL,
-  `code` varchar(100) NOT NULL,
-  `names` varchar(250) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `img` varchar(250) DEFAULT NULL,
-  `video_link` varchar(50) DEFAULT NULL,
-  `latitude` float DEFAULT NULL,
-  `longitude` float DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
+  `id_country` int(11) NULL DEFAULT NULL,
+  `code` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `names` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `img` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `video_link` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `latitude` float NULL DEFAULT NULL,
+  `longitude` float NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `id_country` (`id_country`) USING BTREE,
-  KEY `id` (`id`,`id_country`,`code`,`names`,`description`,`img`,`video_link`,`latitude`,`longitude`,`updated_by`,`updated_date`,`status`,`created_by`,`created_date`) USING BTREE,
-  KEY `id_2` (`id`,`id_country`,`code`,`names`,`description`,`img`,`video_link`,`latitude`,`longitude`,`updated_by`,`updated_date`,`status`,`created_by`,`created_date`) USING BTREE,
-  CONSTRAINT `city_ibfk_1` FOREIGN KEY (`id_country`) REFERENCES `country` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=362 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  INDEX `id_country`(`id_country`) USING BTREE,
+  INDEX `id`(`id`, `id_country`, `code`, `names`, `description`, `img`, `video_link`, `latitude`, `longitude`, `updated_by`, `updated_date`, `status`, `created_by`, `created_date`) USING BTREE,
+  INDEX `id_2`(`id`, `id_country`, `code`, `names`, `description`, `img`, `video_link`, `latitude`, `longitude`, `updated_by`, `updated_date`, `status`, `created_by`, `created_date`) USING BTREE,
+  CONSTRAINT `city_ibfk_1` FOREIGN KEY (`id_country`) REFERENCES `country` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 362 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of city
 -- ----------------------------
-BEGIN;
 INSERT INTO `city` VALUES (1, 56, 'PNH', 'Phnom Penh', '', NULL, '', 0, 0, 1000016, '2018-08-12 19:46:33', 1, 1000016, '2018-08-12 19:45:12');
 INSERT INTO `city` VALUES (2, 56, 'BMC', 'Banteay Meanchey', '', NULL, '', 0, 0, 1000016, '2018-08-12 20:43:53', 1, 1000016, '2018-08-12 20:43:53');
 INSERT INTO `city` VALUES (3, 56, 'BBM', 'Battambang', '', NULL, '', 0, 0, 1000016, '2018-08-12 20:44:12', 1, 1000016, '2018-08-12 20:44:12');
@@ -868,116 +861,119 @@ INSERT INTO `city` VALUES (358, 126, 'TSF', 'Treviso', '', NULL, '', 45.6484, 12
 INSERT INTO `city` VALUES (359, 126, 'VCE', 'Venice', '', NULL, '', 45.5053, 12.3519, 8, '2019-01-17 16:32:00', 1, 8, '2019-01-17 16:32:00');
 INSERT INTO `city` VALUES (360, 126, 'ROM', 'Rome', '', NULL, '', 41.9, 12.5, 8, '2019-01-17 16:34:49', 1, 8, '2019-01-17 16:34:49');
 INSERT INTO `city` VALUES (361, 237, 'CNX', 'Chiang Mai', '', NULL, '', 18.7961, 98.9793, 1, '2019-01-28 15:37:39', 1, 1, '2019-01-28 15:36:49');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for company_profile
 -- ----------------------------
 DROP TABLE IF EXISTS `company_profile`;
-CREATE TABLE `company_profile` (
+CREATE TABLE `company_profile`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `logo` varchar(255) DEFAULT NULL,
-  `names` varchar(255) NOT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `tel` varchar(100) DEFAULT NULL,
-  `website` varchar(100) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `description` text,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `quotation_term_and_condition` text,
-  `updated_by` int(11) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `vattin` varchar(50) DEFAULT NULL,
-  `bill_and_payment` text,
-  `what_we_do` text,
-  `mission` varchar(500) DEFAULT NULL,
-  `vision` varchar(500) DEFAULT NULL,
-  `credit_arrangment` text,
-  `cancellation_agreement` text,
-  `confidentiality` text,
-  PRIMARY KEY (`id`,`names`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `logo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `names` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `mailing_address` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tel` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `website` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `quotation_term_and_condition` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `vattin` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `bill_and_payment` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `what_we_do` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `mission` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `vision` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `credit_arrangment` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `cancellation_agreement` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `confidentiality` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `info_invoice` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `info_payment` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `info_expense` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `info_bill` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `info_pay_bill` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `info_opening_balance` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `info_journal_entry` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  PRIMARY KEY (`id`, `names`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of company_profile
 -- ----------------------------
-BEGIN;
-INSERT INTO `company_profile` VALUES (1, '143', 'Company Name', 'info@sample.com', '(+855) 123456789', 'www.sample.com', 'Siem Reap, Cambodia', 'eOcambo Technology started in 2014  with a small team partnering with accommodation providers to help  them take control of their online digital marketing and booking management using cutting edge technologies through our Hotel Link Solutions products.\r\n\r\nWe have been expanding and developing rapidly especially over the past 2 years with more solutions available to accommodation providers including offering high quality custom designed websites that become a major driver for any businesses online presence.\r\n\r\nThere is now a very large number of Online Travel Agents (OTA) and other online accommodation third parties where hotels and guesthouses can gain bookings, along with the massive use of Social Media by potential guests eOcambo Technology provides our clients with advice and the tools to navigate through often confusing technologies and increase their bookings and revenue.\r\n\r\neOcambo Technology is based in Siem Reap and is now the leading provider of online digital solutions for all Cambodian accommodation providers and most importantly we have a local Khmer Support Team who are always available to offer advice and back up for our clients.\r\n\r\nOur Mission: Always create innovative solutions that meet our clients expectations.\r\n\r\nOur Vision: Be recognised as the technology company that fulfills the clients needs.', '2019-07-23 09:18:01', 1, '2019-10-05 08:22:08', '', 1, 1, 'CAM-123456', '', '<p>What we do</p>\r\n', '', '', '', '', '');
-COMMIT;
+INSERT INTO `company_profile` VALUES (1, '174', 'JCUC Constraction', 'bunthanjcuc@gmail.com', 'info@construction.com', '(+855) 92 90 99 85 / (+855) 93 90 99 85', 'https://www.jcucconstruction.com/', 'Steung tmey, Svay Dangkum, Krong Siem Reap', 'eOcambo Technology started in 2014  with a small team partnering with accommodation providers to help  them take control of their online digital marketing and booking management using cutting edge technologies through our Hotel Link Solutions products.\r\n\r\nWe have been expanding and developing rapidly especially over the past 2 years with more solutions available to accommodation providers including offering high quality custom designed websites that become a major driver for any businesses online presence.\r\n\r\nThere is now a very large number of Online Travel Agents (OTA) and other online accommodation third parties where hotels and guesthouses can gain bookings, along with the massive use of Social Media by potential guests eOcambo Technology provides our clients with advice and the tools to navigate through often confusing technologies and increase their bookings and revenue.\r\n\r\neOcambo Technology is based in Siem Reap and is now the leading provider of online digital solutions for all Cambodian accommodation providers and most importantly we have a local Khmer Support Team who are always available to offer advice and back up for our clients.\r\n\r\nOur Mission: Always create innovative solutions that meet our clients expectations.\r\n\r\nOur Vision: Be recognised as the technology company that fulfills the clients needs.', '2019-07-23 09:18:01', 1, '2019-11-23 08:41:54', '<p><span style=\"font-size:15px\"><span style=\"font-family:Arial,sans-serif\"><span style=\"color:black\">Company reserves the right to accept or decline this job description on our availability of resource at the time of client confirmation</span></span></span></p>\r\n', 21, 1, '', '', '<p>We are specialized in building pool, villa, modern house and decoration with the best quality equipment import from others famous countries. We have had experienced in building pool and housing for our clients and received good reviews from them.</p>\r\n\r\n<p>We are pleasure to be a part of your dream house, Villa and fascinating projects.</p>\r\n', '', '', '', '', '', '', NULL, '', '', '<p>Validity: 30 days from the date of quotation.</p>\r\n\r\n<p>Payment: 20% advance 80% progress of works</p>\r\n', '', '');
 
 -- ----------------------------
 -- Table structure for contract
 -- ----------------------------
 DROP TABLE IF EXISTS `contract`;
-CREATE TABLE `contract` (
+CREATE TABLE `contract`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `doc_id` varchar(50) DEFAULT NULL,
-  `id_customer` int(11) DEFAULT NULL,
-  `id_bank` int(11) DEFAULT NULL,
-  `id_item` int(11) DEFAULT NULL,
-  `subject` varchar(255) DEFAULT NULL,
-  `contract_value` decimal(10,2) DEFAULT NULL,
-  `signature` varchar(255) DEFAULT NULL,
-  `id_contract_type` int(11) DEFAULT NULL,
-  `start_date` date DEFAULT NULL,
-  `end_date` date DEFAULT NULL,
-  `description` text,
-  `status` tinyint(1) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `credit_arrangment` text,
-  `cancellation_agreement` text,
-  `confidentiality` text,
-  `id_discount` int(11) DEFAULT NULL,
-  `discount_value` decimal(10,2) DEFAULT NULL,
-  `discount_amount` decimal(10,2) DEFAULT NULL,
-  `id_tax` int(11) DEFAULT NULL,
-  `is_tax` tinyint(1) DEFAULT NULL,
-  `tax_amount` decimal(10,2) DEFAULT NULL,
-  `sub_total` decimal(10,2) DEFAULT NULL,
-  `total_amount` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `doc_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_customer` int(11) NULL DEFAULT NULL,
+  `id_bank` int(11) NULL DEFAULT NULL,
+  `id_item` int(11) NULL DEFAULT NULL,
+  `subject` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `contract_value` decimal(10, 2) NULL DEFAULT NULL,
+  `signature` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_contract_type` int(11) NULL DEFAULT NULL,
+  `start_date` date NULL DEFAULT NULL,
+  `end_date` date NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `credit_arrangment` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `cancellation_agreement` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `confidentiality` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `id_discount` int(11) NULL DEFAULT NULL,
+  `discount_value` decimal(10, 2) NULL DEFAULT NULL,
+  `discount_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `id_tax` int(11) NULL DEFAULT NULL,
+  `is_tax` tinyint(1) NULL DEFAULT NULL,
+  `tax_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `sub_total` decimal(10, 2) NULL DEFAULT NULL,
+  `total_amount` decimal(10, 2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for contract_customer_contact
 -- ----------------------------
 DROP TABLE IF EXISTS `contract_customer_contact`;
-CREATE TABLE `contract_customer_contact` (
+CREATE TABLE `contract_customer_contact`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_contract` int(11) DEFAULT NULL,
-  `id_customer_contact` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `id_contract` int(11) NULL DEFAULT NULL,
+  `id_customer_contact` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for contract_data
 -- ----------------------------
 DROP TABLE IF EXISTS `contract_data`;
-CREATE TABLE `contract_data` (
+CREATE TABLE `contract_data`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_contract` int(11) DEFAULT NULL,
-  `id_item` int(11) DEFAULT NULL,
-  `item_name` varchar(255) DEFAULT NULL,
-  `description` longtext,
-  `qty` int(11) DEFAULT NULL,
-  `rate` decimal(10,2) DEFAULT NULL,
-  `other_charge` decimal(10,2) DEFAULT NULL,
-  `discount_type` int(11) DEFAULT NULL,
-  `discount_amount` decimal(10,2) DEFAULT NULL,
-  `amount` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `id_contract` int(11) NULL DEFAULT NULL,
+  `id_item` int(11) NULL DEFAULT NULL,
+  `item_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `qty` int(11) NULL DEFAULT NULL,
+  `rate` decimal(10, 2) NULL DEFAULT NULL,
+  `other_charge` decimal(10, 2) NULL DEFAULT NULL,
+  `discount_type` int(11) NULL DEFAULT NULL,
+  `discount_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `amount` decimal(10, 2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 67 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of contract_data
 -- ----------------------------
-BEGIN;
-INSERT INTO `contract_data` VALUES (9, 2, 15, 'eO-BMS (Standard Package) ', 'A Business Management System is a set of tools for planning and implementing policies, practices, guidelines, processes and procedures that are used in the development, deployment and execution of business plans and strategies and all associated managemen', 1, 159.00, 250.00, 2, 9.00, 400.00);
 INSERT INTO `contract_data` VALUES (10, 3, 15, 'eO-BMS (Standard Package) ', 'A Business Management System is a set of tools for planning and implementing policies, practices, guidelines, processes and procedures that are used in the development, deployment and execution of business plans and strategies and all associated managemen', 1, 159.00, 250.00, 1, 0.00, 409.00);
 INSERT INTO `contract_data` VALUES (13, 4, 10, 'Channel Manager 11-29 rooms ', '', 1, 70.00, 0.00, 2, 20.00, 50.00);
 INSERT INTO `contract_data` VALUES (14, 4, 13, 'Template Website Unlimited rooms', '', 1, 35.00, 0.00, 1, 0.00, 35.00);
@@ -986,72 +982,93 @@ INSERT INTO `contract_data` VALUES (19, 6, 18, 'Domain and Hosting', 'goldennice
 INSERT INTO `contract_data` VALUES (20, 1, 18, 'Domain and Hosting', '*	The above contract rates are in USD, nett, inclusive of 10% VAT.*	The rates are non-commissionable.*	The rate is per year.', 1, 70.00, 0.00, 1, 0.00, 70.00);
 INSERT INTO `contract_data` VALUES (23, 7, 10, 'Channel Manager 11-29 rooms ', '', 1, 70.00, 0.00, 2, 10.00, 60.00);
 INSERT INTO `contract_data` VALUES (25, 8, 10, 'Channel Manager 11-29 rooms ', '', 1, 70.00, 0.00, 2, 10.00, 60.00);
-COMMIT;
+INSERT INTO `contract_data` VALUES (30, 2, 15, 'eO-BMS (Standard Package) ', 'A Business Management System is a set of tools for planning and implementing policies, practices, guidelines, processes and procedures that are used in the development, deployment and execution of business plans and strategies and all associated managemen', 1, 159.00, 250.00, 2, 0.00, 409.00);
+INSERT INTO `contract_data` VALUES (36, 9, 17, 'Premium Website (Gold)', '-Maintenance 6 months-Website Speed 70 - 80', 1, 1500.00, 0.00, 1, 0.00, 1500.00);
+INSERT INTO `contract_data` VALUES (44, 10, 20, 'Fresh Content Writing', '', 1, 1000.00, 0.00, 1, 10.00, 900.00);
+INSERT INTO `contract_data` VALUES (45, 11, 20, 'Fresh Content Writing', '', 1, 1000.00, 0.00, 1, 10.00, 900.00);
+INSERT INTO `contract_data` VALUES (46, 12, 17, 'Premium Website (Gold)', '-Maintenance 6 months-Website Speed 70 - 80', 1, 1500.00, 0.00, 1, 10.00, 1350.00);
+INSERT INTO `contract_data` VALUES (47, 13, 21, 'eO-CSMA', '', 1, 159.00, 0.00, 1, 0.00, 159.00);
+INSERT INTO `contract_data` VALUES (50, 14, 22, 'Photo Shooting', '', 1, 500.00, 0.00, 1, 0.00, 500.00);
+INSERT INTO `contract_data` VALUES (51, 14, 23, 'Video Shooting', '', 1, 500.00, 0.00, 1, 0.00, 500.00);
+INSERT INTO `contract_data` VALUES (52, 15, 1, 'Premium Website (Silver)', '-Maintenance  3 months-Website Speed 60 - 70', 1, 1000.00, 0.00, 1, 0.00, 1000.00);
+INSERT INTO `contract_data` VALUES (53, 16, 18, 'Domain and Hosting', '*	The above contract rates are in USD, nett, inclusive of 10% VAT.*	The rates are non-commissionable.*	The rate is per year.', 1, 70.00, 0.00, 1, 0.00, 70.00);
+INSERT INTO `contract_data` VALUES (54, 17, 20, 'Fresh Content Writing', '', 1, 1000.00, 0.00, 1, 0.00, 1000.00);
+INSERT INTO `contract_data` VALUES (55, 18, 10, 'Channel Manager 11-29 rooms ', '', 1, 70.00, 0.00, 2, 20.00, 50.00);
+INSERT INTO `contract_data` VALUES (56, 19, 3, 'Booking Engine 11-29 Rooms', '', 1, 50.00, 0.00, 2, 10.00, 40.00);
+INSERT INTO `contract_data` VALUES (57, 20, 13, 'Template Website Unlimited rooms', '', 1, 35.00, 0.00, 1, 0.00, 35.00);
+INSERT INTO `contract_data` VALUES (58, 21, 3, 'Booking Engine 11-29 Rooms', '', 1, 50.00, 0.00, 2, 10.00, 40.00);
+INSERT INTO `contract_data` VALUES (59, 22, NULL, '', '', 1, 0.00, 0.00, 1, 0.00, 0.00);
+INSERT INTO `contract_data` VALUES (60, 22, 7, 'Channel Manger 1-10 Rooms', '', 1, 60.00, 0.00, 1, 0.00, 60.00);
+INSERT INTO `contract_data` VALUES (61, 22, 14, 'Front Desk Unlimited Rooms ', '', 1, 40.00, 0.00, 1, 0.00, 40.00);
+INSERT INTO `contract_data` VALUES (62, 23, 1, 'Premium Website (Silver)', '-Maintenance  3 months-Website Speed 60 - 70', 1, 1000.00, 0.00, 1, 0.00, 1000.00);
+INSERT INTO `contract_data` VALUES (63, 24, 14, 'Front Desk Unlimited Rooms ', '', 1, 40.00, 0.00, 2, 10.00, 30.00);
+INSERT INTO `contract_data` VALUES (64, 25, 10, 'Channel Manager 11-29 rooms ', '', 1, 70.00, 0.00, 2, 25.00, 45.00);
+INSERT INTO `contract_data` VALUES (65, 26, 17, 'Premium Website (Gold)', '-Maintenance 6 months-Website Speed 70 - 80', 1, 1500.00, 0.00, 1, 10.00, 1350.00);
+INSERT INTO `contract_data` VALUES (66, 27, 20, 'Fresh Content Writing', '', 1, 1000.00, 0.00, 1, 10.00, 900.00);
 
 -- ----------------------------
 -- Table structure for contract_note
 -- ----------------------------
 DROP TABLE IF EXISTS `contract_note`;
-CREATE TABLE `contract_note` (
+CREATE TABLE `contract_note`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `note` varchar(255) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` tinyint(11) DEFAULT NULL,
-  `id_contract` int(11) DEFAULT NULL,
+  `note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` tinyint(11) NULL DEFAULT NULL,
+  `id_contract` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for contract_type
 -- ----------------------------
 DROP TABLE IF EXISTS `contract_type`;
-CREATE TABLE `contract_type` (
+CREATE TABLE `contract_type`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `note` varchar(250) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `contract_description` text,
-  `credit_arrangment` text,
-  `cancellation_agreement` text,
-  `confidentiality` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `note` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `contract_description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `credit_arrangment` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `cancellation_agreement` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `confidentiality` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for country
 -- ----------------------------
 DROP TABLE IF EXISTS `country`;
-CREATE TABLE `country` (
+CREATE TABLE `country`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_area` int(11) DEFAULT NULL,
-  `names` varchar(250) NOT NULL,
-  `code` varchar(100) DEFAULT NULL,
-  `description` text,
-  `img` varchar(250) DEFAULT NULL,
-  `video_link` varchar(50) DEFAULT NULL,
-  `latitude` double DEFAULT NULL,
-  `longitude` double DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
+  `id_area` int(11) NULL DEFAULT NULL,
+  `names` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `code` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `img` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `video_link` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `latitude` double NULL DEFAULT NULL,
+  `longitude` double NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `names` (`names`) USING BTREE,
-  KEY `id_area` (`id_area`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=267 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  INDEX `names`(`names`) USING BTREE,
+  INDEX `id_area`(`id_area`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 267 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of country
 -- ----------------------------
-BEGIN;
 INSERT INTO `country` VALUES (21, 1, 'Afghanistan', 'AF', '', NULL, 'JDrScVo7aBs', 0, 0, 38, '2018-08-12 17:24:29', 1, 35, '2018-08-12 16:19:01');
 INSERT INTO `country` VALUES (22, 2, 'Albania', 'AL', '', NULL, '', 0, 0, 38, '2018-08-12 17:25:50', 1, 35, '2018-08-12 16:19:01');
 INSERT INTO `country` VALUES (23, 3, 'Algeria', 'DZ', '', NULL, '', 0, 0, 38, '2018-08-12 17:50:07', 1, 35, '2018-08-12 16:19:01');
@@ -1298,248 +1315,256 @@ INSERT INTO `country` VALUES (263, 1, 'Yemen', 'YE', NULL, NULL, NULL, 0, 0, 35,
 INSERT INTO `country` VALUES (264, 1, 'Zaire', 'ZR', NULL, NULL, NULL, 0, 0, 35, '2018-08-12 16:19:01', 1, 35, '2018-08-12 16:19:01');
 INSERT INTO `country` VALUES (265, 3, 'Zambia', 'ZM', '', NULL, '', 0, 0, 38, '2018-08-12 18:14:10', 1, 35, '2018-08-12 16:19:01');
 INSERT INTO `country` VALUES (266, 3, 'Zimbabwe', 'ZW', '', NULL, '', 0, 0, 38, '2018-08-12 18:14:28', 1, 35, '2018-08-12 16:19:01');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for currency
 -- ----------------------------
 DROP TABLE IF EXISTS `currency`;
-CREATE TABLE `currency` (
+CREATE TABLE `currency`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `status` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of currency
 -- ----------------------------
-BEGIN;
 INSERT INTO `currency` VALUES (1, 'USD $', 1);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for customer_group
 -- ----------------------------
 DROP TABLE IF EXISTS `customer_group`;
-CREATE TABLE `customer_group` (
+CREATE TABLE `customer_group`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `note` varchar(250) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `note` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for customer_invoice
 -- ----------------------------
 DROP TABLE IF EXISTS `customer_invoice`;
-CREATE TABLE `customer_invoice` (
+CREATE TABLE `customer_invoice`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `doc_id` varchar(255) DEFAULT NULL,
-  `date` date DEFAULT NULL,
-  `due_date` date DEFAULT NULL,
-  `id_customer` int(11) DEFAULT NULL,
-  `id_project` int(11) DEFAULT NULL,
-  `id_payment_method` int(11) DEFAULT NULL,
-  `total_tax` decimal(10,2) DEFAULT NULL,
-  `id_recurring_invoice` int(11) DEFAULT NULL,
-  `recurring_value` int(11) DEFAULT NULL,
-  `recurring_type` int(11) DEFAULT NULL,
-  `admin_note` varchar(255) DEFAULT NULL,
-  `total_amount` decimal(10,2) DEFAULT NULL,
-  `receive_amount` decimal(10,2) DEFAULT NULL,
-  `balance_amount` decimal(10,2) DEFAULT NULL,
-  `note` varchar(255) DEFAULT NULL,
-  `term_condition` text,
-  `status` tinyint(1) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `currency` int(11) DEFAULT NULL,
-  `id_sale_agent` int(11) DEFAULT NULL,
-  `client_note` varchar(255) DEFAULT NULL,
-  `id_discount` int(11) DEFAULT NULL,
-  `discount_value` decimal(10,2) DEFAULT NULL,
-  `discount_amount` decimal(10,2) DEFAULT NULL,
-  `id_tax` int(11) DEFAULT NULL,
-  `is_tax` tinyint(1) DEFAULT NULL,
-  `tax_amount` decimal(10,2) DEFAULT NULL,
-  `sub_total` decimal(10,2) DEFAULT NULL,
-  `is_converted_from_proposal` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `doc_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `date` date NULL DEFAULT NULL,
+  `due_date` date NULL DEFAULT NULL,
+  `id_customer` int(11) NULL DEFAULT NULL,
+  `id_project` int(11) NULL DEFAULT NULL,
+  `id_payment_method` int(11) NULL DEFAULT NULL,
+  `total_tax` decimal(10, 2) NULL DEFAULT NULL,
+  `id_recurring_invoice` int(11) NULL DEFAULT NULL,
+  `recurring_value` int(11) NULL DEFAULT NULL,
+  `recurring_type` int(11) NULL DEFAULT NULL,
+  `admin_note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `total_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `receive_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `balance_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `term_condition` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `currency` int(11) NULL DEFAULT NULL,
+  `id_sale_agent` int(11) NULL DEFAULT NULL,
+  `client_note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_discount` int(11) NULL DEFAULT NULL,
+  `discount_value` decimal(10, 2) NULL DEFAULT NULL,
+  `discount_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `id_tax` int(11) NULL DEFAULT NULL,
+  `is_tax` tinyint(1) NULL DEFAULT NULL,
+  `tax_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `sub_total` decimal(10, 2) NULL DEFAULT NULL,
+  `is_converted_from_proposal` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for customer_invoice_data
 -- ----------------------------
 DROP TABLE IF EXISTS `customer_invoice_data`;
-CREATE TABLE `customer_invoice_data` (
+CREATE TABLE `customer_invoice_data`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_customer_invoice` int(11) DEFAULT NULL,
-  `id_item` int(11) DEFAULT NULL,
-  `item_name` varchar(255) DEFAULT NULL,
-  `description` longtext,
-  `qty` int(11) DEFAULT NULL,
-  `rate` decimal(10,2) DEFAULT NULL,
-  `discount_type` int(11) DEFAULT NULL,
-  `discount_amount` decimal(10,2) DEFAULT NULL,
-  `amount` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_customer_invoice` int(11) NULL DEFAULT NULL,
+  `id_item` int(11) NULL DEFAULT NULL,
+  `item_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `qty` int(11) NULL DEFAULT NULL,
+  `rate` decimal(10, 2) NULL DEFAULT NULL,
+  `discount_type` int(11) NULL DEFAULT NULL,
+  `discount_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `amount` decimal(10, 2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for customer_invoice_tag
 -- ----------------------------
 DROP TABLE IF EXISTS `customer_invoice_tag`;
-CREATE TABLE `customer_invoice_tag` (
+CREATE TABLE `customer_invoice_tag`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_customer_invoice` int(11) DEFAULT NULL,
-  `id_tag` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `id_customer_invoice` int(11) NULL DEFAULT NULL,
+  `id_tag` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for customer_payment
 -- ----------------------------
 DROP TABLE IF EXISTS `customer_payment`;
-CREATE TABLE `customer_payment` (
+CREATE TABLE `customer_payment`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_customer_invoice` int(11) DEFAULT NULL,
-  `id_project` int(11) DEFAULT NULL,
-  `doc_id` varchar(255) DEFAULT NULL,
-  `date` date DEFAULT NULL,
-  `receive_amount` decimal(10,2) DEFAULT NULL,
-  `id_payment_method` int(11) DEFAULT NULL,
-  `cheque_number` varchar(20) DEFAULT NULL,
-  `clearing_date` date DEFAULT NULL,
-  `chart_of_account` int(11) DEFAULT NULL,
-  `note` varchar(255) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_customer_invoice` int(11) NULL DEFAULT NULL,
+  `id_project` int(11) NULL DEFAULT NULL,
+  `doc_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `date` date NULL DEFAULT NULL,
+  `receive_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `id_payment_method` int(11) NULL DEFAULT NULL,
+  `cheque_number` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `clearing_date` date NULL DEFAULT NULL,
+  `chart_of_account` int(11) NULL DEFAULT NULL,
+  `note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for customer_profile
 -- ----------------------------
 DROP TABLE IF EXISTS `customer_profile`;
-CREATE TABLE `customer_profile` (
+CREATE TABLE `customer_profile`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `customer_name` varchar(250) DEFAULT NULL,
-  `company_name` varchar(250) DEFAULT NULL,
-  `phone_number` varchar(50) DEFAULT NULL,
-  `email_address` varchar(50) DEFAULT NULL,
-  `latitute` decimal(16,10) DEFAULT NULL,
-  `longitute` decimal(16,10) DEFAULT NULL,
-  `address` varchar(250) DEFAULT NULL,
-  `id_country` int(11) DEFAULT NULL,
-  `id_city` int(11) DEFAULT NULL,
-  `group_names` varchar(250) DEFAULT NULL,
-  `billing_address` varchar(250) DEFAULT NULL,
-  `id_billing_city` int(11) DEFAULT NULL,
-  `id_billing_country` int(11) DEFAULT NULL,
-  `shipping_address` varchar(250) DEFAULT NULL,
-  `id_shipping_city` int(11) DEFAULT NULL,
-  `id_shipping_country` int(11) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `img_url` varchar(255) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `zip_code` varchar(50) DEFAULT NULL,
-  `customer_status` int(1) DEFAULT NULL,
-  `website_url` varchar(255) DEFAULT NULL,
-  `accommodation_type` int(11) DEFAULT NULL,
-  `star_rating` decimal(10,2) DEFAULT NULL,
-  `number_of_rooms` int(11) DEFAULT NULL,
-  `sale_date` date DEFAULT NULL,
-  `accomodation_status` int(11) DEFAULT NULL COMMENT '1=lived , 2 = Inprocesing , 0 = Deactived',
-  `lived_date` date DEFAULT NULL,
-  `passed_by` int(11) DEFAULT NULL,
-  `handle_by` int(11) DEFAULT NULL,
-  `deactivated_at` varchar(20) DEFAULT NULL,
-  `deactivated_reason` text,
-  `deactivated_requested_by` varchar(255) DEFAULT NULL,
-  `deactivated_requested_contact_detail` text,
-  `deactivated_by` int(11) DEFAULT NULL,
-  `id_customer_type` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `customer_name` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `company_name` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `position` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `phone_number` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email_address` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `latitute` decimal(16, 10) NULL DEFAULT NULL,
+  `longitute` decimal(16, 10) NULL DEFAULT NULL,
+  `address` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_country` int(11) NULL DEFAULT NULL,
+  `id_city` int(11) NULL DEFAULT NULL,
+  `group_names` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `billing_address` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_billing_city` int(11) NULL DEFAULT NULL,
+  `id_billing_country` int(11) NULL DEFAULT NULL,
+  `shipping_address` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_shipping_city` int(11) NULL DEFAULT NULL,
+  `id_shipping_country` int(11) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `img_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `zip_code` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `customer_status` int(1) NULL DEFAULT NULL,
+  `website_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `accommodation_type` int(11) NULL DEFAULT NULL,
+  `star_rating` decimal(10, 2) NULL DEFAULT NULL,
+  `number_of_rooms` int(11) NULL DEFAULT NULL,
+  `sale_date` date NULL DEFAULT NULL,
+  `accomodation_status` int(11) NULL DEFAULT NULL COMMENT '1=lived , 2 = Inprocesing , 0 = Deactived',
+  `lived_date` date NULL DEFAULT NULL,
+  `passed_by` int(11) NULL DEFAULT NULL,
+  `handle_by` int(11) NULL DEFAULT NULL,
+  `deactivated_at` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `deactivated_reason` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `deactivated_requested_by` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `deactivated_requested_contact_detail` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `deactivated_by` int(11) NULL DEFAULT NULL,
+  `id_customer_type` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of customer_profile
+-- ----------------------------
+INSERT INTO `customer_profile` VALUES (1, 'Ms. Sachiko Kojima', 'N/A', 'N/A', '', 'sachikokojima@gmail.com', NULL, NULL, 'Svay Chek -Siem Reap', 56, 21, NULL, '', NULL, NULL, '', NULL, NULL, 1, 21, '2019-11-21 10:48:12', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for customer_profile_contact
 -- ----------------------------
 DROP TABLE IF EXISTS `customer_profile_contact`;
-CREATE TABLE `customer_profile_contact` (
+CREATE TABLE `customer_profile_contact`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_customer` int(11) NOT NULL,
-  `contact_name` varchar(255) NOT NULL,
-  `position` varchar(255) DEFAULT NULL,
-  `email_address` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `note` varchar(500) DEFAULT NULL,
-  `department` varchar(255) DEFAULT NULL,
-  `tel` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `contact_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `position` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email_address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `note` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `department` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tel` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for customer_profile_group
 -- ----------------------------
 DROP TABLE IF EXISTS `customer_profile_group`;
-CREATE TABLE `customer_profile_group` (
+CREATE TABLE `customer_profile_group`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_customer_profile` int(11) DEFAULT NULL,
-  `id_customer_group` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `id_customer_profile` int(11) NULL DEFAULT NULL,
+  `id_customer_group` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of customer_profile_group
+-- ----------------------------
+INSERT INTO `customer_profile_group` VALUES (6, 304, 1);
+INSERT INTO `customer_profile_group` VALUES (7, 304, 3);
 
 -- ----------------------------
 -- Table structure for customer_profile_note
 -- ----------------------------
 DROP TABLE IF EXISTS `customer_profile_note`;
-CREATE TABLE `customer_profile_note` (
+CREATE TABLE `customer_profile_note`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `note` varchar(255) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` tinyint(11) DEFAULT NULL,
-  `id_customer` int(11) DEFAULT NULL,
+  `note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` tinyint(11) NULL DEFAULT NULL,
+  `id_customer` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for customer_profile_solution
 -- ----------------------------
 DROP TABLE IF EXISTS `customer_profile_solution`;
-CREATE TABLE `customer_profile_solution` (
+CREATE TABLE `customer_profile_solution`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_customer` int(11) DEFAULT NULL,
-  `id_solution` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=783 DEFAULT CHARSET=latin1;
+  `id_customer` int(11) NULL DEFAULT NULL,
+  `id_solution` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 783 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of customer_profile_solution
 -- ----------------------------
-BEGIN;
 INSERT INTO `customer_profile_solution` VALUES (5, 4, 1);
 INSERT INTO `customer_profile_solution` VALUES (6, 4, 3);
 INSERT INTO `customer_profile_solution` VALUES (7, 4, 6);
@@ -2124,93 +2149,87 @@ INSERT INTO `customer_profile_solution` VALUES (779, 294, 3);
 INSERT INTO `customer_profile_solution` VALUES (780, 294, 4);
 INSERT INTO `customer_profile_solution` VALUES (781, 294, 6);
 INSERT INTO `customer_profile_solution` VALUES (782, 294, 7);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for customer_profile_status
 -- ----------------------------
 DROP TABLE IF EXISTS `customer_profile_status`;
-CREATE TABLE `customer_profile_status` (
+CREATE TABLE `customer_profile_status`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of customer_profile_status
 -- ----------------------------
-BEGIN;
 INSERT INTO `customer_profile_status` VALUES (1, 'New', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `customer_profile_status` VALUES (2, 'Contacted', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `customer_profile_status` VALUES (3, 'Qualified', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `customer_profile_status` VALUES (4, 'Working', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `customer_profile_status` VALUES (5, 'Proposal Sent', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `customer_profile_status` VALUES (6, 'Customer', NULL, NULL, NULL, NULL, 1);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for customer_solution_status
 -- ----------------------------
 DROP TABLE IF EXISTS `customer_solution_status`;
-CREATE TABLE `customer_solution_status` (
+CREATE TABLE `customer_solution_status`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `order_by` int(2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `order_by` int(2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of customer_solution_status
 -- ----------------------------
-BEGIN;
 INSERT INTO `customer_solution_status` VALUES (1, 'Inprocessing', 2);
 INSERT INTO `customer_solution_status` VALUES (2, 'Lived', 3);
 INSERT INTO `customer_solution_status` VALUES (3, 'Terminated', 4);
 INSERT INTO `customer_solution_status` VALUES (4, 'New Sale', 1);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for customer_type
 -- ----------------------------
 DROP TABLE IF EXISTS `customer_type`;
-CREATE TABLE `customer_type` (
+CREATE TABLE `customer_type`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `note` text COLLATE utf8_unicode_ci,
-  `status` int(1) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `note` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for data_option_phone_number_country_code
 -- ----------------------------
 DROP TABLE IF EXISTS `data_option_phone_number_country_code`;
-CREATE TABLE `data_option_phone_number_country_code` (
+CREATE TABLE `data_option_phone_number_country_code`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `short_name` varchar(10) DEFAULT NULL,
-  `names` varchar(50) DEFAULT NULL,
-  `code` varchar(50) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
+  `short_name` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `names` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `code` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
   `created_by` int(11) NOT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=231 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 231 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of data_option_phone_number_country_code
 -- ----------------------------
-BEGIN;
 INSERT INTO `data_option_phone_number_country_code` VALUES (1, 'AD', 'ANDORRA', '376', 1, 1, '2019-01-09 09:58:14', 1, '2019-04-24 16:52:44');
 INSERT INTO `data_option_phone_number_country_code` VALUES (2, 'AE', 'UNITED ARAB EMIRATES', '971', 1, 1, '2019-01-09 09:58:14', NULL, NULL);
 INSERT INTO `data_option_phone_number_country_code` VALUES (3, 'AF', 'AFGHANISTAN', '93', 1, 1, '2019-01-09 09:58:14', NULL, NULL);
@@ -2441,94 +2460,88 @@ INSERT INTO `data_option_phone_number_country_code` VALUES (227, 'YT', 'MAYOTTE'
 INSERT INTO `data_option_phone_number_country_code` VALUES (228, 'ZA', 'SOUTH AFRICA', '27', 1, 1, '2019-01-09 09:58:14', NULL, NULL);
 INSERT INTO `data_option_phone_number_country_code` VALUES (229, 'ZM', 'ZAMBIA', '260', 1, 1, '2019-01-09 09:58:14', NULL, NULL);
 INSERT INTO `data_option_phone_number_country_code` VALUES (230, 'ZW', 'ZIMBABWE', '263', 1, 1, '2019-01-09 09:58:14', NULL, NULL);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for data_option_prefix
 -- ----------------------------
 DROP TABLE IF EXISTS `data_option_prefix`;
-CREATE TABLE `data_option_prefix` (
+CREATE TABLE `data_option_prefix`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `names` varchar(250) NOT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
+  `names` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of data_option_prefix
 -- ----------------------------
-BEGIN;
 INSERT INTO `data_option_prefix` VALUES (1, 'Mr.', 1, '2017-12-11 15:34:00', 1, 1, '2017-12-13 17:15:11');
 INSERT INTO `data_option_prefix` VALUES (2, 'Ms.', 1, '2017-12-11 15:34:08', 1, 1, '2017-12-13 17:15:11');
 INSERT INTO `data_option_prefix` VALUES (3, 'Mrs.', 1, '2017-12-11 15:34:05', 1, 1, '2017-12-13 17:15:11');
 INSERT INTO `data_option_prefix` VALUES (4, 'Dr.', 1, '2017-12-11 15:34:03', 1, 1, '2017-12-13 17:15:11');
 INSERT INTO `data_option_prefix` VALUES (5, 'Prof.', 1, '2017-12-13 17:14:59', 1, 1, '2017-12-13 17:15:11');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for department
 -- ----------------------------
 DROP TABLE IF EXISTS `department`;
-CREATE TABLE `department` (
+CREATE TABLE `department`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8_unicode_ci,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `phone_number` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of department
 -- ----------------------------
-BEGIN;
-INSERT INTO `department` VALUES (1, 'Sales Consultant', '012345678', 'fiance@sample.com', '', '2019-10-05 08:23:45', 1, '2019-10-05 08:35:39', 1, 1);
-INSERT INTO `department` VALUES (2, 'Head Department', '012345678', 'head@sample.com', '', '2019-10-05 08:35:04', 1, NULL, NULL, 1);
-COMMIT;
+INSERT INTO `department` VALUES (1, 'Management', '+855 92 909 985', 'info@construction.com', 'Top management department', '2019-11-23 08:45:59', 21, NULL, NULL, 1);
+INSERT INTO `department` VALUES (2, 'Workers', '+855 92 909 985', 'info@construction.com', 'the workers department', '2019-11-23 08:46:45', 21, NULL, NULL, 1);
 
 -- ----------------------------
 -- Table structure for document
 -- ----------------------------
 DROP TABLE IF EXISTS `document`;
-CREATE TABLE `document` (
+CREATE TABLE `document`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `file_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `file_size` float DEFAULT '0',
-  `id_folder` int(11) DEFAULT '0',
-  `id_membership_profile` int(11) DEFAULT NULL,
-  `file_path` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `thumbnail` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `file_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `file_size` float NULL DEFAULT 0,
+  `id_folder` int(11) NULL DEFAULT 0,
+  `id_membership_profile` int(11) NULL DEFAULT NULL,
+  `file_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `thumbnail` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
   `created_by` int(11) NOT NULL,
-  `created_date` datetime NOT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
-  `document_permission` int(1) DEFAULT NULL,
-  `id_event_list` int(11) DEFAULT NULL,
-  `id_employee_profile` int(11) DEFAULT NULL,
-  `id_customer_profile` int(11) DEFAULT NULL,
-  `id_project` int(11) DEFAULT NULL,
-  `id_contract` int(11) DEFAULT NULL,
-  `id_lead_profile` int(11) DEFAULT NULL,
-  `id_standard_operation_procedure_set_up` int(11) DEFAULT NULL,
-  `file_extention` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `created_date` datetime(0) NOT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT 1,
+  `document_permission` int(1) NULL DEFAULT NULL,
+  `id_event_list` int(11) NULL DEFAULT NULL,
+  `id_employee_profile` int(11) NULL DEFAULT NULL,
+  `id_customer_profile` int(11) NULL DEFAULT NULL,
+  `id_project` int(11) NULL DEFAULT NULL,
+  `id_contract` int(11) NULL DEFAULT NULL,
+  `id_lead_profile` int(11) NULL DEFAULT NULL,
+  `id_standard_operation_procedure_set_up` int(11) NULL DEFAULT NULL,
+  `file_extention` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of document
 -- ----------------------------
-BEGIN;
 INSERT INTO `document` VALUES (2, 'sop-web-developer.pdf', 146827, 3, NULL, 'uploads/employee-profile/3/sop-web-developer-15680314075d7642af346fb864752720.pdf', 'thumbs/icon-pdf.png', NULL, 23, '2019-09-09 19:16:47', NULL, NULL, 1, NULL, NULL, 12, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `document` VALUES (4, 'photo_2019-09-16_12-43-58.jpg', 113945, 8, NULL, 'uploads/project/8/photo_2019-09-16_12-43-58-15686851765d803c78ccaea759446169.jpg', 'uploads/thumb/project/8/photo_2019-09-16_12-43-58-15686851765d803c78ccaea759446169.jpg', NULL, 16, '2019-09-17 08:52:56', NULL, NULL, 1, NULL, NULL, NULL, NULL, 7, NULL, NULL, NULL, 0);
 INSERT INTO `document` VALUES (5, 'photo_2019-09-16_12-43-58 (2).jpg', 87476, 8, NULL, 'uploads/project/8/photo_2019-09-16_12-43-58 (2)-15686852965d803cf0340c1938668654.jpg', 'uploads/thumb/project/8/photo_2019-09-16_12-43-58 (2)-15686852965d803cf0340c1938668654.jpg', NULL, 16, '2019-09-17 08:54:56', NULL, NULL, 1, NULL, NULL, NULL, NULL, 7, NULL, NULL, NULL, 0);
@@ -2538,23 +2551,24 @@ INSERT INTO `document` VALUES (8, 'bms - contract agreement - 2bc.pdf', 428775, 
 INSERT INTO `document` VALUES (9, 'signature by eta.jpg', 593991, 13, NULL, 'uploads/document/13/signature by eta-15693833175d8ae3953ba04867300941.jpg', 'uploads/thumb/document/13/signature by eta-15693833175d8ae3953ba04867300941.jpg', NULL, 20, '2019-09-25 10:48:37', NULL, NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0);
 INSERT INTO `document` VALUES (10, 'signature by 2bc.png', 2025920, 13, NULL, 'uploads/document/13/signature by 2bc-15693834225d8ae3fe23be8981832346.png', 'uploads/thumb/document/13/signature by 2bc-15693834225d8ae3fe23be8981832346.png', NULL, 20, '2019-09-25 10:50:22', NULL, NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0);
 INSERT INTO `document` VALUES (11, 'contract.png', 357689, 14, NULL, 'uploads/project/14/contract-15694808735d8c60a9e7aa8194088553.png', 'uploads/thumb/project/14/contract-15694808735d8c60a9e7aa8194088553.png', NULL, 16, '2019-09-26 13:54:33', NULL, NULL, 1, NULL, NULL, NULL, NULL, 11, NULL, NULL, NULL, 0);
-COMMIT;
+INSERT INTO `document` VALUES (15, 'photo_2019-10-16_11-17-07.jpg', 110527, 18, NULL, 'uploads/project/18/photo_2019-10-16_11-17-07-15711996035da69a73c932f165891908.jpg', 'uploads/thumb/project/18/photo_2019-10-16_11-17-07-15711996035da69a73c932f165891908.jpg', NULL, 16, '2019-10-16 11:20:03', NULL, NULL, 1, NULL, NULL, NULL, NULL, 15, NULL, NULL, NULL, 0);
+INSERT INTO `document` VALUES (16, 'photo_2019-10-18_17-12-21.jpg', 93934, 19, NULL, 'uploads/project/19/photo_2019-10-18_17-12-21-15713935575da990155edaf051726707.jpg', 'uploads/thumb/project/19/photo_2019-10-18_17-12-21-15713935575da990155edaf051726707.jpg', NULL, 1, '2019-10-18 17:12:37', NULL, NULL, 1, NULL, NULL, NULL, NULL, 25, NULL, NULL, NULL, 0);
+INSERT INTO `document` VALUES (17, 'eo-bms frontend.pdf', 24012, 20, NULL, 'uploads/project/20/eo-bms frontend-15716405155dad54c3bc09d762336929.pdf', 'thumbs/icon-pdf.png', NULL, 14, '2019-10-21 13:48:35', NULL, NULL, 1, NULL, NULL, NULL, NULL, 24, NULL, NULL, NULL, 1);
 
 -- ----------------------------
 -- Table structure for document_format
 -- ----------------------------
 DROP TABLE IF EXISTS `document_format`;
-CREATE TABLE `document_format` (
+CREATE TABLE `document_format`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_type` int(11) DEFAULT NULL,
-  `name` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+  `id_type` int(11) NULL DEFAULT NULL,
+  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of document_format
 -- ----------------------------
-BEGIN;
 INSERT INTO `document_format` VALUES (1, 1, 'INV');
 INSERT INTO `document_format` VALUES (2, 2, 'REC');
 INSERT INTO `document_format` VALUES (3, 3, 'EXP');
@@ -2564,127 +2578,145 @@ INSERT INTO `document_format` VALUES (6, 6, 'ADV');
 INSERT INTO `document_format` VALUES (7, 7, 'PRE');
 INSERT INTO `document_format` VALUES (8, 8, 'ERO');
 INSERT INTO `document_format` VALUES (9, 9, 'CTR');
-COMMIT;
+INSERT INTO `document_format` VALUES (10, 9, 'OPN');
+INSERT INTO `document_format` VALUES (11, 10, 'PBI');
+INSERT INTO `document_format` VALUES (12, 11, 'FTR');
+INSERT INTO `document_format` VALUES (13, 12, 'JEN');
 
 -- ----------------------------
 -- Table structure for employee_position
 -- ----------------------------
 DROP TABLE IF EXISTS `employee_position`;
-CREATE TABLE `employee_position` (
+CREATE TABLE `employee_position`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `position_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8_unicode_ci,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `id_department` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `position_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `id_department` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of employee_position
 -- ----------------------------
-BEGIN;
-INSERT INTO `employee_position` VALUES (1, 'Senior - Accountant', '', '2019-10-05 08:24:18', 1, NULL, NULL, 1, 1);
-INSERT INTO `employee_position` VALUES (2, 'General Manager', '', '2019-10-05 08:35:26', 1, NULL, NULL, 1, 2);
-COMMIT;
+INSERT INTO `employee_position` VALUES (1, 'Manager', '', '2019-10-05 08:24:18', 1, '2019-11-23 08:52:16', 21, 1, 1);
+INSERT INTO `employee_position` VALUES (19, 'Worker', '', '2019-11-23 08:52:34', 21, NULL, NULL, 1, 2);
+INSERT INTO `employee_position` VALUES (20, 'Construction Manager', '', '2019-11-23 08:54:29', 21, NULL, NULL, 1, 1);
+INSERT INTO `employee_position` VALUES (21, 'Accountant', '', '2019-11-23 08:54:42', 21, '2019-11-23 09:13:16', 21, 1, 1);
+INSERT INTO `employee_position` VALUES (22, 'than', '', '2019-11-23 08:58:14', 21, NULL, NULL, 1, 2);
 
 -- ----------------------------
 -- Table structure for employee_profile
 -- ----------------------------
 DROP TABLE IF EXISTS `employee_profile`;
-CREATE TABLE `employee_profile` (
+CREATE TABLE `employee_profile`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_prefix` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `last_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `join_date` date DEFAULT NULL,
-  `date_of_birth` date DEFAULT NULL,
-  `place_of_birth` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `sex` varchar(8) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `id_prefix` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `first_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `last_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `join_date` date NULL DEFAULT NULL,
+  `date_of_birth` date NULL DEFAULT NULL,
+  `place_of_birth` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `sex` varchar(8) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
   `nationality` int(11) NOT NULL,
-  `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `id_country` int(11) DEFAULT NULL,
-  `id_city` int(11) DEFAULT NULL,
-  `marital_status` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `id_department` int(11) DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `id_position` int(11) DEFAULT NULL,
-  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `confirm_password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `description` text COLLATE utf8_unicode_ci,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `img_url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `signature_url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `id_user_type` int(11) DEFAULT NULL,
-  `job_description` text COLLATE utf8_unicode_ci,
-  `employee_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `employee_joint_date` date DEFAULT NULL,
-  `basic_salary` decimal(10,2) DEFAULT NULL,
-  `id_working_group` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id_country` int(11) NULL DEFAULT NULL,
+  `id_city` int(11) NULL DEFAULT NULL,
+  `marital_status` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `phone_number` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `id_department` int(11) NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `id_position` int(11) NULL DEFAULT NULL,
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `confirm_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `img_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `signature_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `id_user_type` int(11) NULL DEFAULT NULL,
+  `job_description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
+  `employee_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `employee_joint_date` date NULL DEFAULT NULL,
+  `basic_salary` decimal(10, 2) NULL DEFAULT NULL,
+  `id_working_group` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of employee_profile
 -- ----------------------------
-BEGIN;
-INSERT INTO `employee_profile` VALUES (1, 'Mr.', 'Horn ', 'Choch', '2019-01-01', NULL, '', '1', 56, '', NULL, NULL, '', '', 2, '', 2, 'hornchoch', '', '', '', '2019-10-05 08:38:57', 1, '2019-10-05 08:58:24', 1, 1, '150', '148', 1, '', '', NULL, NULL, NULL);
-COMMIT;
+INSERT INTO `employee_profile` VALUES (1, 'Mr.', '-', 'Hors', NULL, NULL, '', '1', 56, '', NULL, NULL, 'Married', '', 2, '', 22, '', '', '', '', '2019-11-23 08:59:00', 21, '2019-11-23 08:59:16', 21, 1, NULL, NULL, NULL, '', '', NULL, NULL, NULL);
+INSERT INTO `employee_profile` VALUES (2, 'Mr.', '-', 'Chroeng', NULL, NULL, '', '1', 56, '', NULL, NULL, 'Single', '', 2, '', 19, '', '', '', '', '2019-11-23 09:00:14', 21, NULL, NULL, 1, NULL, NULL, NULL, '', '', NULL, NULL, NULL);
+INSERT INTO `employee_profile` VALUES (3, 'Mr.', 'Hong', '(Sor)', NULL, NULL, '', '1', 56, '', NULL, NULL, 'Single', '', 2, '', 19, '', '', '', '', '2019-11-23 09:01:19', 21, NULL, NULL, 1, NULL, NULL, NULL, '', '', NULL, NULL, NULL);
+INSERT INTO `employee_profile` VALUES (4, 'Mr.', '-', 'Pung', NULL, NULL, '', '1', 56, '', NULL, NULL, 'Single', '', 2, '', 19, '', '', '', '', '2019-11-23 09:02:06', 21, NULL, NULL, 1, NULL, NULL, NULL, '', '', NULL, NULL, NULL);
+INSERT INTO `employee_profile` VALUES (5, 'Mr.', '-', 'Treob', NULL, NULL, '', '1', 56, '', NULL, NULL, 'Single', '', 2, '', 22, '', '', '', '', '2019-11-23 09:02:39', 21, '2019-11-23 09:03:00', 21, 1, NULL, NULL, NULL, '', '', NULL, NULL, NULL);
+INSERT INTO `employee_profile` VALUES (6, 'Mr.', '-', 'Ny', NULL, NULL, '', '1', 56, '', NULL, NULL, 'Married', '', 2, '', 22, '', '', '', '', '2019-11-23 09:03:53', 21, NULL, NULL, 1, NULL, NULL, NULL, '', '', NULL, NULL, NULL);
+INSERT INTO `employee_profile` VALUES (7, 'Mr.', '-', 'Tha', NULL, NULL, '', '0', 56, '', NULL, NULL, 'Married', '', 2, '', 19, '', '', '', '', '2019-11-23 09:04:24', 21, NULL, NULL, 1, NULL, NULL, NULL, '', '', NULL, NULL, NULL);
+INSERT INTO `employee_profile` VALUES (8, 'Mr.', '-', 'Por', NULL, NULL, '', '1', 56, '', NULL, NULL, 'Single', '', 2, '', 19, '', '', '', '', '2019-11-23 09:04:47', 21, NULL, NULL, 1, NULL, NULL, NULL, '', '', NULL, NULL, NULL);
+INSERT INTO `employee_profile` VALUES (9, 'Mr.', '-', 'Veng', NULL, NULL, '', '0', 56, '', NULL, NULL, 'Single', '', 2, '', 19, '', '', '', '', '2019-11-23 09:05:24', 21, NULL, NULL, 1, NULL, NULL, NULL, '', '', NULL, NULL, NULL);
+INSERT INTO `employee_profile` VALUES (10, 'Mr.', 'Srey', 'Vin', NULL, NULL, '', '1', 56, '', NULL, NULL, 'Single', '', 2, '', 19, '', '', '', '', '2019-11-23 09:05:50', 21, NULL, NULL, 1, NULL, NULL, NULL, '', '', NULL, NULL, NULL);
+INSERT INTO `employee_profile` VALUES (11, 'Mr.', '-', 'Yarn', NULL, NULL, '', '0', 56, '', 56, 21, 'Single', '', 2, '', 19, '', '', '', '', '2019-11-23 09:06:55', 21, '2019-11-26 08:22:19', 21, 1, NULL, NULL, NULL, '', '', NULL, NULL, NULL);
+INSERT INTO `employee_profile` VALUES (12, 'Mr.', 'Bun', 'Than', NULL, NULL, '', '1', 56, '', NULL, NULL, 'Married', '', 1, '', 1, '', '', '', '', '2019-11-23 09:08:29', 21, NULL, NULL, 1, NULL, NULL, NULL, '', '', NULL, NULL, NULL);
+INSERT INTO `employee_profile` VALUES (13, 'Mr.', 'Vann', 'Nak', NULL, NULL, '', '1', 56, '', NULL, NULL, 'Single', '', 1, '', 20, '', '', '', '', '2019-11-23 09:09:11', 21, NULL, NULL, 1, NULL, NULL, NULL, '', '', NULL, NULL, NULL);
+INSERT INTO `employee_profile` VALUES (14, 'Mr.', 'Chea', 'Sela', NULL, NULL, '', '0', 56, '', NULL, NULL, '', '', 1, '', 20, '', '', '', '', '2019-11-23 09:10:09', 21, NULL, NULL, 1, NULL, NULL, NULL, '', '', NULL, NULL, NULL);
+INSERT INTO `employee_profile` VALUES (15, 'Mr.', '-', 'Makara', NULL, NULL, '', '0', 56, '', NULL, NULL, 'Single', '', 1, '', 20, '', '', '', '', '2019-11-23 09:10:47', 21, NULL, NULL, 1, NULL, NULL, NULL, '', '', NULL, NULL, NULL);
+INSERT INTO `employee_profile` VALUES (16, 'Mr.', 'Jorj', 'Horn', NULL, NULL, '', '0', 56, '', NULL, NULL, 'Married', '', 1, '', 21, '', '', '', '', '2019-11-23 09:11:21', 21, '2019-11-23 09:11:35', 21, 1, NULL, NULL, NULL, '', '', NULL, NULL, NULL);
+INSERT INTO `employee_profile` VALUES (17, 'Mr.', 'Jom', 'Rern', NULL, NULL, '', '0', 56, '', NULL, NULL, 'Married', '', 1, '', 20, '', '', '', '', '2019-11-23 09:12:08', 21, NULL, NULL, 1, NULL, NULL, NULL, '', '', NULL, NULL, NULL);
+INSERT INTO `employee_profile` VALUES (18, 'Mr.', '-', 'Vai', NULL, NULL, '', '0', 56, '', NULL, NULL, 'Single', '', 1, '', 20, '', '', '', '', '2019-11-23 09:12:44', 21, NULL, NULL, 1, NULL, NULL, NULL, '', '', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for eot_customer
 -- ----------------------------
 DROP TABLE IF EXISTS `eot_customer`;
-CREATE TABLE `eot_customer` (
+CREATE TABLE `eot_customer`  (
   `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `address` text,
-  `country` int(11) DEFAULT NULL,
-  `city` int(11) DEFAULT NULL,
-  `postal_code` varchar(255) DEFAULT NULL,
-  `contact_person` varchar(255) DEFAULT NULL,
-  `general_email` varchar(255) DEFAULT NULL,
-  `reservation_email` varchar(255) DEFAULT NULL,
-  `invoice_email` varchar(255) DEFAULT NULL,
-  `mobile_number_invoice` varchar(255) DEFAULT NULL,
-  `main_phone_1` varchar(255) DEFAULT NULL,
-  `main_phone_2` varchar(255) DEFAULT NULL,
-  `website_url` varchar(255) DEFAULT NULL,
-  `accommodation_type` int(11) DEFAULT NULL,
-  `star_rating` decimal(10,1) DEFAULT NULL,
-  `number_of_rooms` int(11) DEFAULT NULL,
-  `sale_date` date DEFAULT NULL,
-  `service_agreement` varchar(255) DEFAULT NULL,
-  `fee` varchar(255) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `accomodation_stats` int(11) DEFAULT NULL COMMENT '1=lived , 2 = Inprocesing , 0 = Deactived',
-  `created_by` int(11) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `passed_by` int(11) DEFAULT NULL,
-  `handle_by` int(11) DEFAULT NULL,
-  `deactivated_at` date DEFAULT NULL,
-  `deactivated_reason` text,
-  `deactivated_requested_by` varchar(255) DEFAULT NULL,
-  `deactivated_requested_contact_detail` text,
+  `name` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `address` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  `country` int(11) NULL DEFAULT NULL,
+  `city` int(11) NULL DEFAULT NULL,
+  `postal_code` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `contact_person` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `general_email` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `reservation_email` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `invoice_email` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `mobile_number_invoice` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `main_phone_1` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `main_phone_2` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `website_url` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `accommodation_type` int(11) NULL DEFAULT NULL,
+  `star_rating` decimal(10, 1) NULL DEFAULT NULL,
+  `number_of_rooms` int(11) NULL DEFAULT NULL,
+  `sale_date` date NULL DEFAULT NULL,
+  `service_agreement` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `fee` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `accomodation_stats` int(11) NULL DEFAULT NULL COMMENT '1=lived , 2 = Inprocesing , 0 = Deactived',
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_at` datetime(0) NULL DEFAULT NULL,
+  `updated_at` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `passed_by` int(11) NULL DEFAULT NULL,
+  `handle_by` int(11) NULL DEFAULT NULL,
+  `deactivated_at` date NULL DEFAULT NULL,
+  `deactivated_reason` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  `deactivated_requested_by` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `deactivated_requested_contact_detail` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
   `deactivated_by` int(11) NOT NULL,
-  `lived_date` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `lived_date` datetime(0) NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of eot_customer
 -- ----------------------------
-BEGIN;
 INSERT INTO `eot_customer` VALUES (1, '1920 Hotel ', 'Street #9, Old Market, Siem Reap, Cambodia', 1, 1, '1', 'Mr. Senghak KOL', 'info@1920hotel.com', 'info@1920hotel.com', 'info@1920hotel.com', '+855 63 969 920', '+855 99 915 918', '+855 99 915 918', 'http://the1920.com', 1, 4.0, 10, '2016-05-23', '13', '', NULL, 2, 12, '2018-09-02 12:59:03', '2018-09-02 12:59:03', 12, 2, 5, '1970-01-01', '', '', '', 4, NULL);
 INSERT INTO `eot_customer` VALUES (4, 'Advaya Residence', 'Vihear Chin Village, Svay Dangkum, Siem Reap', 1, 1, '17252', 'Mr. Korn Kosal', 'gm@advayaresidence.com', 'reservations@advayaresidence.com, gm@advayaresidence.com', 'gm@advayaresidence.com', '+855 17 465 120', '+855 17 465 120', '+855 63 766 365', 'http://advayaresidence.com', 1, 5.0, 17, '2018-08-21', NULL, '1', NULL, 2, 12, '2018-11-01 14:01:09', '2018-11-01 14:01:09', 12, 2, 4, '1970-01-01', '', '', '', 4, NULL);
 INSERT INTO `eot_customer` VALUES (5, 'Adventure Hostel Siem Reap', 'Siem Reap, Cambodia', 1, 1, '17252', 'Mr. Chhun Sochetra', 'chhunsochetra@gmail.com', 'thekingteam999@gmail.com', 'thekingteam999@gmail.com', '+855 77 460 077', '+855 12 380 484', '+855 77 460 077', 'http://adventurehostelsiemreap.com', 2, 3.0, 20, '2018-08-21', NULL, '', NULL, 2, 12, '2018-11-01 14:02:34', '2018-11-01 14:02:34', 12, 2, 4, '1970-01-01', '', '', '', 4, NULL);
@@ -2964,192 +2996,302 @@ INSERT INTO `eot_customer` VALUES (316, 'Wheel Garden Residence ', 'Psa Krolanh 
 INSERT INTO `eot_customer` VALUES (317, 'Romantic Angkor Residence ', 'Wat Bo Village, Sala Kamreuk Commune, Siem Reap Cambodia', 1, 1, '', 'Mr. Komsort', 'romanticangkors@gmail.com', 'romanticangkors@gmail.com', 'romanticangkors@gmail.com', '+855 70 770 002', '+855 70 770 002', '+855 70 770 002', 'http://romanticangkor.com', 7, 4.0, 15, '2019-07-08', '35', '110', NULL, 1, 12, '2019-07-08 14:52:54', '2019-07-08 14:52:54', 12, 19, 5, '2019-07-08', '', '', '', 2, '2019-07-08 00:00:00');
 INSERT INTO `eot_customer` VALUES (318, 'Moon Flower Residence', 'Old Market Area, Wat Damnak Village, Salakomreuk Commune', 1, 1, '', 'Mr.Sok Piseth', 'info@moonflowersiemreap.com', 'info@moonflowersiemreap.com', 'info@moonflowersiemreap.com', '', '+855 69 700 304', '+855 77 979 711', 'https://damnakvillaboutique.com', 1, 3.0, 8, '2018-07-09', NULL, '85', NULL, 2, 12, '2019-08-07 09:37:43', '2019-08-07 09:37:43', 12, 19, 4, '2019-08-07', '', '', '', 2, '2019-08-07 00:00:00');
 INSERT INTO `eot_customer` VALUES (319, 'Siem Reap Palace Residence', 'Siem Reap', 1, 1, '', 'Mr. Borei', 'book@siemreappalace-residence.com', 'book@siemreappalace-residence.com', 'book@siemreappalace-residence.com', '+855 98 675 556', '+855 98 675 556', '+855 98 675 556', 'http://siemreappalace-residence.com', 7, 4.0, 26, '2019-08-06', NULL, '50', NULL, 1, 12, '2019-08-07 10:24:13', '2019-08-07 10:24:13', 12, 19, 4, '2019-08-07', '', '', '', 2, '2019-08-07 00:00:00');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for event_list
 -- ----------------------------
 DROP TABLE IF EXISTS `event_list`;
-CREATE TABLE `event_list` (
+CREATE TABLE `event_list`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `img_url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `event_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `number_of_audient` int(11) DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `address_line_2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `id_country` int(11) DEFAULT NULL,
-  `id_city` int(11) DEFAULT NULL,
-  `id_province` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `postal_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `prefix_phone_code` int(11) DEFAULT NULL,
-  `phone_number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `prefix_phone_code_line_2` int(11) DEFAULT NULL,
-  `phone_number_line_2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8_unicode_ci,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `from_date` date DEFAULT NULL,
-  `to_date` date DEFAULT NULL,
-  `fee_for_membership` decimal(10,2) DEFAULT '0.00',
-  `fee_for_subscriber` decimal(10,2) DEFAULT '0.00',
-  `authorized` int(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `img_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `event_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `number_of_audient` int(11) NULL DEFAULT NULL,
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `address_line_2` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `id_country` int(11) NULL DEFAULT NULL,
+  `id_city` int(11) NULL DEFAULT NULL,
+  `id_province` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `postal_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `prefix_phone_code` int(11) NULL DEFAULT NULL,
+  `phone_number` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `prefix_phone_code_line_2` int(11) NULL DEFAULT NULL,
+  `phone_number_line_2` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `from_date` date NULL DEFAULT NULL,
+  `to_date` date NULL DEFAULT NULL,
+  `fee_for_membership` decimal(10, 2) NULL DEFAULT 0.00,
+  `fee_for_subscriber` decimal(10, 2) NULL DEFAULT 0.00,
+  `authorized` int(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of event_list
 -- ----------------------------
-BEGIN;
 INSERT INTO `event_list` VALUES (1, '4', 'Village Excursions by Vespa Famtrip', NULL, 'River side', '', 56, 21, 'Palate Restaurant', '', NULL, '', NULL, '', '', 'Time Activity Remarks \r\n\r\n08:00 Pick up from the Hotel Departure exactly on time \r\n08:10 ? 09:00 Ride to countryside fresh palm juice gathering and tasting  \r\n09:00 ? 09:30 Ride and explanation about house temples and stroll over local market \r\n09:30 ? 10:30 Ride to  Wat Svay Romeat Pagoda,  sightseeing,   blessing ceremony and fortune teller  \r\n10:30 ? 11:45 West  Mebon temple island During rainy season transported by   boat and dui during dry season by Vespa \r\n11:45 ? 13:00 Lunch and drinks at private farm picnic  \r\n13:00 ? 13:10 Visit to basket weaving and farming family  13:10 ? 13:35 Visit to sticky rice making and Local medicine   along the road back  \r\n13:30 ? 14:00 Return to hotel and end tour \r\n  \r\nImportant: \r\no The safety of the guests is paramount and all guests must wear helmets. \r\no The price is 40 US$ per person \r\no Each guest is driven by their personal drivers (only holders of local or international driver?s license are eligible to drive in Siem Reap and road conditions demand full concentration). \r\no Every tour is accompanied by a guide. o All snacks, drinks and foods are included in the price of the tour. Individual purchases during the tour are for the account of guests. \r\no The tour program may vary, for instance due to spontaneous extra activities or if an activity should not be available due to circumstances beyond our control. \r\no Guests are advised to use sunscreen and to wear comfortable clothes and footwear that can be cleaned easily.\r\n The tour rides rain or shine. In the monsoon season first- rate raincoats are provided by VA SR ', '2019-07-03 16:39:16', 1, '2019-07-16 14:37:25', 1, 1, '2019-07-12', '2019-07-12', 40.00, 50.00, 1);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for expense
 -- ----------------------------
 DROP TABLE IF EXISTS `expense`;
-CREATE TABLE `expense` (
+CREATE TABLE `expense`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `doc_id` varchar(50) DEFAULT NULL,
-  `id_related_to` int(11) DEFAULT NULL,
-  `id_related_profile` int(11) DEFAULT NULL,
-  `date` date DEFAULT NULL,
-  `chart_of_account` int(11) DEFAULT NULL,
-  `chart_of_account_amount` decimal(10,2) DEFAULT NULL,
-  `id_payment_method` int(11) DEFAULT NULL,
-  `cheque_number` varchar(10) DEFAULT NULL,
-  `clearing_date` date DEFAULT NULL,
-  `total_amount` decimal(10,2) DEFAULT NULL,
-  `paid_amount` decimal(10,2) DEFAULT NULL,
-  `balance_amount` decimal(10,2) DEFAULT NULL,
-  `remark` varchar(255) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `img_url` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `type_id` tinyint(1) NULL DEFAULT NULL,
+  `doc_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_related_to` int(11) NULL DEFAULT NULL,
+  `id_related_profile` int(11) NULL DEFAULT NULL,
+  `date` date NULL DEFAULT NULL,
+  `is_bill` tinyint(1) NULL DEFAULT NULL,
+  `chart_of_account` int(11) NULL DEFAULT NULL,
+  `chart_of_account_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `id_payment_method` int(11) NULL DEFAULT NULL,
+  `cheque_number` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `clearing_date` date NULL DEFAULT NULL,
+  `total_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `paid_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `balance_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `img_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for expense_data
 -- ----------------------------
 DROP TABLE IF EXISTS `expense_data`;
-CREATE TABLE `expense_data` (
+CREATE TABLE `expense_data`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_expense` int(11) DEFAULT NULL,
-  `chart_of_account` int(11) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `amount` decimal(10,2) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `id_expense` int(11) NULL DEFAULT NULL,
+  `chart_of_account` int(11) NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `amount` decimal(10, 2) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for expense_related_to
 -- ----------------------------
 DROP TABLE IF EXISTS `expense_related_to`;
-CREATE TABLE `expense_related_to` (
+CREATE TABLE `expense_related_to`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of expense_related_to
 -- ----------------------------
-BEGIN;
 INSERT INTO `expense_related_to` VALUES (1, 'Supplier');
 INSERT INTO `expense_related_to` VALUES (2, 'Customer');
 INSERT INTO `expense_related_to` VALUES (3, 'Project');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for finance_chart_of_account
 -- ----------------------------
 DROP TABLE IF EXISTS `finance_chart_of_account`;
-CREATE TABLE `finance_chart_of_account` (
+CREATE TABLE `finance_chart_of_account`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date` date DEFAULT NULL,
-  `transaction_type` varchar(100) DEFAULT NULL,
-  `doc_id` varchar(50) DEFAULT NULL,
-  `name` varchar(50) DEFAULT NULL,
-  `name_type` varchar(50) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `debit` decimal(10,2) DEFAULT NULL,
-  `credit` decimal(10,2) DEFAULT NULL,
-  `balance` decimal(10,2) DEFAULT NULL,
-  `account_type` int(11) DEFAULT NULL,
-  `chart_of_account` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
+  `date` date NULL DEFAULT NULL,
+  `transaction_type` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `doc_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `name_type` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `debit` decimal(10, 2) NULL DEFAULT NULL,
+  `credit` decimal(10, 2) NULL DEFAULT NULL,
+  `balance` decimal(10, 2) NULL DEFAULT NULL,
+  `account_type` int(11) NULL DEFAULT NULL,
+  `chart_of_account` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of finance_chart_of_account
 -- ----------------------------
-BEGIN;
 INSERT INTO `finance_chart_of_account` VALUES (3, '2019-09-16', 'Invoice', 'INV19090001', '5', 'customer', 'INV19090001', 0.00, 299.00, 299.00, 1, 1, '2019-09-16 13:07:36', 1, 1, NULL, NULL);
 INSERT INTO `finance_chart_of_account` VALUES (4, '2019-09-16', 'Invoice', 'INV19090001', '5', 'customer', 'INV19090001', 299.00, 0.00, 299.00, 45, 63, '2019-09-16 13:07:36', 1, 1, NULL, NULL);
-COMMIT;
+INSERT INTO `finance_chart_of_account` VALUES (13, '2019-10-24', 'Opening Balance', 'CTR19100002', NULL, NULL, 'Opening Balance - TEN THOUSAND DOLLAR', 10000.00, 0.00, 10000.00, 3, 276, '2019-10-24 09:40:24', 1, 1, NULL, NULL);
+INSERT INTO `finance_chart_of_account` VALUES (14, '2019-10-24', 'Opening Balance', 'CTR19100002', NULL, NULL, 'Opening Balance - TEN THOUSAND DOLLAR', 0.00, 10000.00, 10000.00, 7, 273, '2019-10-24 09:40:24', 1, 1, NULL, NULL);
+INSERT INTO `finance_chart_of_account` VALUES (15, '2019-10-24', 'Expense', 'EXP19100002', '1', 'supplier', '', 110.00, 0.00, 110.00, 46, 237, '2019-10-24 09:40:50', 1, 1, NULL, NULL);
+INSERT INTO `finance_chart_of_account` VALUES (16, '2019-10-24', 'Expense', 'EXP19100002', '1', 'supplier', '', 0.00, 110.00, 9890.00, 3, 276, '2019-10-24 09:40:50', 1, 1, NULL, NULL);
+INSERT INTO `finance_chart_of_account` VALUES (17, '2019-10-24', 'Expense', 'EXP19100003', '1', 'supplier', '', 110.00, 0.00, 220.00, 46, 237, '2019-10-24 09:41:16', 1, 1, NULL, NULL);
+INSERT INTO `finance_chart_of_account` VALUES (18, '2019-10-24', 'Expense', 'EXP19100003', '1', 'supplier', '', 0.00, 110.00, 110.00, 44, 62, '2019-10-24 09:41:16', 1, 1, NULL, NULL);
+INSERT INTO `finance_chart_of_account` VALUES (23, '2019-10-24', 'Pay Bill', 'PBI19100002', '1', 'supplier', '', 0.00, 100.00, 9790.00, 3, 276, '2019-10-24 09:48:24', 1, 1, NULL, NULL);
+INSERT INTO `finance_chart_of_account` VALUES (24, '2019-10-24', 'Pay Bill', 'PBI19100002', '1', 'supplier', '', 100.00, 0.00, 10.00, 44, 62, '2019-10-24 09:48:24', 1, 1, NULL, NULL);
+INSERT INTO `finance_chart_of_account` VALUES (27, '2019-10-24', 'Pay Bill', 'PBI19100001', '1', 'supplier', '', 0.00, 100.00, 9690.00, 3, 276, '2019-10-24 09:51:44', 1, 1, NULL, NULL);
+INSERT INTO `finance_chart_of_account` VALUES (28, '2019-10-24', 'Pay Bill', 'PBI19100001', '1', 'supplier', '', 100.00, 0.00, -90.00, 44, 62, '2019-10-24 09:51:44', 1, 1, NULL, NULL);
+INSERT INTO `finance_chart_of_account` VALUES (29, '2019-10-24', 'Pay Bill', 'PBI19100003', '1', 'supplier', '', 0.00, 10.00, 10.00, 3, 276, '2019-10-24 09:52:58', 1, 0, '2019-10-24 09:53:23', 1);
+INSERT INTO `finance_chart_of_account` VALUES (30, '2019-10-24', 'Pay Bill', 'PBI19100003', '1', 'supplier', '', 10.00, 0.00, 10.00, 44, 62, '2019-10-24 09:52:58', 1, 0, '2019-10-24 09:53:23', 1);
+INSERT INTO `finance_chart_of_account` VALUES (31, '2019-10-24', 'Pay Bill', 'PBI19100004', '1', 'supplier', '', 0.00, 10.00, 9680.00, 3, 276, '2019-10-24 10:01:54', 1, 1, NULL, NULL);
+INSERT INTO `finance_chart_of_account` VALUES (32, '2019-10-24', 'Pay Bill', 'PBI19100004', '1', 'supplier', '', 10.00, 0.00, -100.00, 44, 62, '2019-10-24 10:01:54', 1, 1, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for finance_chart_of_account_amount
 -- ----------------------------
 DROP TABLE IF EXISTS `finance_chart_of_account_amount`;
-CREATE TABLE `finance_chart_of_account_amount` (
+CREATE TABLE `finance_chart_of_account_amount`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `account_type` int(11) DEFAULT NULL,
-  `chart_of_account` int(11) DEFAULT NULL,
-  `ending_balance` decimal(10,2) DEFAULT NULL,
-  `name` varchar(50) DEFAULT NULL,
-  `name_type` varchar(50) DEFAULT NULL,
+  `account_type` int(11) NULL DEFAULT NULL,
+  `chart_of_account` int(11) NULL DEFAULT NULL,
+  `ending_balance` decimal(10, 2) NULL DEFAULT NULL,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `name_type` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of finance_chart_of_account_amount
 -- ----------------------------
-BEGIN;
 INSERT INTO `finance_chart_of_account_amount` VALUES (1, 9, 51, 0.00, '4', 'Employee');
-COMMIT;
+
+-- ----------------------------
+-- Table structure for finance_journal_entry
+-- ----------------------------
+DROP TABLE IF EXISTS `finance_journal_entry`;
+CREATE TABLE `finance_journal_entry`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `doc_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `from_account` int(11) NULL DEFAULT NULL,
+  `to_account` int(11) NULL DEFAULT NULL,
+  `date` date NULL DEFAULT NULL,
+  `amount` decimal(10, 2) NULL DEFAULT NULL,
+  `amount_in_word` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Table structure for finance_opening_balance
+-- ----------------------------
+DROP TABLE IF EXISTS `finance_opening_balance`;
+CREATE TABLE `finance_opening_balance`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `doc_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_chart_of_account` int(11) NULL DEFAULT NULL,
+  `date` date NULL DEFAULT NULL,
+  `amount` decimal(10, 2) NULL DEFAULT NULL,
+  `amount_in_word` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of finance_opening_balance
+-- ----------------------------
+INSERT INTO `finance_opening_balance` VALUES (1, 'CTR19100001', 276, '2019-10-19', 53.71, 'FIFTY THREE POINT SEVEN ONE DOLLAR', '', NULL, NULL, 0, 1, '2019-10-19 08:24:35');
+INSERT INTO `finance_opening_balance` VALUES (2, 'CTR19100002', 276, '2019-10-24', 10000.00, 'TEN THOUSAND DOLLAR', '', NULL, NULL, 1, 1, '2019-10-24 09:40:24');
+
+-- ----------------------------
+-- Table structure for finance_pay_bill
+-- ----------------------------
+DROP TABLE IF EXISTS `finance_pay_bill`;
+CREATE TABLE `finance_pay_bill`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `doc_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_related_to` int(11) NULL DEFAULT NULL,
+  `id_related_profile` int(11) NULL DEFAULT NULL,
+  `date` date NULL DEFAULT NULL,
+  `id_chart_of_account` int(11) NULL DEFAULT NULL,
+  `id_payment_method` int(11) NULL DEFAULT NULL,
+  `cheque_number` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `clearing_date` date NULL DEFAULT NULL,
+  `amount` decimal(10, 2) NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of finance_pay_bill
+-- ----------------------------
+INSERT INTO `finance_pay_bill` VALUES (1, 'PBI19100001', 1, 1, '2019-10-24', 276, 1, '', NULL, 100.00, '', 1, '2019-10-24 09:41:40', 1, '2019-10-24 09:51:44', 1);
+INSERT INTO `finance_pay_bill` VALUES (2, 'PBI19100002', 1, 1, '2019-10-24', 276, 1, '', NULL, 100.00, '', 1, '2019-10-24 09:41:41', 1, '2019-10-24 09:48:24', 1);
+INSERT INTO `finance_pay_bill` VALUES (3, 'PBI19100003', 1, 1, '2019-10-24', 276, 1, '', NULL, 10.00, '', 1, '2019-10-24 09:52:58', 1, '2019-10-24 09:53:23', 5);
+INSERT INTO `finance_pay_bill` VALUES (4, 'PBI19100004', 1, 1, '2019-10-24', 276, 1, '', NULL, 10.00, '', 1, '2019-10-24 10:01:54', NULL, NULL, 1);
+
+-- ----------------------------
+-- Table structure for finance_pay_bill_data
+-- ----------------------------
+DROP TABLE IF EXISTS `finance_pay_bill_data`;
+CREATE TABLE `finance_pay_bill_data`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pay_bill_id` int(11) NULL DEFAULT NULL,
+  `bill_date` date NULL DEFAULT NULL,
+  `bill_id` int(11) NULL DEFAULT NULL,
+  `doc_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `total_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `paid_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of finance_pay_bill_data
+-- ----------------------------
+INSERT INTO `finance_pay_bill_data` VALUES (3, 2, '2019-10-24', 3, 'EXP19100003', 'test pay bill', 110.00, 100.00, 1);
+INSERT INTO `finance_pay_bill_data` VALUES (5, 1, '2019-10-24', 3, 'EXP19100003', 'test pay bill', 110.00, 100.00, 1);
+INSERT INTO `finance_pay_bill_data` VALUES (6, 3, '2019-10-24', 3, 'EXP19100003', '', 10.00, 10.00, 1);
+INSERT INTO `finance_pay_bill_data` VALUES (7, 4, '2019-10-24', 3, 'EXP19100003', '', 110.00, 10.00, 1);
 
 -- ----------------------------
 -- Table structure for folder
 -- ----------------------------
 DROP TABLE IF EXISTS `folder`;
-CREATE TABLE `folder` (
+CREATE TABLE `folder`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `folder_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `id_membership_profile` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `id_document_permission` int(1) DEFAULT NULL,
-  `id_event_list` int(11) DEFAULT NULL,
-  `id_employee_profile` int(11) DEFAULT NULL,
-  `id_customer_profile` int(11) DEFAULT NULL,
-  `id_project` int(11) DEFAULT NULL,
-  `id_contract` int(11) DEFAULT NULL,
-  `id_lead_profile` int(11) DEFAULT NULL,
-  `id_standard_operation_procedure_set_up` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `folder_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `id_membership_profile` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `id_document_permission` int(1) NULL DEFAULT NULL,
+  `id_event_list` int(11) NULL DEFAULT NULL,
+  `id_employee_profile` int(11) NULL DEFAULT NULL,
+  `id_customer_profile` int(11) NULL DEFAULT NULL,
+  `id_project` int(11) NULL DEFAULT NULL,
+  `id_contract` int(11) NULL DEFAULT NULL,
+  `id_lead_profile` int(11) NULL DEFAULT NULL,
+  `id_standard_operation_procedure_set_up` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of folder
 -- ----------------------------
-BEGIN;
 INSERT INTO `folder` VALUES (2, 'Flow Chart', NULL, 1, 23, '2019-09-09 14:03:29', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 14);
 INSERT INTO `folder` VALUES (3, 'Pholly Handle', NULL, 1, 23, '2019-09-09 19:13:22', NULL, NULL, NULL, NULL, 12, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `folder` VALUES (8, 'Contract', NULL, 1, 16, '2019-09-17 08:52:35', NULL, NULL, NULL, NULL, NULL, NULL, 7, NULL, NULL, NULL);
@@ -3157,25 +3299,27 @@ INSERT INTO `folder` VALUES (9, 'Web Developer', '', 1, 1, '2019-09-17 15:23:55'
 INSERT INTO `folder` VALUES (10, 'Contract', NULL, 1, 16, '2019-09-20 14:22:58', NULL, NULL, NULL, NULL, NULL, NULL, 5, NULL, NULL, NULL);
 INSERT INTO `folder` VALUES (13, 'BMS Contracts', '', 1, 20, '2019-09-25 10:31:19', NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `folder` VALUES (14, 'Contract', NULL, 1, 16, '2019-09-26 13:53:25', NULL, NULL, NULL, NULL, NULL, NULL, 11, NULL, NULL, NULL);
-COMMIT;
+INSERT INTO `folder` VALUES (15, 'User Manual', NULL, 1, 14, '2019-10-10 13:50:36', NULL, NULL, NULL, NULL, NULL, NULL, 17, NULL, NULL, NULL);
+INSERT INTO `folder` VALUES (18, 'Contract', NULL, 1, 16, '2019-10-16 11:19:57', NULL, NULL, NULL, NULL, NULL, NULL, 15, NULL, NULL, NULL);
+INSERT INTO `folder` VALUES (19, 'Document Refferent', NULL, 1, 1, '2019-10-18 17:12:04', NULL, NULL, NULL, NULL, NULL, NULL, 25, NULL, NULL, NULL);
+INSERT INTO `folder` VALUES (20, 'Document reference', NULL, 1, 14, '2019-10-21 13:47:59', NULL, NULL, NULL, NULL, NULL, NULL, 24, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for hls_solutions
 -- ----------------------------
 DROP TABLE IF EXISTS `hls_solutions`;
-CREATE TABLE `hls_solutions` (
+CREATE TABLE `hls_solutions`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `icon` varchar(255) DEFAULT NULL,
-  `description` text,
-  `status` bit(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `status` bit(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of hls_solutions
 -- ----------------------------
-BEGIN;
 INSERT INTO `hls_solutions` VALUES (1, 'Booking Engine', 'fa fa-cog', NULL, b'1');
 INSERT INTO `hls_solutions` VALUES (2, 'Front Desk', 'fa fa-desktop', NULL, b'1');
 INSERT INTO `hls_solutions` VALUES (3, 'Website', 'fa fa-id-card', NULL, b'1');
@@ -3187,249 +3331,208 @@ INSERT INTO `hls_solutions` VALUES (8, 'Reputation Manager', 'fa fa-comment', NU
 INSERT INTO `hls_solutions` VALUES (9, 'eO-DMC', 'fa fa-wpexplorer', NULL, b'1');
 INSERT INTO `hls_solutions` VALUES (10, 'eO-CSMA', 'fa fa-mobile', NULL, b'1');
 INSERT INTO `hls_solutions` VALUES (11, 'eO-BMS', 'fa fa-line-chart', NULL, b'1');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for hr_approval_permission
 -- ----------------------------
 DROP TABLE IF EXISTS `hr_approval_permission`;
-CREATE TABLE `hr_approval_permission` (
+CREATE TABLE `hr_approval_permission`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `approver_id` int(11) DEFAULT NULL,
-  `created_date` date DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` date DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `approver_id` int(11) NULL DEFAULT NULL,
+  `created_date` date NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` date NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of hr_approval_permission
+-- ----------------------------
+INSERT INTO `hr_approval_permission` VALUES (1, 1, '2019-10-08', 1, NULL, NULL, 1);
 
 -- ----------------------------
 -- Table structure for hr_approval_permission_data
 -- ----------------------------
 DROP TABLE IF EXISTS `hr_approval_permission_data`;
-CREATE TABLE `hr_approval_permission_data` (
+CREATE TABLE `hr_approval_permission_data`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `hr_approval_permission_id` int(11) DEFAULT NULL,
-  `employee_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `hr_approval_permission_id` int(11) NULL DEFAULT NULL,
+  `employee_id` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for hr_approval_permission_department
 -- ----------------------------
 DROP TABLE IF EXISTS `hr_approval_permission_department`;
-CREATE TABLE `hr_approval_permission_department` (
+CREATE TABLE `hr_approval_permission_department`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `hr_approval_permission_id` int(11) DEFAULT NULL,
-  `department_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `hr_approval_permission_id` int(11) NULL DEFAULT NULL,
+  `department_id` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of hr_approval_permission_department
+-- ----------------------------
+INSERT INTO `hr_approval_permission_department` VALUES (1, 1, 2);
 
 -- ----------------------------
 -- Table structure for invoice_status
 -- ----------------------------
 DROP TABLE IF EXISTS `invoice_status`;
-CREATE TABLE `invoice_status` (
+CREATE TABLE `invoice_status`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `css_class` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `status` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `css_class` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `status` tinyint(4) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of invoice_status
 -- ----------------------------
-BEGIN;
 INSERT INTO `invoice_status` VALUES (1, 'PAID', 'label-info', 1);
 INSERT INTO `invoice_status` VALUES (2, 'OVERDUE', 'label-warning', 1);
 INSERT INTO `invoice_status` VALUES (3, 'PARTIALLY PAID', 'label-success', 1);
 INSERT INTO `invoice_status` VALUES (4, 'UNPAID', 'label-mint', 1);
 INSERT INTO `invoice_status` VALUES (5, 'VOIDED', 'label-danger', 1);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for item
 -- ----------------------------
 DROP TABLE IF EXISTS `item`;
-CREATE TABLE `item` (
+CREATE TABLE `item`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `description` varchar(255) DEFAULT NULL,
-  `long_description` text,
-  `short_description` varchar(255) DEFAULT NULL,
-  `rate` decimal(10,2) DEFAULT NULL,
-  `setup_fee` decimal(10,2) DEFAULT '0.00',
-  `id_tax` int(11) DEFAULT NULL,
-  `id_group` int(11) DEFAULT NULL,
-  `unit` int(11) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `long_description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `short_description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `rate` decimal(10, 2) NULL DEFAULT NULL,
+  `setup_fee` decimal(10, 2) NULL DEFAULT 0.00,
+  `id_tax` int(11) NULL DEFAULT NULL,
+  `id_group` int(11) NULL DEFAULT NULL,
+  `unit` int(11) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for item_data
 -- ----------------------------
 DROP TABLE IF EXISTS `item_data`;
-CREATE TABLE `item_data` (
+CREATE TABLE `item_data`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_item` int(11) DEFAULT NULL,
-  `id_data` int(11) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_item` int(11) NULL DEFAULT NULL,
+  `id_data` int(11) NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for item_group
 -- ----------------------------
 DROP TABLE IF EXISTS `item_group`;
-CREATE TABLE `item_group` (
+CREATE TABLE `item_group`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `order_by` int(11) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `full_name` varchar(255) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` tinyint(11) DEFAULT NULL,
-  `main_logo` varchar(255) DEFAULT NULL,
-  `description` text,
-  `inclusive_benefit` text,
-  `plan_detail` text,
-  `setup_label` varchar(255) DEFAULT NULL,
+  `order_by` int(11) NULL DEFAULT NULL,
+  `credit_arrangment` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `cancellation_agreement` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `confidentiality` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `full_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` tinyint(11) NULL DEFAULT NULL,
+  `main_logo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `inclusive_benefit` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `plan_detail` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `setup_label` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for item_group_data
 -- ----------------------------
 DROP TABLE IF EXISTS `item_group_data`;
-CREATE TABLE `item_group_data` (
+CREATE TABLE `item_group_data`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_type` int(11) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_type` int(11) NULL DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for item_group_department
 -- ----------------------------
 DROP TABLE IF EXISTS `item_group_department`;
-CREATE TABLE `item_group_department` (
+CREATE TABLE `item_group_department`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_item_group` int(11) DEFAULT NULL,
-  `id_department` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8;
+  `id_item_group` int(11) NULL DEFAULT NULL,
+  `id_department` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 220 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of item_group_department
 -- ----------------------------
-BEGIN;
-INSERT INTO `item_group_department` VALUES (133, 1, 3);
 INSERT INTO `item_group_department` VALUES (135, 2, 2);
 INSERT INTO `item_group_department` VALUES (137, 3, 2);
-INSERT INTO `item_group_department` VALUES (138, 4, 1);
-INSERT INTO `item_group_department` VALUES (139, 4, 2);
-INSERT INTO `item_group_department` VALUES (140, 4, 3);
-INSERT INTO `item_group_department` VALUES (141, 4, 4);
-INSERT INTO `item_group_department` VALUES (142, 4, 5);
 INSERT INTO `item_group_department` VALUES (143, 5, 2);
 INSERT INTO `item_group_department` VALUES (144, 6, 2);
 INSERT INTO `item_group_department` VALUES (145, 7, 4);
-INSERT INTO `item_group_department` VALUES (146, 12, 1);
-INSERT INTO `item_group_department` VALUES (147, 12, 2);
-INSERT INTO `item_group_department` VALUES (148, 12, 3);
-INSERT INTO `item_group_department` VALUES (149, 12, 4);
-INSERT INTO `item_group_department` VALUES (150, 12, 5);
-INSERT INTO `item_group_department` VALUES (151, 11, 1);
-INSERT INTO `item_group_department` VALUES (152, 11, 3);
 INSERT INTO `item_group_department` VALUES (153, 10, 2);
 INSERT INTO `item_group_department` VALUES (154, 10, 3);
 INSERT INTO `item_group_department` VALUES (155, 9, 2);
 INSERT INTO `item_group_department` VALUES (156, 9, 3);
-COMMIT;
+INSERT INTO `item_group_department` VALUES (164, 4, 1);
+INSERT INTO `item_group_department` VALUES (165, 4, 4);
+INSERT INTO `item_group_department` VALUES (166, 4, 5);
+INSERT INTO `item_group_department` VALUES (182, 1, 1);
+INSERT INTO `item_group_department` VALUES (183, 1, 2);
+INSERT INTO `item_group_department` VALUES (184, 1, 5);
+INSERT INTO `item_group_department` VALUES (196, 11, 1);
+INSERT INTO `item_group_department` VALUES (197, 11, 2);
+INSERT INTO `item_group_department` VALUES (198, 11, 5);
+INSERT INTO `item_group_department` VALUES (199, 8, 1);
+INSERT INTO `item_group_department` VALUES (200, 8, 2);
+INSERT INTO `item_group_department` VALUES (201, 8, 5);
+INSERT INTO `item_group_department` VALUES (217, 12, 1);
+INSERT INTO `item_group_department` VALUES (218, 12, 2);
+INSERT INTO `item_group_department` VALUES (219, 12, 5);
 
 -- ----------------------------
 -- Table structure for item_group_template_detail
 -- ----------------------------
 DROP TABLE IF EXISTS `item_group_template_detail`;
-CREATE TABLE `item_group_template_detail` (
+CREATE TABLE `item_group_template_detail`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_item_group` int(11) DEFAULT NULL,
-  `id_item_group_type` int(11) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `description` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=545 DEFAULT CHARSET=utf8;
+  `id_item_group` int(11) NULL DEFAULT NULL,
+  `id_item_group_type` int(11) NULL DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 809 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of item_group_template_detail
 -- ----------------------------
-BEGIN;
-INSERT INTO `item_group_template_detail` VALUES (469, 1, 16, 'Unique Layout', 'Inspiring and exclusive layout to showcase the unique quality of each business.');
-INSERT INTO `item_group_template_detail` VALUES (470, 1, 16, 'Default Template Page', 'Home Page, Room (Listing + Detail), Facility & Service (Listing & Detail), Package (Listing & Detail), Blog (Listing & Detail), About Us, Contact Us, Gallery');
-INSERT INTO `item_group_template_detail` VALUES (471, 1, 16, 'Add more pages', 'Add up to 10 additional pages to your website.');
-INSERT INTO `item_group_template_detail` VALUES (472, 1, 16, 'SEO (Yeast)', 'Plugin to manage content that is visible on search engines and help to maximize website ranking.');
-INSERT INTO `item_group_template_detail` VALUES (473, 1, 16, 'Cache System', 'To improve website speed and the ranking of the website on search engines');
-INSERT INTO `item_group_template_detail` VALUES (474, 1, 16, 'Security', 'High Level website security to prevent website data being compromised.');
-INSERT INTO `item_group_template_detail` VALUES (475, 1, 16, 'Responsive', 'Adaptability to any screen size, Desktop, Tablet, Mobile.');
-INSERT INTO `item_group_template_detail` VALUES (476, 1, 16, 'Google MY Business', 'Website will appear on Google My Business at right side while searching by business name.');
-INSERT INTO `item_group_template_detail` VALUES (477, 1, 16, 'Google Maps', 'Your property will be connected to Google Maps.');
-INSERT INTO `item_group_template_detail` VALUES (478, 1, 16, 'Web Mail', 'Professional business email services.');
-INSERT INTO `item_group_template_detail` VALUES (479, 1, 16, 'Form Captcha', 'Security enabled to ensure contact is not a malicious internet robot.');
-INSERT INTO `item_group_template_detail` VALUES (480, 1, 16, 'Fav Icon', 'Unique file containing small icons to identify services or amenities in the website.');
-INSERT INTO `item_group_template_detail` VALUES (481, 1, 16, 'Hide WordPress Error', 'Hide the error in WordPress.');
-INSERT INTO `item_group_template_detail` VALUES (482, 1, 16, 'Contact form', 'The website able to manage multiple contact forms, including customized forms and mail contents flexibly with simple markup. Supported by Ajax-powered submission, CAPTCHA security and, Akismet spam filtering.');
 INSERT INTO `item_group_template_detail` VALUES (484, 2, 17, 'Main Feature', '. Expand the list of OTAs you work with.\r\n. Ensure all OTAs and your website have the same rates.\r\n. Ensure all OTAs have the same room availability.');
 INSERT INTO `item_group_template_detail` VALUES (486, 3, 17, 'Main Feature', '. Ensure all the Room types are matched in the system.\r\n. Ensure all OTAs and your website have the same rates and connected.\r\n. Ensure all the training of the system.');
-INSERT INTO `item_group_template_detail` VALUES (487, 4, 4, 'Supplier Profile', '. Manage all your supplier or partner profiles and contacts');
-INSERT INTO `item_group_template_detail` VALUES (488, 4, 4, 'Customer', '. Profile: general information of your customers. \r\n. Contact: create multiple contacts for your customers. \r\n. Solution: list of products or services which the customers are using. \r\n. Invoice: keep in track your invoices and items. \r\n. Payment: Track payment from invoices which are paid. \r\n. Contract: record all your customers contracts. \r\n. Proposals: create attractive proposals for customers and increase sales. \r\n. Project: keep track of your customer?s projects. \r\n. Task: keep track of tasks between customers. \r\n. Documentation: upload and manage related customer?s documents. \r\n. Note: Make notes on customers unique needed.  \r\n. Import Data: Import or upload multiple customer?s information (new customers).');
-INSERT INTO `item_group_template_detail` VALUES (489, 4, 4, 'Leads', '. Profile: general information of your leads.\r\n. Proposals: create attractive proposals for leads and increase sales.\r\n. Task: keep track of tasks from leads.\r\n. Documentation: upload and manage related lead documents.\r\n. Note: Make note on leads.\r\n. Import Data: Import or upload multiple customer’s information (new leads).');
-INSERT INTO `item_group_template_detail` VALUES (490, 4, 5, 'Overview', '. Overview details and track time spent on project for each staff member.');
-INSERT INTO `item_group_template_detail` VALUES (491, 4, 5, 'Task', '. Split project into tasks and checklists of activities.');
-INSERT INTO `item_group_template_detail` VALUES (492, 4, 5, 'Timesheet', '. Monitoring report on activities in each project.');
-INSERT INTO `item_group_template_detail` VALUES (493, 4, 5, 'Sales Invoice', '. Generate the project invoice records to bill your customers promptly.');
-INSERT INTO `item_group_template_detail` VALUES (494, 4, 5, 'Sales Payment', '. Record project transaction invoices to bill your customers promptly.');
-INSERT INTO `item_group_template_detail` VALUES (495, 4, 5, 'Sales Quotation', '. Create and send quotations rapidly with note of next actions. \r\n. Ability to convert the quotation to invoice after customer accepts.');
-INSERT INTO `item_group_template_detail` VALUES (496, 4, 5, 'Documentation', '. Upload and manage related project documents.');
-INSERT INTO `item_group_template_detail` VALUES (497, 4, 5, 'Note', '. Make note on projects.');
-INSERT INTO `item_group_template_detail` VALUES (498, 4, 5, 'Project Copy', '. Ability to clone project easily.');
-INSERT INTO `item_group_template_detail` VALUES (499, 4, 6, 'Proposal', '. Create attractive proposals for leads or customers to increase sales.');
-INSERT INTO `item_group_template_detail` VALUES (500, 4, 6, 'Quotation', '. Create and send quotations rapidly with note of next actions. ');
-INSERT INTO `item_group_template_detail` VALUES (501, 4, 6, 'Contract', '. Add new contracts easily based on your clients. \r\n. Consolidate contracts by dates. ');
-INSERT INTO `item_group_template_detail` VALUES (502, 4, 6, 'Item', '. Create final items or products for sales.');
-INSERT INTO `item_group_template_detail` VALUES (503, 4, 6, 'Item Group', '. Create item group to separate items or products.');
-INSERT INTO `item_group_template_detail` VALUES (504, 4, 7, 'Invoice', '. Keep track of invoices, items and generate reports.');
-INSERT INTO `item_group_template_detail` VALUES (505, 4, 7, 'Payment', '. Record payment from invoices.');
-INSERT INTO `item_group_template_detail` VALUES (506, 4, 7, 'Payroll', '. Notification of payroll request from HR.');
-INSERT INTO `item_group_template_detail` VALUES (507, 4, 7, 'Expense', '. Records company, supplier and project expenses.');
-INSERT INTO `item_group_template_detail` VALUES (508, 4, 8, 'S.O.P Set Up', '. Create Standard Operation Procedure (S.O.P) based on each departments unique  S.O.P.');
-INSERT INTO `item_group_template_detail` VALUES (509, 4, 8, 'S.O.P', '. Create S.O.P to track time and achievements based on milestones. \r\n. Ability to Drag and Drop S.O.P between milestones.');
-INSERT INTO `item_group_template_detail` VALUES (510, 4, 9, 'Goal Set Up', '. Ability for employee to set their goals by time or date and track achievements as K.P.I (Key Performance Indicator).');
-INSERT INTO `item_group_template_detail` VALUES (511, 4, 10, 'Employee', '. Each employee allocated a dashboard which allow them to easily organize their work. Manage employees from one place.');
-INSERT INTO `item_group_template_detail` VALUES (512, 4, 10, 'Knowledge Base', '. Share knowledge-based articles with your team or customers. ');
-INSERT INTO `item_group_template_detail` VALUES (513, 4, 10, 'Cash Advance Request', '. Record employee request for cash advances and notification of HR decision.');
-INSERT INTO `item_group_template_detail` VALUES (514, 4, 10, 'Leave Application', '. Record employees leave request.');
-INSERT INTO `item_group_template_detail` VALUES (515, 4, 10, 'Payroll Request', '. Organize monthly payroll with the ability to deduct employee cash advances.');
-INSERT INTO `item_group_template_detail` VALUES (516, 4, 11, 'Budget Setup', '. Create budget setup and track achievements. Track both budget plan and milestones.');
-INSERT INTO `item_group_template_detail` VALUES (517, 4, 11, 'Comparing Actual/Budget', '. Compare budget setup and achievements to assess sales performance.');
-INSERT INTO `item_group_template_detail` VALUES (518, 4, 12, 'Document Library', '. Upload files in document library. Each employee provided with their own files.');
-INSERT INTO `item_group_template_detail` VALUES (519, 4, 16, 'Responsive', '. eOBMS is fully responsive, easily access data from mobile or tablet.');
-INSERT INTO `item_group_template_detail` VALUES (520, 4, 18, 'Employee Report', '. Employees Report\r\n. Projects Report\r\n. Tasks Report');
-INSERT INTO `item_group_template_detail` VALUES (521, 4, 18, 'Sales Report', '. Invoice Report\r\n. Proposals Report\r\n. Quotations Report');
-INSERT INTO `item_group_template_detail` VALUES (522, 4, 18, 'Finance Report', '. Chart of accounts');
 INSERT INTO `item_group_template_detail` VALUES (523, 5, 17, 'Main Feature', '? Install an optimized booking widget on your website.\r\n? Allow travelers to make secure payments online.');
 INSERT INTO `item_group_template_detail` VALUES (524, 6, 16, 'Main Feature', '. Design and Build your website look and feel.\r\n. Optimize your website for search engines.\r\n. Enhance the loading speed of your website.\r\n. Free hosting and domain.');
 INSERT INTO `item_group_template_detail` VALUES (525, 7, 5, 'Create quotes in minutes', 'eO-DMCs increases productivity 10 times and more. ');
@@ -3438,233 +3541,273 @@ INSERT INTO `item_group_template_detail` VALUES (527, 7, 6, 'Dynamic pricing', '
 INSERT INTO `item_group_template_detail` VALUES (528, 7, 7, 'Accounting software compatible', 'Easily push information from tour operator software into back- office accounting software giving  a consistent flow of information from the booking through to reconciliation.');
 INSERT INTO `item_group_template_detail` VALUES (529, 7, 4, 'Inbuilt CRM functionality', 'eO-DMCs provided CRM tailor made for business.');
 INSERT INTO `item_group_template_detail` VALUES (530, 7, 6, 'Grow sales and increase profits', 'eO-DMCs manages clients file rapidly decreasing processing time. Staff can increase gross sales.\r\neO-DMCs allows you to invest more in sales and marketing by spending less on processing.');
-INSERT INTO `item_group_template_detail` VALUES (531, 12, 4, '', '');
-INSERT INTO `item_group_template_detail` VALUES (532, 11, 4, '', '');
 INSERT INTO `item_group_template_detail` VALUES (533, 10, 4, '', '');
 INSERT INTO `item_group_template_detail` VALUES (534, 9, 16, 'Main Feature', '. 7 GB Disk space.\r\n. 70 GB Bandwidth.\r\n. CMS available to install: WordPress, Joomla or Drupal. Etc. 70USD / Per year.\r\n. Domain .com.\r\n. 5 My SQL Database.\r\n. 25 Email accounts.');
-INSERT INTO `item_group_template_detail` VALUES (535, 8, 17, 'Main Feature', '. Company able to monitor and manage Accommodation, Restaurant, Spa or Tour Reservations\r\n. View Restaurant menus and place food or drink orders including pre-orders.\r\n. Online hotel directory, making cumbersome paper in-room compendiums redundant.\r\n. Tour and Activity recommendations including a customer booking system.\r\n. Spa Menu including a customer booking system.\r\n. Special promotion notifications sent to guests or customers.');
-INSERT INTO `item_group_template_detail` VALUES (536, 8, 20, 'Login', '. Multi Methods, Secure with beautiful Login Interface\r\n. Designed to match your business style.');
-INSERT INTO `item_group_template_detail` VALUES (537, 8, 20, 'Dashboard', '. Modern Interface Design.\r\n. Digital Content Provide relevant information to attract potential customer.\r\n. ​Business’s product and service’s data center, for use by customer.');
-INSERT INTO `item_group_template_detail` VALUES (538, 8, 20, 'Restaurant', '. Provides information about Food and Beverage available in restaurant.\r\n. Online Ordering by App\r\n. Categorized menu items\r\n. Each menu item includes:\r\n  . Description\r\n  . Feature and Gallery Image\r\n  . Related item\r\n  . Price by dish varieties \r\n  . Add to cart for ordering ');
-INSERT INTO `item_group_template_detail` VALUES (539, 8, 20, 'Spa', '. Provide variety with spa treatments and services\r\n. The spa package categorized into different treatment varieties\r\n. Each item includes:\r\n  . Description\r\n  . Feature and Gallery Image \r\n  . Related item\r\n  . Package Price by hour \r\n  . Multi customer Booking\r\n  . Add to cart for booking');
-INSERT INTO `item_group_template_detail` VALUES (540, 8, 20, 'Tour Package', '. Tour itinerary detail\r\n. Each menu item includes:\r\n  . Description\r\n  . Feature and Gallery Image\r\n  . Itinerary Description\r\n  . Itinerary Feature Image\r\n  . Included & Excluded Items\r\n  . Related item\r\n  . Price by package \r\n  . Multi customer Booking\r\n  . Add to cart for booking');
-INSERT INTO `item_group_template_detail` VALUES (541, 8, 20, 'Accommodation', '. Ability to attach the Booking Widget (Booking Engine Platform) to custom mobile application.\r\n. Ability to drive direct booking from clients.');
-INSERT INTO `item_group_template_detail` VALUES (542, 8, 20, 'Check out', '. Automatically fill in customer information.\r\n. Faster and more convenient.');
-INSERT INTO `item_group_template_detail` VALUES (543, 8, 20, 'Order History', '. Provide customer with information on their recent order and current reservation status and progress.');
-INSERT INTO `item_group_template_detail` VALUES (544, 8, 20, 'Chat', '. Instant chat to logged-in customer. \r\n. Push promotion notifications.');
-COMMIT;
+INSERT INTO `item_group_template_detail` VALUES (653, 4, 4, 'Supplier Profile', '. Manage all your supplier or partner profiles and contacts');
+INSERT INTO `item_group_template_detail` VALUES (654, 4, 4, 'Customer', '. Profile: general information of your customers. \r\n. Contact: create multiple contacts for your customers. \r\n. Solution: list of products or services which the customers are using. \r\n. Invoice: keep in track your invoices and items. \r\n. Payment: Track payment from invoices which are paid. \r\n. Contract: record all your customers contracts. \r\n. Proposals: create attractive proposals for customers and increase sales. \r\n. Project: keep track of your customer?s projects. \r\n. Task: keep track of tasks between customers. \r\n. Documentation: upload and manage related customer?s documents. \r\n. Note: Make notes on customers unique needed.  \r\n. Import Data: Import or upload multiple customer?s information (new customers).');
+INSERT INTO `item_group_template_detail` VALUES (655, 4, 4, 'Leads', '. Profile: general information of your leads.\r\n. Proposals: create attractive proposals for leads and increase sales.\r\n. Task: keep track of tasks from leads.\r\n. Documentation: upload and manage related lead documents.\r\n. Note: Make note on leads.\r\n. Import Data: Import or upload multiple customer’s information (new leads).');
+INSERT INTO `item_group_template_detail` VALUES (656, 4, 5, 'Overview', '. Overview details and track time spent on project for each staff member.');
+INSERT INTO `item_group_template_detail` VALUES (657, 4, 5, 'Task', '. Split project into tasks and checklists of activities.');
+INSERT INTO `item_group_template_detail` VALUES (658, 4, 5, 'Timesheet', '. Monitoring report on activities in each project.');
+INSERT INTO `item_group_template_detail` VALUES (659, 4, 5, 'Sales Invoice', '. Generate the project invoice records to bill your customers promptly.');
+INSERT INTO `item_group_template_detail` VALUES (660, 4, 5, 'Sales Payment', '. Record project transaction invoices to bill your customers promptly.');
+INSERT INTO `item_group_template_detail` VALUES (661, 4, 5, 'Sales Quotation', '. Create and send quotations rapidly with note of next actions. \r\n. Ability to convert the quotation to invoice after customer accepts.');
+INSERT INTO `item_group_template_detail` VALUES (662, 4, 5, 'Documentation', '. Upload and manage related project documents.');
+INSERT INTO `item_group_template_detail` VALUES (663, 4, 5, 'Note', '. Make note on projects.');
+INSERT INTO `item_group_template_detail` VALUES (664, 4, 5, 'Project Copy', '. Ability to clone project easily.');
+INSERT INTO `item_group_template_detail` VALUES (665, 4, 6, 'Proposal', '. Create attractive proposals for leads or customers to increase sales.');
+INSERT INTO `item_group_template_detail` VALUES (666, 4, 6, 'Quotation', '. Create and send quotations rapidly with note of next actions. ');
+INSERT INTO `item_group_template_detail` VALUES (667, 4, 6, 'Contract', '. Add new contracts easily based on your clients. \r\n. Consolidate contracts by dates. ');
+INSERT INTO `item_group_template_detail` VALUES (668, 4, 6, 'Item', '. Create final items or products for sales.');
+INSERT INTO `item_group_template_detail` VALUES (669, 4, 6, 'Item Group', '. Create item group to separate items or products.');
+INSERT INTO `item_group_template_detail` VALUES (670, 4, 7, 'Invoice', '. Keep track of invoices, items and generate reports.');
+INSERT INTO `item_group_template_detail` VALUES (671, 4, 7, 'Payment', '. Record payment from invoices.');
+INSERT INTO `item_group_template_detail` VALUES (672, 4, 7, 'Payroll', '. Notification of payroll request from HR.');
+INSERT INTO `item_group_template_detail` VALUES (673, 4, 7, 'Expense', '. Records company, supplier and project expenses.');
+INSERT INTO `item_group_template_detail` VALUES (674, 4, 8, 'S.O.P Set Up', '. Create Standard Operation Procedure (S.O.P) based on each departments unique  S.O.P.');
+INSERT INTO `item_group_template_detail` VALUES (675, 4, 8, 'S.O.P', '. Create S.O.P to track time and achievements based on milestones. \r\n. Ability to Drag and Drop S.O.P between milestones.');
+INSERT INTO `item_group_template_detail` VALUES (676, 4, 9, 'Goal Set Up', '. Ability for employee to set their goals by time or date and track achievements as K.P.I (Key Performance Indicator).');
+INSERT INTO `item_group_template_detail` VALUES (677, 4, 10, 'Employee', '. Each employee allocated a dashboard which allow them to easily organize their work. Manage employees from one place.');
+INSERT INTO `item_group_template_detail` VALUES (678, 4, 10, 'Knowledge Base', '. Share knowledge-based articles with your team or customers. ');
+INSERT INTO `item_group_template_detail` VALUES (679, 4, 10, 'Cash Advance Request', '. Record employee request for cash advances and notification of HR decision.');
+INSERT INTO `item_group_template_detail` VALUES (680, 4, 10, 'Leave Application', '. Record employees leave request.');
+INSERT INTO `item_group_template_detail` VALUES (681, 4, 10, 'Payroll Request', '. Organize monthly payroll with the ability to deduct employee cash advances.');
+INSERT INTO `item_group_template_detail` VALUES (682, 4, 11, 'Budget Setup', '. Create budget setup and track achievements. Track both budget plan and milestones.');
+INSERT INTO `item_group_template_detail` VALUES (683, 4, 11, 'Comparing Actual/Budget', '. Compare budget setup and achievements to assess sales performance.');
+INSERT INTO `item_group_template_detail` VALUES (684, 4, 12, 'Document Library', '. Upload files in document library. Each employee provided with their own files.');
+INSERT INTO `item_group_template_detail` VALUES (685, 4, 16, 'Responsive', '. eOBMS is fully responsive, easily access data from mobile or tablet.');
+INSERT INTO `item_group_template_detail` VALUES (686, 4, 18, 'Employee Report', '. Employees Report\r\n. Projects Report\r\n. Tasks Report');
+INSERT INTO `item_group_template_detail` VALUES (687, 4, 18, 'Sales Report', '. Invoice Report\r\n. Proposals Report\r\n. Quotations Report');
+INSERT INTO `item_group_template_detail` VALUES (688, 4, 18, 'Finance Report', '. Chart of accounts');
+INSERT INTO `item_group_template_detail` VALUES (763, 1, 16, 'Unique Layout', 'Inspiring and exclusive layout to showcase the unique quality of each business.');
+INSERT INTO `item_group_template_detail` VALUES (764, 1, 16, 'Default Template Page', 'Home Page, Room (Listing + Detail), Facility & Service (Listing & Detail), Package (Listing & Detail), Blog (Listing & Detail), About Us, Contact Us, Gallery');
+INSERT INTO `item_group_template_detail` VALUES (765, 1, 16, 'Add more pages', 'Add up to 10 additional pages to your website.');
+INSERT INTO `item_group_template_detail` VALUES (766, 1, 16, 'SEO (Yeast)', 'Plugin to manage content that is visible on search engines and help to maximize website ranking.');
+INSERT INTO `item_group_template_detail` VALUES (767, 1, 16, 'Cache System', 'To improve website speed and the ranking of the website on search engines');
+INSERT INTO `item_group_template_detail` VALUES (768, 1, 16, 'Security', 'High Level website security to prevent website data being compromised.');
+INSERT INTO `item_group_template_detail` VALUES (769, 1, 16, 'Responsive', 'Adaptability to any screen size, Desktop, Tablet, Mobile.');
+INSERT INTO `item_group_template_detail` VALUES (770, 1, 16, 'Google MY Business', 'Website will appear on Google My Business at right side while searching by business name.');
+INSERT INTO `item_group_template_detail` VALUES (771, 1, 16, 'Google Maps', 'Your property will be connected to Google Maps.');
+INSERT INTO `item_group_template_detail` VALUES (772, 1, 16, 'Web Mail', 'Professional business email services.');
+INSERT INTO `item_group_template_detail` VALUES (773, 1, 16, 'Form Captcha', 'Security enabled to ensure contact is not a malicious internet robot.');
+INSERT INTO `item_group_template_detail` VALUES (774, 1, 16, 'Fav Icon', 'Unique file containing small icons to identify services or amenities in the website.');
+INSERT INTO `item_group_template_detail` VALUES (775, 1, 16, 'Hide WordPress Error', 'Hide the error in WordPress.');
+INSERT INTO `item_group_template_detail` VALUES (776, 1, 16, 'Contact form', 'The website able to manage multiple contact forms, including customized forms and mail contents flexibly with simple markup. Supported by Ajax-powered submission, CAPTCHA security and, Akismet spam filtering.');
+INSERT INTO `item_group_template_detail` VALUES (782, 11, 16, 'Default Page', '•	Home page\r\n•	Room (Listing + Detail)\r\n•	Facility & Service (Listing + Detail)\r\n•	Package (Listing + Detail)\r\n•	Blog (Listing + Detail)\r\n•	About Us\r\n•	Contact Us\r\n•	Gallery\r\n•	Total: 12 Pages\r\n');
+INSERT INTO `item_group_template_detail` VALUES (793, 8, 17, 'Main Feature', '. Company able to monitor and manage Accommodation, Restaurant, Spa or Tour Reservations\r\n. View Restaurant menus and place food or drink orders including pre-orders.\r\n. Online hotel directory, making cumbersome paper in-room compendiums redundant.\r\n. Tour and Activity recommendations including a customer booking system.\r\n. Spa Menu including a customer booking system.\r\n. Special promotion notifications sent to guests or customers.');
+INSERT INTO `item_group_template_detail` VALUES (794, 8, 20, 'Login', '. Multi Methods, Secure with beautiful Login Interface\r\n. Designed to match your business style.');
+INSERT INTO `item_group_template_detail` VALUES (795, 8, 20, 'Dashboard', '. Modern Interface Design.\r\n. Digital Content Provide relevant information to attract potential customer.\r\n. ​Business’s product and service’s data center, for use by customer.');
+INSERT INTO `item_group_template_detail` VALUES (796, 8, 20, 'Restaurant', '. Provides information about Food and Beverage available in restaurant.\r\n. Online Ordering by App\r\n. Categorized menu items\r\n. Each menu item includes:\r\n  . Description\r\n  . Feature and Gallery Image\r\n  . Related item\r\n  . Price by dish varieties \r\n  . Add to cart for ordering ');
+INSERT INTO `item_group_template_detail` VALUES (797, 8, 20, 'Spa', '. Provide variety with spa treatments and services\r\n. The spa package categorized into different treatment varieties\r\n. Each item includes:\r\n  . Description\r\n  . Feature and Gallery Image \r\n  . Related item\r\n  . Package Price by hour \r\n  . Multi customer Booking\r\n  . Add to cart for booking');
+INSERT INTO `item_group_template_detail` VALUES (798, 8, 20, 'Tour Package', '. Tour itinerary detail\r\n. Each menu item includes:\r\n  . Description\r\n  . Feature and Gallery Image\r\n  . Itinerary Description\r\n  . Itinerary Feature Image\r\n  . Included & Excluded Items\r\n  . Related item\r\n  . Price by package \r\n  . Multi customer Booking\r\n  . Add to cart for booking');
+INSERT INTO `item_group_template_detail` VALUES (799, 8, 20, 'Accommodation', '. Ability to attach the Booking Widget (Booking Engine Platform) to custom mobile application.\r\n. Ability to drive direct booking from clients.');
+INSERT INTO `item_group_template_detail` VALUES (800, 8, 20, 'Check out', '. Automatically fill in customer information.\r\n. Faster and more convenient.');
+INSERT INTO `item_group_template_detail` VALUES (801, 8, 20, 'Order History', '. Provide customer with information on their recent order and current reservation status and progress.');
+INSERT INTO `item_group_template_detail` VALUES (802, 8, 20, 'Chat', '. Instant chat to logged-in customer. \r\n. Push promotion notifications.');
+INSERT INTO `item_group_template_detail` VALUES (808, 12, 21, 'Features', '*	Photograph shooting, maximum of 35 images.\r\n*	Video shooting, maximum of 5 minutes.\r\n');
 
 -- ----------------------------
 -- Table structure for item_group_type
 -- ----------------------------
 DROP TABLE IF EXISTS `item_group_type`;
-CREATE TABLE `item_group_type` (
+CREATE TABLE `item_group_type`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for knowledge_base
 -- ----------------------------
 DROP TABLE IF EXISTS `knowledge_base`;
-CREATE TABLE `knowledge_base` (
+CREATE TABLE `knowledge_base`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `slug` varbinary(255) DEFAULT NULL,
-  `group` int(11) DEFAULT NULL,
-  `internal_article` tinyint(1) DEFAULT NULL COMMENT '1= yes, 0 = No',
-  `disabled` tinyint(1) DEFAULT NULL,
-  `description` text COLLATE utf8_unicode_ci,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `short_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `slug` varbinary(255) NULL DEFAULT NULL,
+  `group` int(11) NULL DEFAULT NULL,
+  `internal_article` tinyint(1) NULL DEFAULT NULL COMMENT '1= yes, 0 = No',
+  `disabled` tinyint(1) NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `short_description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of knowledge_base
 -- ----------------------------
-BEGIN;
 INSERT INTO `knowledge_base` VALUES (2, 'Sao nang', NULL, NULL, 0, 0, '', '2019-09-20 08:06:16', 27, NULL, NULL, '');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for knowledge_base_position
 -- ----------------------------
 DROP TABLE IF EXISTS `knowledge_base_position`;
-CREATE TABLE `knowledge_base_position` (
+CREATE TABLE `knowledge_base_position`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_knowledge_base` int(11) DEFAULT NULL,
-  `id_position` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `id_knowledge_base` int(11) NULL DEFAULT NULL,
+  `id_position` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of knowledge_base_position
 -- ----------------------------
-BEGIN;
 INSERT INTO `knowledge_base_position` VALUES (1, 2, '6');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for lead_profile
 -- ----------------------------
 DROP TABLE IF EXISTS `lead_profile`;
-CREATE TABLE `lead_profile` (
+CREATE TABLE `lead_profile`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lead_name` varchar(250) DEFAULT NULL,
-  `company_name` varchar(250) DEFAULT NULL,
-  `phone_number` varchar(50) DEFAULT NULL,
-  `email_address` varchar(50) DEFAULT NULL,
-  `latitute` decimal(16,10) DEFAULT NULL,
-  `longitute` decimal(16,10) DEFAULT NULL,
-  `address` varchar(250) DEFAULT NULL,
-  `id_country` int(11) DEFAULT NULL,
-  `id_city` int(11) DEFAULT NULL,
-  `group_names` varchar(250) DEFAULT NULL,
-  `billing_address` varchar(250) DEFAULT NULL,
-  `id_billing_city` int(11) DEFAULT NULL,
-  `id_billing_country` int(11) DEFAULT NULL,
-  `shipping_address` varchar(250) DEFAULT NULL,
-  `id_shipping_city` int(11) DEFAULT NULL,
-  `id_shipping_country` int(11) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `img_url` varchar(255) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `zip_code` varchar(50) DEFAULT NULL,
-  `customer_status` int(1) DEFAULT NULL,
-  `assigned_to` int(11) DEFAULT NULL,
-  `id_source` int(11) DEFAULT NULL,
-  `note` varchar(255) DEFAULT NULL,
-  `star_rating` decimal(10,2) DEFAULT NULL,
-  `id_customer_type` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `lead_name` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `company_name` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `phone_number` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email_address` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `latitute` decimal(16, 10) NULL DEFAULT NULL,
+  `longitute` decimal(16, 10) NULL DEFAULT NULL,
+  `address` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_country` int(11) NULL DEFAULT NULL,
+  `id_city` int(11) NULL DEFAULT NULL,
+  `group_names` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `billing_address` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_billing_city` int(11) NULL DEFAULT NULL,
+  `id_billing_country` int(11) NULL DEFAULT NULL,
+  `shipping_address` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_shipping_city` int(11) NULL DEFAULT NULL,
+  `id_shipping_country` int(11) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `img_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `zip_code` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `customer_status` int(1) NULL DEFAULT NULL,
+  `assigned_to` int(11) NULL DEFAULT NULL,
+  `id_source` int(11) NULL DEFAULT NULL,
+  `note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `star_rating` decimal(10, 2) NULL DEFAULT NULL,
+  `id_customer_type` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for lead_profile_note
 -- ----------------------------
 DROP TABLE IF EXISTS `lead_profile_note`;
-CREATE TABLE `lead_profile_note` (
+CREATE TABLE `lead_profile_note`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `note` varchar(255) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` tinyint(11) DEFAULT NULL,
-  `id_lead_profile` int(11) DEFAULT NULL,
+  `note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` tinyint(11) NULL DEFAULT NULL,
+  `id_lead_profile` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for leave_application
 -- ----------------------------
 DROP TABLE IF EXISTS `leave_application`;
-CREATE TABLE `leave_application` (
+CREATE TABLE `leave_application`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_approver` int(11) DEFAULT NULL,
-  `start_date` date DEFAULT NULL,
-  `end_date` date DEFAULT NULL,
-  `img_url` varchar(255) DEFAULT NULL,
-  `id_employee` int(11) DEFAULT NULL,
-  `is_half_day` tinyint(1) DEFAULT NULL,
-  `id_leave_type_name` int(11) DEFAULT NULL,
-  `leave_reason` varchar(255) DEFAULT NULL,
-  `reject_reason` varchar(255) DEFAULT NULL,
-  `id_leave_status` varchar(255) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `number_of_day` int(11) DEFAULT NULL,
-  `contact` varchar(50) DEFAULT NULL,
-  `address_during_leave` varchar(255) DEFAULT NULL,
+  `id_approver` int(11) NULL DEFAULT NULL,
+  `start_date` date NULL DEFAULT NULL,
+  `end_date` date NULL DEFAULT NULL,
+  `img_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_employee` int(11) NULL DEFAULT NULL,
+  `is_half_day` tinyint(1) NULL DEFAULT NULL,
+  `id_leave_type_name` int(11) NULL DEFAULT NULL,
+  `leave_reason` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `reject_reason` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_leave_status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `number_of_day` int(11) NULL DEFAULT NULL,
+  `contact` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `address_during_leave` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for leave_applicationx
 -- ----------------------------
 DROP TABLE IF EXISTS `leave_applicationx`;
-CREATE TABLE `leave_applicationx` (
+CREATE TABLE `leave_applicationx`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_approver` int(11) DEFAULT NULL,
-  `start_date` date DEFAULT NULL,
-  `end_date` date DEFAULT NULL,
-  `img_url` varchar(255) DEFAULT NULL,
-  `id_employee` int(11) DEFAULT NULL,
-  `is_half_day` tinyint(1) DEFAULT NULL,
-  `id_leave_type_name` int(11) DEFAULT NULL,
-  `leave_reason` varchar(255) DEFAULT NULL,
-  `reject_reason` varchar(255) DEFAULT NULL,
-  `id_leave_status` varchar(255) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
+  `id_approver` int(11) NULL DEFAULT NULL,
+  `start_date` date NULL DEFAULT NULL,
+  `end_date` date NULL DEFAULT NULL,
+  `img_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_employee` int(11) NULL DEFAULT NULL,
+  `is_half_day` tinyint(1) NULL DEFAULT NULL,
+  `id_leave_type_name` int(11) NULL DEFAULT NULL,
+  `leave_reason` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `reject_reason` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_leave_status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of leave_applicationx
 -- ----------------------------
-BEGIN;
 INSERT INTO `leave_applicationx` VALUES (2, NULL, '2019-09-26', '2019-09-26', NULL, 4, 0, 6, 'Go to Phnom Penh', '', '1', 15, '2019-09-25 10:34:52', NULL, NULL);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for leave_in_the_year
 -- ----------------------------
 DROP TABLE IF EXISTS `leave_in_the_year`;
-CREATE TABLE `leave_in_the_year` (
+CREATE TABLE `leave_in_the_year`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varbinary(255) DEFAULT NULL,
-  `id_year_list` int(11) DEFAULT NULL,
-  `id_month_list` int(11) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `name` varbinary(255) NULL DEFAULT NULL,
+  `id_year_list` int(11) NULL DEFAULT NULL,
+  `id_month_list` int(11) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of leave_in_the_year
 -- ----------------------------
-BEGIN;
 INSERT INTO `leave_in_the_year` VALUES (1, 0x54657374696E67204C65617665, 1, 1, 1, 22, '2019-08-19 15:41:37', NULL, NULL);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for leave_in_the_year_data
 -- ----------------------------
 DROP TABLE IF EXISTS `leave_in_the_year_data`;
-CREATE TABLE `leave_in_the_year_data` (
+CREATE TABLE `leave_in_the_year_data`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_leave_in_the_year` int(11) DEFAULT NULL,
-  `leave_type_value` int(11) DEFAULT NULL,
-  `id_leave_type` int(11) DEFAULT NULL,
-  `id_month_list` int(11) DEFAULT NULL,
-  `id_year_list` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id_leave_in_the_year` int(11) NULL DEFAULT NULL,
+  `leave_type_value` int(11) NULL DEFAULT NULL,
+  `id_leave_type` int(11) NULL DEFAULT NULL,
+  `id_month_list` int(11) NULL DEFAULT NULL,
+  `id_year_list` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of leave_in_the_year_data
 -- ----------------------------
-BEGIN;
 INSERT INTO `leave_in_the_year_data` VALUES (1, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `leave_in_the_year_data` VALUES (2, 1, 0, 2, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `leave_in_the_year_data` VALUES (3, 1, 0, 3, NULL, NULL, NULL, NULL, NULL, NULL);
@@ -3675,96 +3818,146 @@ INSERT INTO `leave_in_the_year_data` VALUES (7, 1, 0, 7, NULL, NULL, NULL, NULL,
 INSERT INTO `leave_in_the_year_data` VALUES (8, 1, 0, 8, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `leave_in_the_year_data` VALUES (9, 1, 0, 9, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `leave_in_the_year_data` VALUES (10, 1, 0, 10, NULL, NULL, NULL, NULL, NULL, NULL);
-COMMIT;
+
+-- ----------------------------
+-- Table structure for leave_monthly
+-- ----------------------------
+DROP TABLE IF EXISTS `leave_monthly`;
+CREATE TABLE `leave_monthly`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_employee` int(11) NULL DEFAULT NULL,
+  `id_month` int(11) NULL DEFAULT NULL,
+  `id_year` int(11) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Table structure for leave_monthly_data
+-- ----------------------------
+DROP TABLE IF EXISTS `leave_monthly_data`;
+CREATE TABLE `leave_monthly_data`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_leave_monthly` int(11) NULL DEFAULT NULL,
+  `id_leave_type` int(11) NULL DEFAULT NULL,
+  `amount` decimal(10, 2) NULL DEFAULT NULL,
+  `date` date NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for leave_role
 -- ----------------------------
 DROP TABLE IF EXISTS `leave_role`;
-CREATE TABLE `leave_role` (
+CREATE TABLE `leave_role`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `names` varchar(250) NOT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
+  `names` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of leave_role
 -- ----------------------------
-BEGIN;
 INSERT INTO `leave_role` VALUES (1, 'Maximum of leaving Day. ', 11, '2017-12-13 17:33:19', 1, 11, '2017-12-13 17:33:19');
-COMMIT;
+
+-- ----------------------------
+-- Table structure for leave_setup
+-- ----------------------------
+DROP TABLE IF EXISTS `leave_setup`;
+CREATE TABLE `leave_setup`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_month` int(11) NULL DEFAULT NULL,
+  `id_year` int(11) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Table structure for leave_setup_data
+-- ----------------------------
+DROP TABLE IF EXISTS `leave_setup_data`;
+CREATE TABLE `leave_setup_data`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_leave_setup` int(11) NULL DEFAULT NULL,
+  `id_leave_type` int(11) NULL DEFAULT NULL,
+  `amount` decimal(10, 2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for leave_status
 -- ----------------------------
 DROP TABLE IF EXISTS `leave_status`;
-CREATE TABLE `leave_status` (
+CREATE TABLE `leave_status`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `css` varchar(255) DEFAULT NULL,
-  `approve_status_name` varchar(255) DEFAULT NULL,
+  `css` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `approve_status_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of leave_status
 -- ----------------------------
-BEGIN;
 INSERT INTO `leave_status` VALUES (1, 'label-warning', 'Pending');
 INSERT INTO `leave_status` VALUES (2, 'label-success', 'Approved');
 INSERT INTO `leave_status` VALUES (3, 'label-danger', 'Rejected');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for leave_type_condition
 -- ----------------------------
 DROP TABLE IF EXISTS `leave_type_condition`;
-CREATE TABLE `leave_type_condition` (
+CREATE TABLE `leave_type_condition`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `names` varchar(250) NOT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
+  `names` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of leave_type_condition
 -- ----------------------------
-BEGIN;
 INSERT INTO `leave_type_condition` VALUES (1, 'Paid', 11, '2017-12-13 17:32:50', 1, 11, '2017-12-13 17:32:50');
 INSERT INTO `leave_type_condition` VALUES (2, 'Unpaid', 11, '2017-12-13 17:32:56', 1, 11, '2017-12-13 17:32:56');
 INSERT INTO `leave_type_condition` VALUES (3, 'Compensatory Off', 11, '2017-12-13 17:33:01', 1, 11, '2017-12-13 17:33:01');
 INSERT INTO `leave_type_condition` VALUES (4, 'On Duty', 11, '2017-12-13 17:33:06', 1, 11, '2017-12-13 17:33:06');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for leave_type_name
 -- ----------------------------
 DROP TABLE IF EXISTS `leave_type_name`;
-CREATE TABLE `leave_type_name` (
+CREATE TABLE `leave_type_name`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `names` varchar(250) NOT NULL,
-  `shortcut` varchar(255) DEFAULT NULL,
-  `css_style` varchar(255) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
+  `names` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `shortcut` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `css_style` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of leave_type_name
 -- ----------------------------
-BEGIN;
 INSERT INTO `leave_type_name` VALUES (1, 'WORKING DAY', 'WD', '#1eb1ed', 1, '2018-12-03 13:05:31', 1, 11, '2017-12-13 17:32:17');
 INSERT INTO `leave_type_name` VALUES (2, 'DAY OFF', 'OFF', '#1072bd', 11, '2017-12-13 17:32:36', 1, 11, '2017-12-13 17:32:36');
 INSERT INTO `leave_type_name` VALUES (3, 'HALF PUBLIC HOLIDAY', 'HPH', '#e06b21', 1, '2018-12-03 13:05:56', 1, 11, '2017-12-13 17:32:41');
@@ -3776,262 +3969,248 @@ INSERT INTO `leave_type_name` VALUES (8, 'SICK LEAVE', 'SL', '#fffd38', NULL, NU
 INSERT INTO `leave_type_name` VALUES (9, 'ABSENCE', 'ABS', '#6f359e', NULL, NULL, 1, NULL, NULL);
 INSERT INTO `leave_type_name` VALUES (10, 'LATE', 'L', '#fc0d1b', NULL, NULL, 1, NULL, NULL);
 INSERT INTO `leave_type_name` VALUES (11, 'NO PAY LEAVE', 'NL', '#bfbfbf', NULL, NULL, NULL, NULL, NULL);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for marital_status
 -- ----------------------------
 DROP TABLE IF EXISTS `marital_status`;
-CREATE TABLE `marital_status` (
+CREATE TABLE `marital_status`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `names` varchar(250) NOT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
+  `names` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of marital_status
 -- ----------------------------
-BEGIN;
 INSERT INTO `marital_status` VALUES (1, 'Single', NULL, NULL, 1, 1, '2019-04-22 08:44:08');
 INSERT INTO `marital_status` VALUES (2, 'Married', NULL, NULL, 1, 1, '2019-04-22 08:46:07');
 INSERT INTO `marital_status` VALUES (3, 'Widowed', NULL, NULL, 1, 1, '2019-04-22 08:46:30');
 INSERT INTO `marital_status` VALUES (4, 'Divorced', NULL, NULL, 1, 1, '2019-04-22 08:47:16');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for membership_document
 -- ----------------------------
 DROP TABLE IF EXISTS `membership_document`;
-CREATE TABLE `membership_document` (
+CREATE TABLE `membership_document`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_membership_profile` int(11) NOT NULL,
-  `document_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `document_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `document_size` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `uploaded_date` datetime DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `document_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `document_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `document_size` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `uploaded_date` datetime(0) NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for membership_event
 -- ----------------------------
 DROP TABLE IF EXISTS `membership_event`;
-CREATE TABLE `membership_event` (
+CREATE TABLE `membership_event`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_membership_profile` int(11) NOT NULL,
   `id_event_list` int(11) NOT NULL,
   `number_of_audient` int(11) NOT NULL,
-  `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `address_line_2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `id_country` int(11) DEFAULT NULL,
-  `id_city` int(11) DEFAULT NULL,
-  `id_province` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `postal_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `prefix_phone_code` int(11) DEFAULT NULL,
-  `phone_number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `prefix_phone_code_line_2` int(11) DEFAULT NULL,
-  `phone_number_line_2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8_unicode_ci,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `from_date` date DEFAULT NULL,
-  `to_date` date DEFAULT NULL,
-  `register_date` date DEFAULT NULL,
-  `amount` decimal(10,2) DEFAULT NULL,
-  `balance` decimal(10,2) DEFAULT NULL,
-  `id_payment_type` int(11) DEFAULT NULL,
-  `id_payment_method` int(11) DEFAULT NULL,
-  `member_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `paid` decimal(10,2) DEFAULT NULL,
-  `event_fee` decimal(10,2) DEFAULT NULL,
-  `approval_status` int(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `address_line_2` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `id_country` int(11) NULL DEFAULT NULL,
+  `id_city` int(11) NULL DEFAULT NULL,
+  `id_province` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `postal_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `prefix_phone_code` int(11) NULL DEFAULT NULL,
+  `phone_number` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `prefix_phone_code_line_2` int(11) NULL DEFAULT NULL,
+  `phone_number_line_2` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `from_date` date NULL DEFAULT NULL,
+  `to_date` date NULL DEFAULT NULL,
+  `register_date` date NULL DEFAULT NULL,
+  `amount` decimal(10, 2) NULL DEFAULT NULL,
+  `balance` decimal(10, 2) NULL DEFAULT NULL,
+  `id_payment_type` int(11) NULL DEFAULT NULL,
+  `id_payment_method` int(11) NULL DEFAULT NULL,
+  `member_description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `paid` decimal(10, 2) NULL DEFAULT NULL,
+  `event_fee` decimal(10, 2) NULL DEFAULT NULL,
+  `approval_status` int(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of membership_event
 -- ----------------------------
-BEGIN;
 INSERT INTO `membership_event` VALUES (1, 1, 1, 2, 'River side', '', 56, 21, 'Palate Restaurant', '', NULL, '', NULL, '', '', 'Time Activity Remarks \r\n\r\n08:00 Pick up from the Hotel Departure exactly on time \r\n08:10 ? 09:00 Ride to countryside fresh palm juice gathering and tasting  \r\n09:00 ? 09:30 Ride and explanation about house temples and stroll over local market \r\n09:30 ? 10:30 Ride to  Wat Svay Romeat Pagoda,  sightseeing,   blessing ceremony and fortune teller  \r\n10:30 ? 11:45 West  Mebon temple island During rainy season transported by   boat and dui during dry season by Vespa \r\n11:45 ? 13:00 Lunch and drinks at private farm picnic  \r\n13:00 ? 13:10 Visit to basket weaving and farming family  13:10 ? 13:35 Visit to sticky rice making and Local medicine   along the road back  \r\n13:30 ? 14:00 Return to hotel and end tour \r\n  \r\nImportant: \r\no The safety of the guests is paramount and all guests must wear helmets. \r\no The price is 40 US$ per person \r\no Each guest is driven by their personal drivers (only holders of local or international driver?s license are eligible to drive in Siem Reap and road conditions demand full concentration). \r\no Every tour is accompanied by a guide. o All snacks, drinks and foods are included in the price of the tour. Individual purchases during the tour are for the account of guests. \r\no The tour program may vary, for instance due to spontaneous extra activities or if an activity should not be available due to circumstances beyond our control. \r\no Guests are advised to use sunscreen and to wear comfortable clothes and footwear that can be cleaned easily.\r\n The tour rides rain or shine. In the monsoon season first- rate raincoats are provided by VA SR ', '2019-07-03 16:47:53', 1, NULL, NULL, 1, '2019-07-12', '2019-07-12', '2019-07-03', 80.00, 80.00, 2, 1, '', 0.00, 40.00, 1);
 INSERT INTO `membership_event` VALUES (2, 2, 1, 1, 'River side', '', 56, 21, 'Palate Restaurant', '', NULL, '', NULL, '', '', 'Time Activity Remarks \r\n\r\n08:00 Pick up from the Hotel Departure exactly on time \r\n08:10 ? 09:00 Ride to countryside fresh palm juice gathering and tasting  \r\n09:00 ? 09:30 Ride and explanation about house temples and stroll over local market \r\n09:30 ? 10:30 Ride to  Wat Svay Romeat Pagoda,  sightseeing,   blessing ceremony and fortune teller  \r\n10:30 ? 11:45 West  Mebon temple island During rainy season transported by   boat and dui during dry season by Vespa \r\n11:45 ? 13:00 Lunch and drinks at private farm picnic  \r\n13:00 ? 13:10 Visit to basket weaving and farming family  13:10 ? 13:35 Visit to sticky rice making and Local medicine   along the road back  \r\n13:30 ? 14:00 Return to hotel and end tour \r\n  \r\nImportant: \r\no The safety of the guests is paramount and all guests must wear helmets. \r\no The price is 40 US$ per person \r\no Each guest is driven by their personal drivers (only holders of local or international driver?s license are eligible to drive in Siem Reap and road conditions demand full concentration). \r\no Every tour is accompanied by a guide. o All snacks, drinks and foods are included in the price of the tour. Individual purchases during the tour are for the account of guests. \r\no The tour program may vary, for instance due to spontaneous extra activities or if an activity should not be available due to circumstances beyond our control. \r\no Guests are advised to use sunscreen and to wear comfortable clothes and footwear that can be cleaned easily.\r\n The tour rides rain or shine. In the monsoon season first- rate raincoats are provided by VA SR ', '2019-07-03 17:03:30', 1, NULL, NULL, 1, '2019-07-12', '2019-07-12', '2019-07-03', 50.00, 50.00, 2, 1, '', NULL, 50.00, 1);
 INSERT INTO `membership_event` VALUES (3, 2, 1, 2, 'River side', '', NULL, NULL, 'Palate Restaurant', '', NULL, '', NULL, '', '', 'Time Activity Remarks \r\n\r\n08:00 Pick up from the Hotel Departure exactly on time \r\n08:10 ? 09:00 Ride to countryside fresh palm juice gathering and tasting  \r\n09:00 ? 09:30 Ride and explanation about house temples and stroll over local market \r\n09:30 ? 10:30 Ride to  Wat Svay Romeat Pagoda,  sightseeing,   blessing ceremony and fortune teller  \r\n10:30 ? 11:45 West  Mebon temple island During rainy season transported by   boat and dui during dry season by Vespa \r\n11:45 ? 13:00 Lunch and drinks at private farm picnic  \r\n13:00 ? 13:10 Visit to basket weaving and farming family  13:10 ? 13:35 Visit to sticky rice making and Local medicine   along the road back  \r\n13:30 ? 14:00 Return to hotel and end tour \r\n  \r\nImportant: \r\no The safety of the guests is paramount and all guests must wear helmets. \r\no The price is 40 US$ per person \r\no Each guest is driven by their personal drivers (only holders of local or international driver?s license are eligible to drive in Siem Reap and road conditions demand full concentration). \r\no Every tour is accompanied by a guide. o All snacks, drinks and foods are included in the price of the tour. Individual purchases during the tour are for the account of guests. \r\no The tour program may vary, for instance due to spontaneous extra activities or if an activity should not be available due to circumstances beyond our control. \r\no Guests are advised to use sunscreen and to wear comfortable clothes and footwear that can be cleaned easily.\r\n The tour rides rain or shine. In the monsoon season first- rate raincoats are provided by VA SR ', '2019-07-03 17:22:51', 1, NULL, NULL, 1, '2019-07-12', '2019-07-12', '2019-07-03', 80.00, NULL, NULL, NULL, NULL, NULL, 40.00, 1);
 INSERT INTO `membership_event` VALUES (4, 2, 1, 3, 'River side', '', NULL, NULL, 'Palate Restaurant', '', NULL, '', NULL, '', '', 'Time Activity Remarks \r\n\r\n08:00 Pick up from the Hotel Departure exactly on time \r\n08:10 ? 09:00 Ride to countryside fresh palm juice gathering and tasting  \r\n09:00 ? 09:30 Ride and explanation about house temples and stroll over local market \r\n09:30 ? 10:30 Ride to  Wat Svay Romeat Pagoda,  sightseeing,   blessing ceremony and fortune teller  \r\n10:30 ? 11:45 West  Mebon temple island During rainy season transported by   boat and dui during dry season by Vespa \r\n11:45 ? 13:00 Lunch and drinks at private farm picnic  \r\n13:00 ? 13:10 Visit to basket weaving and farming family  13:10 ? 13:35 Visit to sticky rice making and Local medicine   along the road back  \r\n13:30 ? 14:00 Return to hotel and end tour \r\n  \r\nImportant: \r\no The safety of the guests is paramount and all guests must wear helmets. \r\no The price is 40 US$ per person \r\no Each guest is driven by their personal drivers (only holders of local or international driver?s license are eligible to drive in Siem Reap and road conditions demand full concentration). \r\no Every tour is accompanied by a guide. o All snacks, drinks and foods are included in the price of the tour. Individual purchases during the tour are for the account of guests. \r\no The tour program may vary, for instance due to spontaneous extra activities or if an activity should not be available due to circumstances beyond our control. \r\no Guests are advised to use sunscreen and to wear comfortable clothes and footwear that can be cleaned easily.\r\n The tour rides rain or shine. In the monsoon season first- rate raincoats are provided by VA SR ', '2019-07-04 08:51:16', 1, NULL, NULL, 1, '2019-07-12', '2019-07-12', '2019-07-04', 120.00, 0.00, NULL, NULL, NULL, 120.00, 40.00, 1);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for membership_payment
 -- ----------------------------
 DROP TABLE IF EXISTS `membership_payment`;
-CREATE TABLE `membership_payment` (
+CREATE TABLE `membership_payment`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_membership_profile` int(11) NOT NULL,
-  `amount` decimal(10,2) DEFAULT NULL,
-  `paid` decimal(10,2) DEFAULT NULL,
-  `balance` decimal(10,2) DEFAULT NULL,
-  `id_payment_type` int(11) DEFAULT NULL,
-  `id_payment_method` int(11) DEFAULT NULL,
-  `id_membership_type` int(11) DEFAULT NULL,
-  `from_date` date DEFAULT NULL,
-  `to_date` date DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `id_payment_for` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `amount` decimal(10, 2) NULL DEFAULT NULL,
+  `paid` decimal(10, 2) NULL DEFAULT NULL,
+  `balance` decimal(10, 2) NULL DEFAULT NULL,
+  `id_payment_type` int(11) NULL DEFAULT NULL,
+  `id_payment_method` int(11) NULL DEFAULT NULL,
+  `id_membership_type` int(11) NULL DEFAULT NULL,
+  `from_date` date NULL DEFAULT NULL,
+  `to_date` date NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `id_payment_for` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of membership_payment
 -- ----------------------------
-BEGIN;
 INSERT INTO `membership_payment` VALUES (1, 1, 80.00, 0.00, 80.00, 2, 1, NULL, '2019-07-12', '2019-07-12', '', NULL, NULL, NULL, NULL, 1, 2);
 INSERT INTO `membership_payment` VALUES (2, 2, 50.00, NULL, 50.00, 2, 1, NULL, '2019-07-12', '2019-07-12', '', NULL, NULL, NULL, NULL, 1, 2);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for membership_profile
 -- ----------------------------
 DROP TABLE IF EXISTS `membership_profile`;
-CREATE TABLE `membership_profile` (
+CREATE TABLE `membership_profile`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_prefix` int(11) NOT NULL,
-  `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `last_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `company_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `passport_no` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `date_of_birth` date DEFAULT NULL,
-  `place_of_birth` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `sex` varchar(8) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `first_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `last_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `company_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `passport_no` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `date_of_birth` date NULL DEFAULT NULL,
+  `place_of_birth` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `sex` varchar(8) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
   `nationality` int(11) NOT NULL,
-  `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `address_line_2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `id_country` int(11) DEFAULT NULL,
-  `id_city` int(11) DEFAULT NULL,
-  `id_province` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `postal_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `marital_status` int(2) DEFAULT NULL,
-  `prefix_phone_code` int(11) DEFAULT NULL,
-  `phone_number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `prefix_phone_code_line_2` int(11) DEFAULT NULL,
-  `phone_number_line_2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `website` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `contact_person` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `position` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `mot_licence_no` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `year_of_establishment` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `type_of_business` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `confirm_password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `img_url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `address_line_2` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `id_country` int(11) NULL DEFAULT NULL,
+  `id_city` int(11) NULL DEFAULT NULL,
+  `id_province` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `postal_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `marital_status` int(2) NULL DEFAULT NULL,
+  `prefix_phone_code` int(11) NULL DEFAULT NULL,
+  `phone_number` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `prefix_phone_code_line_2` int(11) NULL DEFAULT NULL,
+  `phone_number_line_2` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `website` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `contact_person` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `position` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `mot_licence_no` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `year_of_establishment` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `type_of_business` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `confirm_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `img_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
   `membership_type` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of membership_profile
 -- ----------------------------
-BEGIN;
 INSERT INTO `membership_profile` VALUES (1, 1, 'Eng', 'Kunthea', 'Euro Khmer Voyages', '', '1980-06-01', '', '', 56, '#0677, Group 25, Slor Kram, Banteay Chas', '', 56, 21, '', '', 2, 106, '069955545', NULL, '', 'kunthea@ekvoyages.com', '', '', '', '', '', '', 'kunthea', '', '', '', '2019-07-03 16:28:05', 1, '2019-07-03 16:28:54', 1, 1, '3', 1);
 INSERT INTO `membership_profile` VALUES (2, 1, 'chum', 'sokun', 'test subscriber ', '', '2019-07-03', '', '', 56, '#0677, Group 25, Slor Kram, Banteay Chas', '', NULL, NULL, '', '', 2, NULL, '', NULL, '', 'sokun@ekvoyages.com', '', '', '', '', '', '', 'sokun', '', '', '', '2019-07-03 16:58:02', 1, '2019-07-10 21:24:22', 8, 1, '16', 1);
 INSERT INTO `membership_profile` VALUES (3, 4, 'Next', 'Step', 'eOcambo Village', '', NULL, '', NULL, 56, 'SR', '', NULL, NULL, '', '', NULL, NULL, '', NULL, '', 'nextstep@eocambo.com', 'eocambo.com', '', '', '', '', '', 'NextStep', '123456', '123456', '', '2019-07-10 21:24:12', 8, NULL, NULL, 1, NULL, 1);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for membership_type
 -- ----------------------------
 DROP TABLE IF EXISTS `membership_type`;
-CREATE TABLE `membership_type` (
+CREATE TABLE `membership_type`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `membership_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `membership_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of membership_type
 -- ----------------------------
-BEGIN;
 INSERT INTO `membership_type` VALUES (1, 'Diamond', 'sdfsd', '2019-04-18 08:57:41', 1, '2019-04-18 08:57:41', 1, 1);
 INSERT INTO `membership_type` VALUES (2, 'Gold', '', '2019-04-18 10:36:33', 1, '2019-04-18 10:36:33', 1, 1);
 INSERT INTO `membership_type` VALUES (4, 'Silver', '', '2019-04-18 14:02:07', 1, '2019-04-22 11:05:15', 1, 1);
 INSERT INTO `membership_type` VALUES (5, 'Brone', '', '2019-04-18 14:03:38', 1, '2019-04-18 14:12:47', 1, 1);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for migration
 -- ----------------------------
 DROP TABLE IF EXISTS `migration`;
-CREATE TABLE `migration` (
-  `version` varchar(180) NOT NULL,
-  `apply_time` int(11) DEFAULT NULL,
-  PRIMARY KEY (`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `migration`  (
+  `version` varchar(180) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `apply_time` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`version`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of migration
 -- ----------------------------
-BEGIN;
 INSERT INTO `migration` VALUES ('m000000_000000_base', 1552447078);
 INSERT INTO `migration` VALUES ('m130524_201442_init', 1552447085);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for milestone_data
 -- ----------------------------
 DROP TABLE IF EXISTS `milestone_data`;
-CREATE TABLE `milestone_data` (
+CREATE TABLE `milestone_data`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_milestone_type` int(11) DEFAULT NULL,
-  `id_project` int(11) DEFAULT NULL,
-  `id_task` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_milestone_type` int(11) NULL DEFAULT NULL,
+  `id_project` int(11) NULL DEFAULT NULL,
+  `id_task` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for month_list
 -- ----------------------------
 DROP TABLE IF EXISTS `month_list`;
-CREATE TABLE `month_list` (
+CREATE TABLE `month_list`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of month_list
 -- ----------------------------
-BEGIN;
 INSERT INTO `month_list` VALUES (1, 'January');
 INSERT INTO `month_list` VALUES (2, 'February');
 INSERT INTO `month_list` VALUES (3, 'March');
@@ -4044,316 +4223,298 @@ INSERT INTO `month_list` VALUES (9, 'September');
 INSERT INTO `month_list` VALUES (10, 'October');
 INSERT INTO `month_list` VALUES (11, 'November');
 INSERT INTO `month_list` VALUES (12, 'December');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for pay_period
 -- ----------------------------
 DROP TABLE IF EXISTS `pay_period`;
-CREATE TABLE `pay_period` (
+CREATE TABLE `pay_period`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of pay_period
 -- ----------------------------
-BEGIN;
 INSERT INTO `pay_period` VALUES (1, '1 month');
 INSERT INTO `pay_period` VALUES (2, '2 months');
 INSERT INTO `pay_period` VALUES (3, '3 months');
 INSERT INTO `pay_period` VALUES (4, '4 months');
 INSERT INTO `pay_period` VALUES (5, '5 months');
 INSERT INTO `pay_period` VALUES (6, '6 months');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for payment_for
 -- ----------------------------
 DROP TABLE IF EXISTS `payment_for`;
-CREATE TABLE `payment_for` (
+CREATE TABLE `payment_for`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `names` varchar(250) NOT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
+  `names` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of payment_for
 -- ----------------------------
-BEGIN;
 INSERT INTO `payment_for` VALUES (1, 'Membership', NULL, NULL, 1, 1, '2019-05-17 11:19:01');
 INSERT INTO `payment_for` VALUES (2, 'Event', NULL, NULL, 1, 1, '2019-05-17 11:19:11');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for payment_method
 -- ----------------------------
 DROP TABLE IF EXISTS `payment_method`;
-CREATE TABLE `payment_method` (
+CREATE TABLE `payment_method`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `names` varchar(250) NOT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
+  `names` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of payment_method
 -- ----------------------------
-BEGIN;
 INSERT INTO `payment_method` VALUES (1, 'Cash', 1, '2019-04-23 15:34:27', 1, 11, '2017-12-13 17:20:12');
 INSERT INTO `payment_method` VALUES (2, 'Transfer Money', 11, '2017-12-13 17:20:18', 1, 11, '2017-12-13 17:20:18');
 INSERT INTO `payment_method` VALUES (3, 'Cheque', 11, '2017-12-13 17:20:24', 1, 11, '2017-12-13 17:20:24');
 INSERT INTO `payment_method` VALUES (5, 'E-payment', 11, '2017-12-13 17:20:29', 1, 11, '2017-12-13 17:20:29');
 INSERT INTO `payment_method` VALUES (6, 'POS Credit Card', 35, '2018-08-11 19:23:31', 1, 35, '2018-08-11 19:23:31');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for payment_status
 -- ----------------------------
 DROP TABLE IF EXISTS `payment_status`;
-CREATE TABLE `payment_status` (
+CREATE TABLE `payment_status`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `names` varchar(250) NOT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
+  `names` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of payment_status
 -- ----------------------------
-BEGIN;
 INSERT INTO `payment_status` VALUES (1, 'Paid', 1, '2019-06-03 11:34:41', 1, 1, '2019-05-17 08:50:14');
 INSERT INTO `payment_status` VALUES (2, 'Pending', NULL, NULL, 1, 1, '2019-05-17 08:50:26');
 INSERT INTO `payment_status` VALUES (3, 'Overdue', NULL, NULL, 1, 1, '2019-05-17 08:50:35');
 INSERT INTO `payment_status` VALUES (4, 'Expired', 1, '2019-06-03 11:35:57', 1, 1, '2019-05-17 08:50:47');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for payment_type
 -- ----------------------------
 DROP TABLE IF EXISTS `payment_type`;
-CREATE TABLE `payment_type` (
+CREATE TABLE `payment_type`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `names` varchar(250) NOT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
+  `names` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of payment_type
 -- ----------------------------
-BEGIN;
 INSERT INTO `payment_type` VALUES (1, 'Pre-payment', 1, '2019-07-03 13:30:09', 1, 11, '2017-12-13 17:20:41');
 INSERT INTO `payment_type` VALUES (2, 'Cash on Arrival', 1, '2019-07-03 13:30:40', 1, 11, '2017-12-13 17:20:46');
 INSERT INTO `payment_type` VALUES (3, 'Before check out', 1, '2019-07-03 13:30:45', 1, 11, '2017-12-13 17:20:52');
 INSERT INTO `payment_type` VALUES (4, 'Credit', 1, '2019-07-03 13:30:48', 1, 11, '2017-12-13 17:20:59');
 INSERT INTO `payment_type` VALUES (5, 'Deposit', 1, '2019-07-03 13:31:03', 1, 11, '2017-12-13 17:21:05');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for payroll
 -- ----------------------------
 DROP TABLE IF EXISTS `payroll`;
-CREATE TABLE `payroll` (
+CREATE TABLE `payroll`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_payroll_request` int(11) DEFAULT NULL,
-  `doc_id` varchar(50) DEFAULT NULL,
-  `date` date DEFAULT NULL,
-  `pay_for` int(11) DEFAULT NULL,
-  `total_net_pay` decimal(10,2) DEFAULT NULL,
-  `chart_of_account` int(11) DEFAULT NULL,
-  `amount` decimal(10,2) DEFAULT NULL,
-  `amount_in_word` varchar(255) DEFAULT NULL,
-  `chart_of_account_option` int(11) DEFAULT NULL,
-  `amount_option` decimal(10,2) DEFAULT NULL,
-  `amount_in_word_option` varchar(255) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_payroll_request` int(11) NULL DEFAULT NULL,
+  `doc_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `date` date NULL DEFAULT NULL,
+  `pay_for` int(11) NULL DEFAULT NULL,
+  `total_net_pay` decimal(10, 2) NULL DEFAULT NULL,
+  `chart_of_account` int(11) NULL DEFAULT NULL,
+  `amount` decimal(10, 2) NULL DEFAULT NULL,
+  `amount_in_word` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `chart_of_account_option` int(11) NULL DEFAULT NULL,
+  `amount_option` decimal(10, 2) NULL DEFAULT NULL,
+  `amount_in_word_option` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for payroll_data
 -- ----------------------------
 DROP TABLE IF EXISTS `payroll_data`;
-CREATE TABLE `payroll_data` (
+CREATE TABLE `payroll_data`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_payroll` int(11) DEFAULT NULL,
-  `id_type` int(11) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `amount` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_payroll` int(11) NULL DEFAULT NULL,
+  `id_type` int(11) NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `amount` decimal(10, 2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for payroll_request
 -- ----------------------------
 DROP TABLE IF EXISTS `payroll_request`;
-CREATE TABLE `payroll_request` (
+CREATE TABLE `payroll_request`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date` date DEFAULT NULL,
-  `id_year` int(11) DEFAULT NULL,
-  `id_month` int(11) DEFAULT NULL,
-  `total_amount` decimal(10,2) DEFAULT NULL,
-  `id_prepared_by` varchar(255) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `grand_total_basic_salary` decimal(10,2) DEFAULT NULL,
-  `grand_total_probation_pass_amount` decimal(10,2) DEFAULT NULL,
-  `grand_total_probation_working_day` int(11) DEFAULT NULL,
-  `grand_total_probation_per_day_amount` decimal(10,2) DEFAULT NULL,
-  `grand_total_probation_pass_total_amount` decimal(10,2) DEFAULT NULL,
-  `grand_total_absent` int(11) DEFAULT NULL,
-  `grand_total_absent_deduct_amount` decimal(10,2) DEFAULT NULL,
-  `grand_total_advance_deduct_amount` decimal(10,2) DEFAULT NULL,
-  `grand_total_increase_amount` decimal(10,2) DEFAULT NULL,
-  `grand_total_other_amount` decimal(10,2) DEFAULT NULL,
-  `grand_total_balance_amount` decimal(10,2) DEFAULT NULL,
-  `grand_total_service_charge_amount` decimal(10,2) DEFAULT NULL,
-  `grand_total_bonus_amount` decimal(10,2) DEFAULT NULL,
-  `grand_total_net_pay_amount` decimal(10,2) DEFAULT NULL,
-  `grand_total_tip_amount` decimal(10,2) DEFAULT NULL,
-  `grand_total_total_net_pay_amount` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date` date NULL DEFAULT NULL,
+  `id_year` int(11) NULL DEFAULT NULL,
+  `id_month` int(11) NULL DEFAULT NULL,
+  `total_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `id_prepared_by` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `grand_total_basic_salary` decimal(10, 2) NULL DEFAULT NULL,
+  `grand_total_probation_pass_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `grand_total_probation_working_day` int(11) NULL DEFAULT NULL,
+  `grand_total_probation_per_day_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `grand_total_probation_pass_total_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `grand_total_absent` int(11) NULL DEFAULT NULL,
+  `grand_total_absent_deduct_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `grand_total_advance_deduct_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `grand_total_increase_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `grand_total_other_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `grand_total_balance_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `grand_total_service_charge_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `grand_total_bonus_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `grand_total_net_pay_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `grand_total_tip_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `grand_total_total_net_pay_amount` decimal(10, 2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for payroll_request_data
 -- ----------------------------
 DROP TABLE IF EXISTS `payroll_request_data`;
-CREATE TABLE `payroll_request_data` (
+CREATE TABLE `payroll_request_data`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_payroll_request` int(11) DEFAULT NULL,
-  `id_employee` int(11) DEFAULT NULL,
-  `basic_salary` decimal(10,2) DEFAULT NULL,
-  `probation_pass_amount` decimal(10,2) DEFAULT NULL,
-  `probation_working_day` int(11) DEFAULT NULL,
-  `probation_per_day_amount` decimal(10,2) DEFAULT NULL,
-  `probation_pass_total_amount` decimal(10,2) DEFAULT NULL,
-  `absent` int(11) DEFAULT NULL,
-  `absent_deduct_amount` decimal(10,2) DEFAULT NULL,
-  `advance_deduct_amount` decimal(10,2) DEFAULT NULL,
-  `increase_amount` decimal(10,2) DEFAULT NULL,
-  `other_amount` decimal(10,2) DEFAULT NULL,
-  `balance_amount` decimal(10,2) DEFAULT NULL,
-  `service_charge_amount` decimal(10,2) DEFAULT NULL,
-  `bonus_amount` decimal(10,2) DEFAULT NULL,
-  `net_pay_amount` decimal(10,2) DEFAULT NULL,
-  `id_payment_method` int(11) DEFAULT NULL,
-  `tip_amount` decimal(10,2) DEFAULT NULL,
-  `total_net_pay_amount` decimal(10,2) DEFAULT NULL,
-  `remark` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_payroll_request` int(11) NULL DEFAULT NULL,
+  `id_employee` int(11) NULL DEFAULT NULL,
+  `basic_salary` decimal(10, 2) NULL DEFAULT NULL,
+  `probation_pass_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `probation_working_day` int(11) NULL DEFAULT NULL,
+  `probation_per_day_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `probation_pass_total_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `absent` int(11) NULL DEFAULT NULL,
+  `absent_deduct_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `advance_deduct_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `increase_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `other_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `balance_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `service_charge_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `bonus_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `net_pay_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `id_payment_method` int(11) NULL DEFAULT NULL,
+  `tip_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `total_net_pay_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for payroll_request_status
 -- ----------------------------
 DROP TABLE IF EXISTS `payroll_request_status`;
-CREATE TABLE `payroll_request_status` (
+CREATE TABLE `payroll_request_status`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) DEFAULT NULL,
-  `css_class` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `status` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `css_class` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `status` tinyint(4) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of payroll_request_status
 -- ----------------------------
-BEGIN;
 INSERT INTO `payroll_request_status` VALUES (1, 'Approved', 'label label-info', 1);
 INSERT INTO `payroll_request_status` VALUES (2, 'Requested', 'label label-primary', 1);
 INSERT INTO `payroll_request_status` VALUES (3, 'Preparing', 'label label-danger', 1);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for payroll_status
 -- ----------------------------
 DROP TABLE IF EXISTS `payroll_status`;
-CREATE TABLE `payroll_status` (
+CREATE TABLE `payroll_status`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) DEFAULT NULL,
-  `css_class` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `status` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `css_class` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `status` tinyint(4) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of payroll_status
 -- ----------------------------
-BEGIN;
 INSERT INTO `payroll_status` VALUES (1, 'Approved', 'label label-info', 1);
 INSERT INTO `payroll_status` VALUES (2, 'Paid', 'label label-primary', 1);
 INSERT INTO `payroll_status` VALUES (3, 'Rejected', 'label label-danger', 1);
 INSERT INTO `payroll_status` VALUES (4, 'Waiting for Approval', 'label label-mint', 1);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for payroll_type
 -- ----------------------------
 DROP TABLE IF EXISTS `payroll_type`;
-CREATE TABLE `payroll_type` (
+CREATE TABLE `payroll_type`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of payroll_type
 -- ----------------------------
-BEGIN;
 INSERT INTO `payroll_type` VALUES (1, 'Basic Salary', 1, NULL, NULL, NULL, NULL);
 INSERT INTO `payroll_type` VALUES (2, 'Overtime', 1, NULL, NULL, NULL, NULL);
 INSERT INTO `payroll_type` VALUES (3, 'Allowance', 1, NULL, NULL, NULL, NULL);
 INSERT INTO `payroll_type` VALUES (4, 'Deduct', 1, NULL, NULL, NULL, NULL);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for permission_action
 -- ----------------------------
 DROP TABLE IF EXISTS `permission_action`;
-CREATE TABLE `permission_action` (
+CREATE TABLE `permission_action`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_type_id` int(11) DEFAULT NULL,
-  `permission_menu_id` int(11) DEFAULT NULL,
-  `is_show_menu` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1207 DEFAULT CHARSET=utf8;
+  `user_type_id` int(11) NULL DEFAULT NULL,
+  `permission_menu_id` int(11) NULL DEFAULT NULL,
+  `is_show_menu` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1508 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of permission_action
 -- ----------------------------
-BEGIN;
 INSERT INTO `permission_action` VALUES (931, 3, 1, NULL);
 INSERT INTO `permission_action` VALUES (932, 3, 60, NULL);
 INSERT INTO `permission_action` VALUES (933, 3, 20, NULL);
@@ -4366,20 +4527,6 @@ INSERT INTO `permission_action` VALUES (939, 3, 50, NULL);
 INSERT INTO `permission_action` VALUES (940, 3, 22, NULL);
 INSERT INTO `permission_action` VALUES (941, 3, 55, NULL);
 INSERT INTO `permission_action` VALUES (942, 3, 58, NULL);
-INSERT INTO `permission_action` VALUES (943, 4, 1, NULL);
-INSERT INTO `permission_action` VALUES (944, 4, 60, NULL);
-INSERT INTO `permission_action` VALUES (945, 4, 23, NULL);
-INSERT INTO `permission_action` VALUES (946, 4, 20, NULL);
-INSERT INTO `permission_action` VALUES (947, 4, 21, NULL);
-INSERT INTO `permission_action` VALUES (948, 4, 63, NULL);
-INSERT INTO `permission_action` VALUES (949, 4, 59, NULL);
-INSERT INTO `permission_action` VALUES (950, 4, 35, NULL);
-INSERT INTO `permission_action` VALUES (951, 4, 6, NULL);
-INSERT INTO `permission_action` VALUES (952, 4, 50, NULL);
-INSERT INTO `permission_action` VALUES (953, 4, 22, NULL);
-INSERT INTO `permission_action` VALUES (954, 4, 55, NULL);
-INSERT INTO `permission_action` VALUES (955, 4, 52, NULL);
-INSERT INTO `permission_action` VALUES (956, 4, 58, NULL);
 INSERT INTO `permission_action` VALUES (996, 2, 1, NULL);
 INSERT INTO `permission_action` VALUES (997, 2, 60, NULL);
 INSERT INTO `permission_action` VALUES (998, 2, 44, NULL);
@@ -4424,93 +4571,194 @@ INSERT INTO `permission_action` VALUES (1083, 5, 22, NULL);
 INSERT INTO `permission_action` VALUES (1084, 5, 55, NULL);
 INSERT INTO `permission_action` VALUES (1085, 5, 8, NULL);
 INSERT INTO `permission_action` VALUES (1086, 5, 58, NULL);
-INSERT INTO `permission_action` VALUES (1088, 6, 1, NULL);
-INSERT INTO `permission_action` VALUES (1089, 6, 60, NULL);
-INSERT INTO `permission_action` VALUES (1090, 6, 23, NULL);
-INSERT INTO `permission_action` VALUES (1091, 6, 20, NULL);
-INSERT INTO `permission_action` VALUES (1092, 6, 21, NULL);
-INSERT INTO `permission_action` VALUES (1093, 6, 63, NULL);
-INSERT INTO `permission_action` VALUES (1094, 6, 59, NULL);
-INSERT INTO `permission_action` VALUES (1095, 6, 35, NULL);
-INSERT INTO `permission_action` VALUES (1096, 6, 6, NULL);
-INSERT INTO `permission_action` VALUES (1097, 6, 49, NULL);
-INSERT INTO `permission_action` VALUES (1098, 6, 29, NULL);
-INSERT INTO `permission_action` VALUES (1099, 6, 30, NULL);
-INSERT INTO `permission_action` VALUES (1100, 6, 25, NULL);
-INSERT INTO `permission_action` VALUES (1101, 6, 51, NULL);
-INSERT INTO `permission_action` VALUES (1102, 6, 42, NULL);
-INSERT INTO `permission_action` VALUES (1103, 6, 27, NULL);
-INSERT INTO `permission_action` VALUES (1104, 6, 48, NULL);
-INSERT INTO `permission_action` VALUES (1105, 6, 41, NULL);
-INSERT INTO `permission_action` VALUES (1106, 6, 46, NULL);
-INSERT INTO `permission_action` VALUES (1107, 6, 8, NULL);
-INSERT INTO `permission_action` VALUES (1108, 6, 58, NULL);
-INSERT INTO `permission_action` VALUES (1158, 1, 1, NULL);
-INSERT INTO `permission_action` VALUES (1159, 1, 60, NULL);
-INSERT INTO `permission_action` VALUES (1160, 1, 44, NULL);
-INSERT INTO `permission_action` VALUES (1161, 1, 23, NULL);
-INSERT INTO `permission_action` VALUES (1162, 1, 20, NULL);
-INSERT INTO `permission_action` VALUES (1163, 1, 21, NULL);
-INSERT INTO `permission_action` VALUES (1164, 1, 63, NULL);
-INSERT INTO `permission_action` VALUES (1165, 1, 59, NULL);
-INSERT INTO `permission_action` VALUES (1166, 1, 54, NULL);
-INSERT INTO `permission_action` VALUES (1167, 1, 35, NULL);
-INSERT INTO `permission_action` VALUES (1168, 1, 6, NULL);
-INSERT INTO `permission_action` VALUES (1169, 1, 24, NULL);
-INSERT INTO `permission_action` VALUES (1170, 1, 33, NULL);
-INSERT INTO `permission_action` VALUES (1171, 1, 43, NULL);
-INSERT INTO `permission_action` VALUES (1172, 1, 31, NULL);
-INSERT INTO `permission_action` VALUES (1173, 1, 49, NULL);
-INSERT INTO `permission_action` VALUES (1174, 1, 29, NULL);
-INSERT INTO `permission_action` VALUES (1175, 1, 30, NULL);
-INSERT INTO `permission_action` VALUES (1176, 1, 25, NULL);
-INSERT INTO `permission_action` VALUES (1177, 1, 51, NULL);
-INSERT INTO `permission_action` VALUES (1178, 1, 42, NULL);
-INSERT INTO `permission_action` VALUES (1179, 1, 50, NULL);
-INSERT INTO `permission_action` VALUES (1180, 1, 22, NULL);
-INSERT INTO `permission_action` VALUES (1181, 1, 55, NULL);
-INSERT INTO `permission_action` VALUES (1182, 1, 52, NULL);
-INSERT INTO `permission_action` VALUES (1183, 1, 56, NULL);
-INSERT INTO `permission_action` VALUES (1184, 1, 27, NULL);
-INSERT INTO `permission_action` VALUES (1185, 1, 48, NULL);
-INSERT INTO `permission_action` VALUES (1186, 1, 46, NULL);
-INSERT INTO `permission_action` VALUES (1187, 1, 41, NULL);
-INSERT INTO `permission_action` VALUES (1188, 1, 8, NULL);
-INSERT INTO `permission_action` VALUES (1189, 1, 58, NULL);
-INSERT INTO `permission_action` VALUES (1190, 1, 13, NULL);
-INSERT INTO `permission_action` VALUES (1191, 1, 17, NULL);
-INSERT INTO `permission_action` VALUES (1192, 1, 34, NULL);
-INSERT INTO `permission_action` VALUES (1193, 1, 28, NULL);
-INSERT INTO `permission_action` VALUES (1194, 1, 32, NULL);
-INSERT INTO `permission_action` VALUES (1195, 1, 64, NULL);
-INSERT INTO `permission_action` VALUES (1196, 1, 45, NULL);
-INSERT INTO `permission_action` VALUES (1197, 1, 38, NULL);
-INSERT INTO `permission_action` VALUES (1198, 1, 39, NULL);
-INSERT INTO `permission_action` VALUES (1199, 1, 40, NULL);
-INSERT INTO `permission_action` VALUES (1200, 1, 11, NULL);
-INSERT INTO `permission_action` VALUES (1201, 1, 47, NULL);
-INSERT INTO `permission_action` VALUES (1202, 1, 62, NULL);
-INSERT INTO `permission_action` VALUES (1203, 1, 65, NULL);
-INSERT INTO `permission_action` VALUES (1204, 1, 68, NULL);
-INSERT INTO `permission_action` VALUES (1205, 1, 66, NULL);
-INSERT INTO `permission_action` VALUES (1206, 1, 69, NULL);
-COMMIT;
+INSERT INTO `permission_action` VALUES (1237, 7, 1, NULL);
+INSERT INTO `permission_action` VALUES (1238, 7, 60, NULL);
+INSERT INTO `permission_action` VALUES (1239, 7, 23, NULL);
+INSERT INTO `permission_action` VALUES (1240, 7, 20, NULL);
+INSERT INTO `permission_action` VALUES (1241, 7, 21, NULL);
+INSERT INTO `permission_action` VALUES (1242, 7, 63, NULL);
+INSERT INTO `permission_action` VALUES (1243, 7, 59, NULL);
+INSERT INTO `permission_action` VALUES (1244, 7, 54, NULL);
+INSERT INTO `permission_action` VALUES (1245, 7, 35, NULL);
+INSERT INTO `permission_action` VALUES (1246, 7, 6, NULL);
+INSERT INTO `permission_action` VALUES (1247, 7, 50, NULL);
+INSERT INTO `permission_action` VALUES (1248, 7, 55, NULL);
+INSERT INTO `permission_action` VALUES (1249, 7, 52, NULL);
+INSERT INTO `permission_action` VALUES (1250, 7, 58, NULL);
+INSERT INTO `permission_action` VALUES (1251, 7, 13, NULL);
+INSERT INTO `permission_action` VALUES (1252, 7, 17, NULL);
+INSERT INTO `permission_action` VALUES (1253, 7, 34, NULL);
+INSERT INTO `permission_action` VALUES (1254, 7, 28, NULL);
+INSERT INTO `permission_action` VALUES (1255, 7, 32, NULL);
+INSERT INTO `permission_action` VALUES (1256, 7, 64, NULL);
+INSERT INTO `permission_action` VALUES (1257, 7, 45, NULL);
+INSERT INTO `permission_action` VALUES (1258, 7, 38, NULL);
+INSERT INTO `permission_action` VALUES (1259, 7, 39, NULL);
+INSERT INTO `permission_action` VALUES (1260, 7, 40, NULL);
+INSERT INTO `permission_action` VALUES (1261, 7, 11, NULL);
+INSERT INTO `permission_action` VALUES (1262, 7, 47, NULL);
+INSERT INTO `permission_action` VALUES (1263, 7, 62, NULL);
+INSERT INTO `permission_action` VALUES (1264, 7, 65, NULL);
+INSERT INTO `permission_action` VALUES (1265, 7, 66, NULL);
+INSERT INTO `permission_action` VALUES (1266, 7, 68, NULL);
+INSERT INTO `permission_action` VALUES (1267, 7, 69, NULL);
+INSERT INTO `permission_action` VALUES (1318, 6, 1, NULL);
+INSERT INTO `permission_action` VALUES (1319, 6, 60, NULL);
+INSERT INTO `permission_action` VALUES (1320, 6, 44, NULL);
+INSERT INTO `permission_action` VALUES (1321, 6, 23, NULL);
+INSERT INTO `permission_action` VALUES (1322, 6, 20, NULL);
+INSERT INTO `permission_action` VALUES (1323, 6, 21, NULL);
+INSERT INTO `permission_action` VALUES (1324, 6, 63, NULL);
+INSERT INTO `permission_action` VALUES (1325, 6, 59, NULL);
+INSERT INTO `permission_action` VALUES (1326, 6, 54, NULL);
+INSERT INTO `permission_action` VALUES (1327, 6, 35, NULL);
+INSERT INTO `permission_action` VALUES (1328, 6, 6, NULL);
+INSERT INTO `permission_action` VALUES (1329, 6, 24, NULL);
+INSERT INTO `permission_action` VALUES (1330, 6, 33, NULL);
+INSERT INTO `permission_action` VALUES (1331, 6, 43, NULL);
+INSERT INTO `permission_action` VALUES (1332, 6, 31, NULL);
+INSERT INTO `permission_action` VALUES (1333, 6, 49, NULL);
+INSERT INTO `permission_action` VALUES (1334, 6, 73, NULL);
+INSERT INTO `permission_action` VALUES (1335, 6, 29, NULL);
+INSERT INTO `permission_action` VALUES (1336, 6, 30, NULL);
+INSERT INTO `permission_action` VALUES (1337, 6, 25, NULL);
+INSERT INTO `permission_action` VALUES (1338, 6, 51, NULL);
+INSERT INTO `permission_action` VALUES (1339, 6, 42, NULL);
+INSERT INTO `permission_action` VALUES (1340, 6, 50, NULL);
+INSERT INTO `permission_action` VALUES (1341, 6, 22, NULL);
+INSERT INTO `permission_action` VALUES (1342, 6, 72, NULL);
+INSERT INTO `permission_action` VALUES (1343, 6, 55, NULL);
+INSERT INTO `permission_action` VALUES (1344, 6, 52, NULL);
+INSERT INTO `permission_action` VALUES (1345, 6, 56, NULL);
+INSERT INTO `permission_action` VALUES (1346, 6, 27, NULL);
+INSERT INTO `permission_action` VALUES (1347, 6, 48, NULL);
+INSERT INTO `permission_action` VALUES (1348, 6, 41, NULL);
+INSERT INTO `permission_action` VALUES (1349, 6, 46, NULL);
+INSERT INTO `permission_action` VALUES (1350, 6, 8, NULL);
+INSERT INTO `permission_action` VALUES (1351, 6, 58, NULL);
+INSERT INTO `permission_action` VALUES (1352, 6, 71, NULL);
+INSERT INTO `permission_action` VALUES (1353, 6, 13, NULL);
+INSERT INTO `permission_action` VALUES (1354, 6, 17, NULL);
+INSERT INTO `permission_action` VALUES (1355, 6, 34, NULL);
+INSERT INTO `permission_action` VALUES (1356, 6, 28, NULL);
+INSERT INTO `permission_action` VALUES (1357, 6, 32, NULL);
+INSERT INTO `permission_action` VALUES (1358, 6, 64, NULL);
+INSERT INTO `permission_action` VALUES (1359, 6, 45, NULL);
+INSERT INTO `permission_action` VALUES (1360, 6, 38, NULL);
+INSERT INTO `permission_action` VALUES (1361, 6, 39, NULL);
+INSERT INTO `permission_action` VALUES (1362, 6, 40, NULL);
+INSERT INTO `permission_action` VALUES (1363, 6, 11, NULL);
+INSERT INTO `permission_action` VALUES (1364, 6, 47, NULL);
+INSERT INTO `permission_action` VALUES (1365, 6, 62, NULL);
+INSERT INTO `permission_action` VALUES (1366, 6, 74, NULL);
+INSERT INTO `permission_action` VALUES (1367, 6, 66, NULL);
+INSERT INTO `permission_action` VALUES (1368, 6, 68, NULL);
+INSERT INTO `permission_action` VALUES (1369, 6, 65, NULL);
+INSERT INTO `permission_action` VALUES (1370, 6, 69, NULL);
+INSERT INTO `permission_action` VALUES (1371, 6, 70, NULL);
+INSERT INTO `permission_action` VALUES (1372, 1, 1, NULL);
+INSERT INTO `permission_action` VALUES (1373, 1, 44, NULL);
+INSERT INTO `permission_action` VALUES (1374, 1, 23, NULL);
+INSERT INTO `permission_action` VALUES (1375, 1, 20, NULL);
+INSERT INTO `permission_action` VALUES (1376, 1, 21, NULL);
+INSERT INTO `permission_action` VALUES (1377, 1, 63, NULL);
+INSERT INTO `permission_action` VALUES (1378, 1, 59, NULL);
+INSERT INTO `permission_action` VALUES (1379, 1, 54, NULL);
+INSERT INTO `permission_action` VALUES (1380, 1, 35, NULL);
+INSERT INTO `permission_action` VALUES (1381, 1, 6, NULL);
+INSERT INTO `permission_action` VALUES (1382, 1, 24, NULL);
+INSERT INTO `permission_action` VALUES (1383, 1, 33, NULL);
+INSERT INTO `permission_action` VALUES (1384, 1, 43, NULL);
+INSERT INTO `permission_action` VALUES (1385, 1, 31, NULL);
+INSERT INTO `permission_action` VALUES (1386, 1, 49, NULL);
+INSERT INTO `permission_action` VALUES (1387, 1, 74, NULL);
+INSERT INTO `permission_action` VALUES (1388, 1, 72, NULL);
+INSERT INTO `permission_action` VALUES (1389, 1, 75, NULL);
+INSERT INTO `permission_action` VALUES (1390, 1, 29, NULL);
+INSERT INTO `permission_action` VALUES (1391, 1, 30, NULL);
+INSERT INTO `permission_action` VALUES (1392, 1, 25, NULL);
+INSERT INTO `permission_action` VALUES (1393, 1, 51, NULL);
+INSERT INTO `permission_action` VALUES (1394, 1, 76, NULL);
+INSERT INTO `permission_action` VALUES (1395, 1, 42, NULL);
+INSERT INTO `permission_action` VALUES (1396, 1, 77, NULL);
+INSERT INTO `permission_action` VALUES (1397, 1, 78, NULL);
+INSERT INTO `permission_action` VALUES (1398, 1, 66, NULL);
+INSERT INTO `permission_action` VALUES (1399, 1, 50, NULL);
+INSERT INTO `permission_action` VALUES (1400, 1, 22, NULL);
+INSERT INTO `permission_action` VALUES (1401, 1, 55, NULL);
+INSERT INTO `permission_action` VALUES (1402, 1, 52, NULL);
+INSERT INTO `permission_action` VALUES (1403, 1, 56, NULL);
+INSERT INTO `permission_action` VALUES (1404, 1, 27, NULL);
+INSERT INTO `permission_action` VALUES (1405, 1, 48, NULL);
+INSERT INTO `permission_action` VALUES (1406, 1, 41, NULL);
+INSERT INTO `permission_action` VALUES (1407, 1, 46, NULL);
+INSERT INTO `permission_action` VALUES (1408, 1, 8, NULL);
+INSERT INTO `permission_action` VALUES (1409, 1, 58, NULL);
+INSERT INTO `permission_action` VALUES (1410, 1, 13, NULL);
+INSERT INTO `permission_action` VALUES (1411, 1, 70, NULL);
+INSERT INTO `permission_action` VALUES (1412, 1, 17, NULL);
+INSERT INTO `permission_action` VALUES (1413, 1, 34, NULL);
+INSERT INTO `permission_action` VALUES (1414, 1, 28, NULL);
+INSERT INTO `permission_action` VALUES (1415, 1, 32, NULL);
+INSERT INTO `permission_action` VALUES (1416, 1, 68, NULL);
+INSERT INTO `permission_action` VALUES (1417, 1, 64, NULL);
+INSERT INTO `permission_action` VALUES (1418, 1, 45, NULL);
+INSERT INTO `permission_action` VALUES (1419, 1, 38, NULL);
+INSERT INTO `permission_action` VALUES (1420, 1, 39, NULL);
+INSERT INTO `permission_action` VALUES (1421, 1, 40, NULL);
+INSERT INTO `permission_action` VALUES (1422, 1, 11, NULL);
+INSERT INTO `permission_action` VALUES (1423, 1, 73, NULL);
+INSERT INTO `permission_action` VALUES (1424, 1, 47, NULL);
+INSERT INTO `permission_action` VALUES (1425, 1, 62, NULL);
+INSERT INTO `permission_action` VALUES (1426, 1, 65, NULL);
+INSERT INTO `permission_action` VALUES (1427, 1, 67, NULL);
+INSERT INTO `permission_action` VALUES (1428, 1, 69, NULL);
+INSERT INTO `permission_action` VALUES (1449, 8, 1, NULL);
+INSERT INTO `permission_action` VALUES (1450, 8, 20, NULL);
+INSERT INTO `permission_action` VALUES (1451, 8, 21, NULL);
+INSERT INTO `permission_action` VALUES (1452, 8, 63, NULL);
+INSERT INTO `permission_action` VALUES (1453, 8, 59, NULL);
+INSERT INTO `permission_action` VALUES (1454, 8, 49, NULL);
+INSERT INTO `permission_action` VALUES (1455, 8, 75, NULL);
+INSERT INTO `permission_action` VALUES (1456, 8, 72, NULL);
+INSERT INTO `permission_action` VALUES (1457, 8, 74, NULL);
+INSERT INTO `permission_action` VALUES (1458, 8, 29, NULL);
+INSERT INTO `permission_action` VALUES (1459, 8, 30, NULL);
+INSERT INTO `permission_action` VALUES (1460, 8, 25, NULL);
+INSERT INTO `permission_action` VALUES (1489, 9, 1, NULL);
+INSERT INTO `permission_action` VALUES (1490, 9, 20, NULL);
+INSERT INTO `permission_action` VALUES (1491, 9, 21, NULL);
+INSERT INTO `permission_action` VALUES (1492, 9, 35, NULL);
+INSERT INTO `permission_action` VALUES (1493, 9, 6, NULL);
+INSERT INTO `permission_action` VALUES (1494, 9, 22, NULL);
+INSERT INTO `permission_action` VALUES (1495, 4, 1, NULL);
+INSERT INTO `permission_action` VALUES (1496, 4, 23, NULL);
+INSERT INTO `permission_action` VALUES (1497, 4, 20, NULL);
+INSERT INTO `permission_action` VALUES (1498, 4, 21, NULL);
+INSERT INTO `permission_action` VALUES (1499, 4, 63, NULL);
+INSERT INTO `permission_action` VALUES (1500, 4, 59, NULL);
+INSERT INTO `permission_action` VALUES (1501, 4, 35, NULL);
+INSERT INTO `permission_action` VALUES (1502, 4, 6, NULL);
+INSERT INTO `permission_action` VALUES (1503, 4, 50, NULL);
+INSERT INTO `permission_action` VALUES (1504, 4, 22, NULL);
+INSERT INTO `permission_action` VALUES (1505, 4, 55, NULL);
+INSERT INTO `permission_action` VALUES (1506, 4, 52, NULL);
+INSERT INTO `permission_action` VALUES (1507, 4, 58, NULL);
 
 -- ----------------------------
 -- Table structure for permission_action_data
 -- ----------------------------
 DROP TABLE IF EXISTS `permission_action_data`;
-CREATE TABLE `permission_action_data` (
+CREATE TABLE `permission_action_data`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_permission_action` int(11) DEFAULT NULL,
-  `allow_action` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+  `id_permission_action` int(11) NULL DEFAULT NULL,
+  `allow_action` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 61 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of permission_action_data
 -- ----------------------------
-BEGIN;
 INSERT INTO `permission_action_data` VALUES (1, 1, 'index,detail,view,update');
 INSERT INTO `permission_action_data` VALUES (2, 2, 'subscriber,subscriber-detail');
 INSERT INTO `permission_action_data` VALUES (3, 3, 'index');
@@ -4571,32 +4819,30 @@ INSERT INTO `permission_action_data` VALUES (57, 57, 'index');
 INSERT INTO `permission_action_data` VALUES (58, 58, 'index');
 INSERT INTO `permission_action_data` VALUES (59, 59, 'index');
 INSERT INTO `permission_action_data` VALUES (60, 60, 'index');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for permission_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `permission_menu`;
-CREATE TABLE `permission_menu` (
+CREATE TABLE `permission_menu`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `is_parent` tinyint(1) DEFAULT NULL,
-  `parent_id` int(11) DEFAULT NULL,
-  `menu_name` varchar(100) DEFAULT NULL,
-  `sort` int(11) DEFAULT NULL,
-  `menu_icon` varchar(50) DEFAULT NULL,
-  `menu_url` varchar(255) DEFAULT NULL,
-  `css_class` varchar(500) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `contoller` varchar(255) DEFAULT NULL,
-  `action` varchar(255) DEFAULT NULL,
-  `extra_action` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8;
+  `is_parent` tinyint(1) NULL DEFAULT NULL,
+  `parent_id` int(11) NULL DEFAULT NULL,
+  `menu_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sort` int(11) NULL DEFAULT NULL,
+  `menu_icon` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `menu_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `css_class` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `contoller` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `action` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `extra_action` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 79 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of permission_menu
 -- ----------------------------
-BEGIN;
 INSERT INTO `permission_menu` VALUES (1, 1, 0, 'Dashboard', 1, 'demo-pli-home', '/', 'index dashboard', 1, 'site', 'index', 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (2, 1, 0, 'Subscriber', NULL, 'fa fa-group', 'membership-profile/subscriber', 'membership-profile-subscriber membership-profile-subscriber membership-payment-subscriber membership-event-subscriber membership-document-subscriber', 0, 'membership-profile', 'subscriber', 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (3, 1, 0, 'Event', NULL, 'fa fa-calendar', 'event-list/index', 'event-list-index', 0, 'event-list', 'index', 'index,create,view,update,delete');
@@ -4604,7 +4850,7 @@ INSERT INTO `permission_menu` VALUES (4, 1, 0, 'Task', NULL, 'fa fa-tasks', 'mem
 INSERT INTO `permission_menu` VALUES (5, 1, 0, 'Payment', NULL, 'demo-pli-coin', 'membership-payment/payment', 'membership-payment-payment', 0, 'membership-payment', 'payment', 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (6, 1, 0, 'Document', 11, 'fa fa-file-text-o', 'document/index', 'document-index document-subscriber', 1, 'document', 'index', 'index,create,view,update,delete,,document,create-folder,dependent-folder,get-info,rename-folder,delete-folder,upload-document,upload,remove,download');
 INSERT INTO `permission_menu` VALUES (7, 1, 0, 'User', 0, 'demo-pli-male icon-fw', 'user/index', 'user-index', 0, 'user', 'index', 'index,create,view,update,delete');
-INSERT INTO `permission_menu` VALUES (8, 1, 0, 'Setup', 16, 'demo-pli-gear icon-lg icon-fw', '#', 'supplier-profile-type-index working-group-index company-profile-index payment-status-index data-option-phone-country-code-index data-option-prefix-index marital-status-index country-index city-index payment-method-index user-type-index department-index employee-position-index bank-index chart-account-index item-group-data-index item-index item-group-index contract-type-index account-type-index standard-operation-step-index', 1, NULL, NULL, 'index,create,view,update,delete');
+INSERT INTO `permission_menu` VALUES (8, 1, 0, 'Setup', 16, 'demo-pli-gear icon-lg icon-fw', '#', 'user-index hr-approval-permission-index customer-type-index leave-setup-index item-group-type-index working-group-index company-profile-index payment-status-index data-option-phone-country-code-index data-option-prefix-index marital-status-index country-index city-index payment-method-index user-type-index department-index employee-position-index bank-index chart-account-index item-group-data-index item-index item-group-index contract-type-index account-type-index sta', 1, NULL, NULL, 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (9, 0, 8, 'Payment Status', 0, NULL, 'payment-status/index', 'payment-status-index', 0, 'payment-status', 'index', 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (10, 0, 8, 'Payment For', 0, NULL, 'payment-for/index', 'payment-for-index', 0, 'payment-for', 'index', 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (11, 0, 8, 'Position', 12, NULL, 'employee-position/index', 'employee-position-index', 1, 'employee-position', 'index', 'index,create,view,update,delete');
@@ -4616,78 +4862,86 @@ INSERT INTO `permission_menu` VALUES (16, 0, 8, 'Country', 0, NULL, 'country/ind
 INSERT INTO `permission_menu` VALUES (17, 0, 8, 'City', 3, NULL, 'city/index', 'city-index', 1, 'city', 'index', 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (18, 0, 8, 'Payment Type', 0, NULL, 'payment-type/index', 'payment-type-index', 0, 'payment-type', 'index', 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (19, 0, 8, 'Payment Method', 0, NULL, 'payment-method/index', 'payment-method-index', 0, 'payment-method', 'index', 'index,create,view,update,delete');
-INSERT INTO `permission_menu` VALUES (20, 1, 0, 'Projects', 5, 'fa fa-cubes', 'project/index', 'project-index', 1, 'project', 'index', 'index,create,view,update,delete,overview,task,copy,timesheet,sale-invoice,sale-payment,sale-quotation,dependent-get-customer-info,sale-expense,document,create-folder,dependent-folder,get-info,rename-folder,delete-folder,upload-document,upload,remove,download,note');
-INSERT INTO `permission_menu` VALUES (21, 1, 0, 'Tasks', 6, 'fa fa-tasks', 'task/index', 'task-index', 1, 'task', 'index', 'index,create,view,update,delete,copy');
+INSERT INTO `permission_menu` VALUES (20, 1, 0, 'Projects', 5, 'fa fa-cubes', 'project/index', 'project-index', 1, 'project', 'index', 'index,create,view,update,delete,overview,task,copy,timesheet,sale-invoice,sale-payment,sale-quotation,dependent-get-customer-info,sale-expense,document,create-folder,dependent-folder,get-info,rename-folder,delete-folder,upload-document,upload,remove,download,note,pin');
+INSERT INTO `permission_menu` VALUES (21, 1, 0, 'Tasks', 6, 'fa fa-tasks', 'task/index?smMenu=1', 'task-index', 1, 'task', 'index', 'index,create,view,update,delete,copy');
 INSERT INTO `permission_menu` VALUES (22, 0, 50, 'Employee', 1, '', 'employee-profile/index', 'employee-profile-index', 1, 'employee-profile', 'index', 'index,create,view,update,delete,profile,document,create-folder,dependent-folder,get-info,rename-folder,delete-folder,upload-document,upload,remove,download,get-department');
 INSERT INTO `permission_menu` VALUES (23, 1, 0, 'Customer', 4, 'fa fa-user-o', 'customer-profile/index', 'customer-profile-index', 1, 'customer-profile', 'index', 'index,create,view,update,delete,import-csv,download-sample-csv,profile,solution,document,create-folder,dependent-folder,get-info,rename-folder,delete-folder,upload-document,upload,remove,download');
 INSERT INTO `permission_menu` VALUES (24, 1, 0, 'Sales', 12, 'fa fa-balance-scale', '#', 'quotation-index proposal-index contract-index', 1, 'sale', 'index', 'index,create,view,update,delete');
-INSERT INTO `permission_menu` VALUES (25, 0, 49, 'Expense', 3, 'fa fa-file-text-o', 'expense/index', 'expense-index', 1, 'expense', 'index', 'index,create,view,update,delete');
+INSERT INTO `permission_menu` VALUES (25, 0, 49, 'Expense', 3, 'fa fa-file-text-o', 'expense/index', 'expense-index', 1, 'expense', 'index', 'index,create,view,update,delete,pay-bill,update-pay-bill,void-pay-bill,void-expense');
 INSERT INTO `permission_menu` VALUES (27, 1, 0, 'Report', 15, 'fa fa-area-chart', 'report/index', 'finance-chart-of-account-index index employee-report-report', 1, 'report', 'index', 'index,create,view,update,delete,report');
 INSERT INTO `permission_menu` VALUES (28, 0, 8, 'Items', 5, NULL, 'item/index', 'item-index', 1, 'item', 'index', 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (29, 0, 49, 'Invoices', 1, NULL, 'customer-invoice/index', 'customer-invoice-index customer-invoice-view', 1, 'customer-invoice', 'index', 'index,create,view,update,delete,void,validation-payment');
 INSERT INTO `permission_menu` VALUES (30, 0, 49, 'Payments', 2, NULL, 'customer-payment/index', 'customer-payment-index customer-payment-view', 1, 'customer-payment', 'index', 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (31, 0, 24, 'Contracts', 3, NULL, 'contract/index', 'contract-index', 1, 'contract', 'index', 'index,create,view,update,delete,detail,document,create-folder,dependent-folder,get-info,rename-folder,delete-folder,upload-document,upload,remove,download,overview');
 INSERT INTO `permission_menu` VALUES (32, 0, 8, 'Item Group', 6, NULL, 'item-group/index', 'item-group-index', 1, 'item-group', 'index', 'index,create,view,update,delete');
-INSERT INTO `permission_menu` VALUES (33, 0, 24, 'Proposals', 1, NULL, 'proposal/index', 'proposal-index', 1, 'proposal', 'index', 'index,create,view,update,delete,overview,note');
+INSERT INTO `permission_menu` VALUES (33, 0, 24, 'Proposal', 1, NULL, 'proposal/index', 'proposal-index', 1, 'proposal', 'index', 'index,create,view,update,delete,overview,note,dependent-get-customer-info');
 INSERT INTO `permission_menu` VALUES (34, 0, 8, 'Company Profile', 4, NULL, 'company-profile/index', 'company-profile-index', 1, 'company-profile', 'index', 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (35, 1, 0, 'Knowledge Base', 10, 'fa fa-file-text-o', 'knowledge-base/index', 'knowledge-base-index', 1, 'knowledge-base', 'index', 'index,create,view,update,delete,article');
 INSERT INTO `permission_menu` VALUES (38, 0, 8, 'Account Type', 9, NULL, 'account-type/index', 'account-type-index', 1, 'account-type', NULL, 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (39, 0, 8, 'Chart of Account', 10, NULL, 'chart-account/index', 'chart-account-index', 1, 'chart-account', NULL, 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (40, 0, 8, 'Bank', 11, NULL, 'bank/index', 'bank-index', 1, 'bank', NULL, 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (41, 0, 27, 'Chart of Account', 0, NULL, 'finance-chart-of-account/index', 'finance-chart-of-account-index', 1, 'finance-chart-of-account', NULL, 'index,create,view,update,delete');
-INSERT INTO `permission_menu` VALUES (42, 0, 49, 'Supplier', 5, 'demo-pli-male-female', 'supplier-profile/index', 'supplier-profile-index', 1, 'supplier-profile', NULL, 'index,create,view,update,delete');
-INSERT INTO `permission_menu` VALUES (43, 0, 24, 'Quotations', 2, NULL, 'quotation/index', 'quotation-index', 1, 'quotation', 'index', 'index,create,view,update,delete,overview,pdf,dependent-get-customer-info,download');
+INSERT INTO `permission_menu` VALUES (42, 0, 76, 'Supplier', 1, '', 'supplier-profile/index', 'supplier-profile-index', 1, 'supplier-profile', NULL, 'index,create,view,update,delete,contact,update-contact,create-contact,delete-contact');
+INSERT INTO `permission_menu` VALUES (43, 0, 24, 'Quotation', 2, NULL, 'quotation/index', 'quotation-index', 1, 'quotation', 'index', 'index,create,view,update,delete,overview,pdf,dependent-get-customer-info,download');
 INSERT INTO `permission_menu` VALUES (44, 1, 0, 'Lead', 3, 'fa fa-tty', 'lead-profile/index', 'lead-profile-index', 1, 'lead-profile', 'index', 'index,create,view,update,delete,import-csv,download-sample-csv,profile,document,create-folder,dependent-folder,get-info,rename-folder,delete-folder,upload-document,upload,remove,download,convert-lead');
 INSERT INTO `permission_menu` VALUES (45, 0, 8, 'Contract Type', 8, NULL, 'contract-type/index', 'contract-type-index', 1, 'contract-type', 'index', 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (46, 0, 27, 'Sale Report', 0, NULL, 'sale-report/invoice?smMenu=1', 'sale-report-invoice', 1, 'sale-report', 'invoice', 'index,create,view,update,delete,invoice,proposal,quotation');
 INSERT INTO `permission_menu` VALUES (47, 0, 8, 'Department', 13, NULL, 'department/index', 'department-index', 1, 'department', 'index', 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (48, 0, 27, 'Employee Report', NULL, NULL, 'employee-report/report?smMenu=1', 'employee-report-project', 1, 'employee-report', 'project', 'index,create,view,update,delete,report,tasks,project');
-INSERT INTO `permission_menu` VALUES (49, 1, 0, 'Finance', 13, 'fa fa-money', '#', 'payroll-index customer-invoice-index customer-invoice-view  customer-payment-index customer-payment-view expense-index supplier-profile-index', 1, ' ', NULL, 'index,create,view,update,delete');
-INSERT INTO `permission_menu` VALUES (50, 1, 0, 'Human Resource', 14, 'demo-pli-address-book', '#', 'leave-in-the-year-index leave-application-index payroll-request-index payroll-type-index cash-advance-request-index employee-profile-index ', 1, 'hr', 'index', 'index,create,view,update,delete');
-INSERT INTO `permission_menu` VALUES (51, 0, 49, 'Payroll', 4, NULL, 'payroll/index', 'payroll-index', 1, 'payroll', 'index', 'index,create,view,update,delete,approve,reject');
+INSERT INTO `permission_menu` VALUES (49, 1, 0, 'Finance', 13, 'fa fa-money', '#', 'finance-journal-entry-index finance-transfer-index finance-opening-balance-index payroll-index customer-invoice-index customer-invoice-view  customer-payment-index customer-payment-view expense-index', 1, ' ', NULL, 'index,create,view,update,delete');
+INSERT INTO `permission_menu` VALUES (50, 1, 0, 'Human Resource', 14, 'demo-pli-address-book', '#', 'leave-monthly-index leave-in-the-year-index leave-application-index payroll-request-index payroll-type-index cash-advance-request-index employee-profile-index ', 1, 'hr', 'index', 'index,create,view,update,delete');
+INSERT INTO `permission_menu` VALUES (51, 0, 49, 'Payroll', 4, NULL, 'payroll/index', 'payroll-index', 1, 'payroll', 'index', 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (52, 0, 50, 'Cash Advance Request', 3, NULL, 'cash-advance-request/index', 'cash-advance-request-index', 1, 'cash-advance-request', 'index', 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (53, 0, 50, 'Payroll Type', 0, NULL, 'payroll-type/index', 'payroll-type-index', 0, 'payroll-type', 'index', 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (54, 1, 0, 'Budget Setup', 9, 'demo-pli-coin', 'budget-set-up/index', 'budget-set-up-index', 1, 'budget-set-up', 'index', 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (55, 0, 50, 'Leave Application', 2, NULL, 'leave-application/index', 'leave-application-index', 1, 'leave-application', 'index', 'index,create,view,update,delete');
-INSERT INTO `permission_menu` VALUES (56, 0, 50, 'Payroll Request', 4, NULL, 'payroll-request/index', 'payroll-request-index', 1, 'payroll-request', 'index', 'index,create,view,update,delete,submit');
+INSERT INTO `permission_menu` VALUES (56, 0, 50, 'Payroll Request', 4, NULL, 'payroll-request/index', 'payroll-request-index', 1, 'payroll-request', 'index', 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (57, 1, 0, 'K.P.I', 8, 'demo-pli-tactic', 'standard-operation/index', 'standard-operation-index sop-goal-setup-index', 0, 'standard-operation', 'index', 'index,create,view,update,delete,form-view');
-INSERT INTO `permission_menu` VALUES (58, 0, 8, 'K.P.I Set Up', 1, NULL, 'standard-operation-step/index', 'standard-operation-step-index', 1, 'standard-operation-step', 'index', 'index,create,view,update,delete');
-INSERT INTO `permission_menu` VALUES (59, 1, 0, 'K.P.I', 8, 'demo-pli-tactic', 'sop-goal-setup/index', 'sop-goal-setup-index', 1, 'sop-goal-setup', 'index', 'index,create,view,update,delete,form-view');
-INSERT INTO `permission_menu` VALUES (60, 1, 0, 'Milestone', 2, 'fa fa-history', 'standard-operation/index', 'standard-operation-index', 1, 'standard-operation', 'index', 'index,create,view,update,delete,update-step-sop,form-view');
+INSERT INTO `permission_menu` VALUES (58, 0, 8, 'K.P.I Set Up', 1, NULL, 'standard-operation-step/index', 'standard-operation-step-index', 1, 'standard-operation-step', 'index', 'index,create,view,update,delete,form-view');
+INSERT INTO `permission_menu` VALUES (59, 1, 0, 'K.P.I', 8, 'demo-pli-tactic', 'sop-goal-setup/index', 'sop-goal-setup-index', 1, 'sop-goal-setup', 'index', 'index,create,view,update,delete');
+INSERT INTO `permission_menu` VALUES (60, 1, 0, 'Milestone', 2, 'fa fa-history', 'standard-operation/index', 'standard-operation-index', 0, 'standard-operation', 'index', 'index,create,view,update,delete,update-step-sop');
 INSERT INTO `permission_menu` VALUES (61, 0, 50, 'Leave Setup', 0, NULL, 'leave-in-the-year/index', 'leave-in-the-year-index', 0, 'leave-in-the-year', 'index', 'index,create,view,update,delete');
 INSERT INTO `permission_menu` VALUES (62, 0, 8, 'User Type & Roles', 13, 'demo-pli-computer-secure', 'user-type/index', 'user-type-index user-type-roles user-type-update', 1, 'user-type', 'index', 'index,create,view,update,delete,roles');
 INSERT INTO `permission_menu` VALUES (63, 1, 0, 'S.O.P', 7, 'demo-pli-receipt-4', 'standard-operation-procedure-set-up/index', 'standard-operation-procedure-set-up-index', 1, 'standard-operation-procedure-set-up', 'index', 'index,create,view,update,delete,sop-setup,,document,create-folder,dependent-folder,get-info,rename-folder,delete-folder,upload-document,upload,remove,download');
 INSERT INTO `permission_menu` VALUES (64, 0, 8, 'Item Group Data', 7, NULL, 'item-group-data/index', 'item-group-data-index', 1, 'item-group-data', 'index', 'index,create,view,update,delete,item');
-INSERT INTO `permission_menu` VALUES (65, 0, 8, 'Setting', 19, NULL, 'setting/index', 'setting-index', 1, 'setting', 'index', 'index,create,view,update,delete,item');
-INSERT INTO `permission_menu` VALUES (66, 0, 8, 'Working Group', 19, NULL, 'working-group/index', 'working-group-index', 1, 'working-group', 'index', 'index,create,view,update,delete,item');
-INSERT INTO `permission_menu` VALUES (68, 0, 8, 'Supplier Type', 19, NULL, 'supplier-profile-type/index', 'supplier-profile-type-index', 1, 'supplier-profile-type', 'index', 'index,create,view,update,delete');
-INSERT INTO `permission_menu` VALUES (69, 0, 8, 'Customer Type', 22, NULL, 'customer-type/index', 'customer-type-index', 1, 'customer-type', 'index', 'index,create,view,update,delete');
-COMMIT;
+INSERT INTO `permission_menu` VALUES (65, 0, 8, 'Working Group', 20, NULL, 'working-group/index', 'working-group-index', 1, 'working-group', 'index', 'index,create,view,update,delete,item');
+INSERT INTO `permission_menu` VALUES (66, 0, 76, 'Supplier Type', 19, NULL, 'supplier-profile-type/index', 'supplier-profile-type-index', 1, 'supplier-profile-type', 'index', 'index,create,view,update,delete');
+INSERT INTO `permission_menu` VALUES (67, 0, 8, 'Customer Type', 22, NULL, 'customer-type/index', 'customer-type-index', 1, 'customer-type', 'index', 'index,create,view,update,delete');
+INSERT INTO `permission_menu` VALUES (68, 0, 8, 'Item Group Type', 6, NULL, 'item-group-type/index', 'item-group-type-index', 1, 'item-group-type', 'index', 'index,create,view,update,delete,item');
+INSERT INTO `permission_menu` VALUES (69, 0, 8, 'HR Approval Permission', 23, NULL, 'hr-approval-permission/index', 'hr-approval-permission-index', 1, 'hr-approval-permission', 'index', 'index,create,view,update,delete');
+INSERT INTO `permission_menu` VALUES (70, 0, 8, 'Leave Setup', 2, NULL, 'leave-setup/index', 'leave-setup-index', 1, 'leave-setup', 'index', 'index,create,view,update,delete');
+INSERT INTO `permission_menu` VALUES (71, 0, 50, 'Monthly Leave', 2, NULL, 'leave-monthly/index', 'leave-monthly-index', 1, 'leave-monthly', 'index', 'index,create,view,update,delete');
+INSERT INTO `permission_menu` VALUES (72, 0, 49, 'Opening Balance', 0, 'fa fa-file-text-o', 'finance-opening-balance/index', 'finance-opening-balance-index', 1, 'finance-opening-balance', 'index', 'index,create,view,update,delete,void');
+INSERT INTO `permission_menu` VALUES (73, 0, 8, 'User', 13, NULL, 'user/index', 'user-index', 1, 'user', 'index', 'index,create,view,update,delete');
+INSERT INTO `permission_menu` VALUES (74, 0, 49, 'Transfer', 0, NULL, 'finance-transfer/index', 'finance-transfer-index', 1, 'finance-transfer', 'index', 'index,create,view,update,delete,void');
+INSERT INTO `permission_menu` VALUES (75, 0, 49, 'Journal Entry', 0, NULL, 'finance-journal-entry/index', 'finance-journal-entry-index', 1, 'finance-journal-entry', 'index', 'index,create,view,update,delete,void');
+INSERT INTO `permission_menu` VALUES (76, 1, 0, 'Supplier Profile', 13, 'demo-pli-male-female', '#', 'supplier-profile-type-index supplier-position-index supplier-department-index supplier-profile-index ', 1, '', '', 'index,create,view,update,delete');
+INSERT INTO `permission_menu` VALUES (77, 0, 76, 'Department', 2, NULL, 'supplier-department/index', 'supplier-department-index', 1, 'supplier-department', 'index', 'index,create,view,update,delete');
+INSERT INTO `permission_menu` VALUES (78, 0, 76, 'Position', 3, NULL, 'supplier-position/index', 'supplier-position-index', 1, 'supplier-position', 'index', 'index,create,view,update,delete');
 
 -- ----------------------------
 -- Table structure for permission_menu_live
 -- ----------------------------
 DROP TABLE IF EXISTS `permission_menu_live`;
-CREATE TABLE `permission_menu_live` (
+CREATE TABLE `permission_menu_live`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `is_parent` tinyint(1) DEFAULT NULL,
-  `parent_id` int(11) DEFAULT NULL,
-  `menu_name` varchar(100) DEFAULT NULL,
-  `menu_icon` varchar(50) DEFAULT NULL,
-  `menu_url` varchar(255) DEFAULT NULL,
-  `css_class` varchar(500) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `contoller` varchar(255) DEFAULT NULL,
-  `action` varchar(255) DEFAULT NULL,
-  `extra_action` text,
-  `sort` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
+  `is_parent` tinyint(1) NULL DEFAULT NULL,
+  `parent_id` int(11) NULL DEFAULT NULL,
+  `menu_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `menu_icon` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `menu_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `css_class` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `contoller` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `action` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `extra_action` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `sort` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 65 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of permission_menu_live
 -- ----------------------------
-BEGIN;
 INSERT INTO `permission_menu_live` VALUES (1, 1, 0, 'Dashboard', 'demo-pli-home', '/', 'index dashboard', 1, 'site', 'index', 'index,create,view,update,delete', 1);
 INSERT INTO `permission_menu_live` VALUES (2, 1, 0, 'Subscriber', 'fa fa-group', 'membership-profile/subscriber', 'membership-profile-subscriber membership-profile-subscriber membership-payment-subscriber membership-event-subscriber membership-document-subscriber', 0, 'membership-profile', 'subscriber', 'index,create,view,update,delete', NULL);
 INSERT INTO `permission_menu_live` VALUES (3, 1, 0, 'Event', 'fa fa-calendar', 'event-list/index', 'event-list-index', 0, 'event-list', 'index', 'index,create,view,update,delete', NULL);
@@ -4749,308 +5003,720 @@ INSERT INTO `permission_menu_live` VALUES (61, 0, 50, 'Leave Setup', NULL, 'leav
 INSERT INTO `permission_menu_live` VALUES (62, 1, 0, 'User Type & Roles', 'demo-pli-computer-secure', 'user-type/index', 'user-type-index user-type-roles user-type-update', 1, 'user-type', 'index', 'index,create,view,update,delete,roles', 13);
 INSERT INTO `permission_menu_live` VALUES (63, 1, 0, 'S.O.P', 'demo-pli-receipt-4', 'standard-operation-procedure-set-up/index', 'standard-operation-procedure-set-up-index', 1, 'standard-operation-procedure-set-up', 'index', 'index,create,view,update,delete,sop-setup,,document,create-folder,dependent-folder,get-info,rename-folder,delete-folder,upload-document,upload,remove,download', 8);
 INSERT INTO `permission_menu_live` VALUES (64, 0, 24, 'Item Group Data', NULL, 'item-group-data/index', 'item-group-data-index', 1, 'item-group-data', 'index', 'index,create,view,update,delete,item', 0);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for priority
 -- ----------------------------
 DROP TABLE IF EXISTS `priority`;
-CREATE TABLE `priority` (
+CREATE TABLE `priority`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `css_class` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `css_class` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of priority
 -- ----------------------------
-BEGIN;
 INSERT INTO `priority` VALUES (1, 'Low', 'label-primary');
 INSERT INTO `priority` VALUES (2, 'Medium', 'label-info');
 INSERT INTO `priority` VALUES (3, 'High', 'label-warning');
 INSERT INTO `priority` VALUES (4, 'Urgent', 'label-danger');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for project
 -- ----------------------------
 DROP TABLE IF EXISTS `project`;
-CREATE TABLE `project` (
+CREATE TABLE `project`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `project_name` varchar(255) DEFAULT NULL,
-  `id_customer` int(11) DEFAULT NULL,
-  `is_calculate` tinyint(4) DEFAULT NULL,
-  `project_progress` decimal(10,2) DEFAULT NULL,
-  `id_billing_type` tinyint(1) DEFAULT NULL,
-  `rate` decimal(10,2) DEFAULT NULL,
-  `estimated_hour` decimal(10,2) DEFAULT NULL,
-  `start_date` date DEFAULT NULL,
-  `due_date` date DEFAULT NULL,
-  `deadline` date DEFAULT NULL,
-  `id_priority` int(11) DEFAULT NULL,
-  `description` text,
-  `cut_off_day` int(11) DEFAULT NULL,
-  `note` text,
-  `is_pin` tinyint(1) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `project_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_customer` int(11) NULL DEFAULT NULL,
+  `is_calculate` tinyint(4) NULL DEFAULT NULL,
+  `project_progress` decimal(10, 2) NULL DEFAULT NULL,
+  `id_billing_type` tinyint(1) NULL DEFAULT NULL,
+  `rate` decimal(10, 2) NULL DEFAULT NULL,
+  `estimated_hour` decimal(10, 2) NULL DEFAULT NULL,
+  `start_date` date NULL DEFAULT NULL,
+  `due_date` date NULL DEFAULT NULL,
+  `deadline` date NULL DEFAULT NULL,
+  `id_priority` int(11) NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `cut_off_day` int(11) NULL DEFAULT NULL,
+  `note` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `is_pin` tinyint(1) NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `is_under_kpi` tinyint(1) NULL DEFAULT NULL,
+  `kpi_status` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of project
+-- ----------------------------
+INSERT INTO `project` VALUES (1, 'Garden -Wooden House', 1, 1, NULL, NULL, NULL, NULL, '2019-10-18', NULL, '2019-12-18', 2, '', 0, NULL, 0, 1, 21, '2019-11-22 08:37:02', 21, '2019-11-21 10:52:05', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for project_member
 -- ----------------------------
 DROP TABLE IF EXISTS `project_member`;
-CREATE TABLE `project_member` (
+CREATE TABLE `project_member`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_project` int(11) DEFAULT NULL,
-  `id_employee` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+  `id_project` int(11) NULL DEFAULT NULL,
+  `id_employee` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 111 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of project_member
 -- ----------------------------
-BEGIN;
-INSERT INTO `project_member` VALUES (1, 1, 16);
-INSERT INTO `project_member` VALUES (3, 2, 12);
 INSERT INTO `project_member` VALUES (4, 3, 6);
 INSERT INTO `project_member` VALUES (5, 3, 8);
 INSERT INTO `project_member` VALUES (6, 3, 10);
 INSERT INTO `project_member` VALUES (8, 4, 4);
-INSERT INTO `project_member` VALUES (15, 9, 6);
-INSERT INTO `project_member` VALUES (16, 9, 7);
 INSERT INTO `project_member` VALUES (20, 6, 4);
 INSERT INTO `project_member` VALUES (22, 5, 5);
 INSERT INTO `project_member` VALUES (24, 7, 5);
 INSERT INTO `project_member` VALUES (25, 10, 12);
-INSERT INTO `project_member` VALUES (30, 11, 5);
-INSERT INTO `project_member` VALUES (31, 12, 16);
-COMMIT;
+INSERT INTO `project_member` VALUES (32, 11, 5);
+INSERT INTO `project_member` VALUES (42, 17, 1);
+INSERT INTO `project_member` VALUES (43, 17, 2);
+INSERT INTO `project_member` VALUES (44, 17, 3);
+INSERT INTO `project_member` VALUES (46, 16, 1);
+INSERT INTO `project_member` VALUES (47, 14, 5);
+INSERT INTO `project_member` VALUES (48, 13, 5);
+INSERT INTO `project_member` VALUES (53, 20, 10);
+INSERT INTO `project_member` VALUES (54, 2, 6);
+INSERT INTO `project_member` VALUES (55, 2, 12);
+INSERT INTO `project_member` VALUES (56, 21, 1);
+INSERT INTO `project_member` VALUES (61, 22, 6);
+INSERT INTO `project_member` VALUES (62, 22, 7);
+INSERT INTO `project_member` VALUES (63, 9, 6);
+INSERT INTO `project_member` VALUES (64, 9, 7);
+INSERT INTO `project_member` VALUES (65, 12, 12);
+INSERT INTO `project_member` VALUES (66, 12, 16);
+INSERT INTO `project_member` VALUES (67, 23, 12);
+INSERT INTO `project_member` VALUES (69, 25, 12);
+INSERT INTO `project_member` VALUES (70, 25, 16);
+INSERT INTO `project_member` VALUES (75, 15, 5);
+INSERT INTO `project_member` VALUES (76, 15, 17);
+INSERT INTO `project_member` VALUES (77, 24, 10);
+INSERT INTO `project_member` VALUES (84, 26, 12);
+INSERT INTO `project_member` VALUES (85, 26, 16);
+INSERT INTO `project_member` VALUES (92, 27, 4);
+INSERT INTO `project_member` VALUES (94, 28, 4);
+INSERT INTO `project_member` VALUES (95, 30, 5);
+INSERT INTO `project_member` VALUES (96, 29, 5);
+INSERT INTO `project_member` VALUES (97, 31, 2);
+INSERT INTO `project_member` VALUES (98, 31, 7);
+INSERT INTO `project_member` VALUES (100, 19, 5);
+INSERT INTO `project_member` VALUES (101, 19, 17);
+INSERT INTO `project_member` VALUES (102, 19, 20);
+INSERT INTO `project_member` VALUES (103, 32, 5);
+INSERT INTO `project_member` VALUES (104, 32, 17);
+INSERT INTO `project_member` VALUES (105, 33, 22);
+INSERT INTO `project_member` VALUES (106, 34, 10);
+INSERT INTO `project_member` VALUES (107, 35, 10);
+INSERT INTO `project_member` VALUES (108, 36, 16);
+INSERT INTO `project_member` VALUES (109, 18, 17);
+INSERT INTO `project_member` VALUES (110, 1, 16);
 
 -- ----------------------------
 -- Table structure for project_note
 -- ----------------------------
 DROP TABLE IF EXISTS `project_note`;
-CREATE TABLE `project_note` (
+CREATE TABLE `project_note`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_project` int(11) DEFAULT NULL,
-  `id_user` int(11) DEFAULT NULL,
-  `note` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `id_project` int(11) NULL DEFAULT NULL,
+  `id_user` int(11) NULL DEFAULT NULL,
+  `note` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of project_note
 -- ----------------------------
-BEGIN;
 INSERT INTO `project_note` VALUES (1, 4, 15, '<p><br></p>');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for project_status
 -- ----------------------------
 DROP TABLE IF EXISTS `project_status`;
-CREATE TABLE `project_status` (
+CREATE TABLE `project_status`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `css_class` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `css_class` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of project_status
 -- ----------------------------
-BEGIN;
 INSERT INTO `project_status` VALUES (1, 'Not Started', 'label-mint');
 INSERT INTO `project_status` VALUES (2, 'In Progress', 'label-success');
 INSERT INTO `project_status` VALUES (3, 'On Hold', 'label-warning');
 INSERT INTO `project_status` VALUES (4, 'Cancelled', 'label-danger');
 INSERT INTO `project_status` VALUES (5, 'Finished', 'label-info');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for project_tag
 -- ----------------------------
 DROP TABLE IF EXISTS `project_tag`;
-CREATE TABLE `project_tag` (
+CREATE TABLE `project_tag`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_project` int(11) DEFAULT NULL,
-  `id_tag` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `id_project` int(11) NULL DEFAULT NULL,
+  `id_tag` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 50 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of project_tag
 -- ----------------------------
-BEGIN;
-INSERT INTO `project_tag` VALUES (1, 1, 'website');
-INSERT INTO `project_tag` VALUES (3, 2, 'website');
 INSERT INTO `project_tag` VALUES (4, 3, 'pms');
 INSERT INTO `project_tag` VALUES (5, 3, 'pos');
 INSERT INTO `project_tag` VALUES (9, 4, 'website');
 INSERT INTO `project_tag` VALUES (10, 4, 'trainee');
 INSERT INTO `project_tag` VALUES (11, 4, 'webdeveloper');
-INSERT INTO `project_tag` VALUES (17, 9, 'mobile');
 INSERT INTO `project_tag` VALUES (18, 6, 'bms');
 INSERT INTO `project_tag` VALUES (19, 6, 'bmsdoc');
 INSERT INTO `project_tag` VALUES (20, 10, 'website');
-INSERT INTO `project_tag` VALUES (21, 12, 'website');
-COMMIT;
+INSERT INTO `project_tag` VALUES (29, 17, 'Application');
+INSERT INTO `project_tag` VALUES (30, 17, 'BMS');
+INSERT INTO `project_tag` VALUES (31, 17, 'Business');
+INSERT INTO `project_tag` VALUES (32, 17, 'Management');
+INSERT INTO `project_tag` VALUES (33, 17, 'System');
+INSERT INTO `project_tag` VALUES (35, 16, 'dmc');
+INSERT INTO `project_tag` VALUES (38, 20, 'bms');
+INSERT INTO `project_tag` VALUES (39, 2, 'website');
+INSERT INTO `project_tag` VALUES (40, 9, 'mobile');
+INSERT INTO `project_tag` VALUES (41, 12, 'website');
+INSERT INTO `project_tag` VALUES (42, 23, 'website');
+INSERT INTO `project_tag` VALUES (47, 26, 'website');
+INSERT INTO `project_tag` VALUES (48, 31, 'bms');
+INSERT INTO `project_tag` VALUES (49, 1, 'website');
 
 -- ----------------------------
 -- Table structure for project_timesheet
 -- ----------------------------
 DROP TABLE IF EXISTS `project_timesheet`;
-CREATE TABLE `project_timesheet` (
+CREATE TABLE `project_timesheet`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `start_date` date DEFAULT NULL,
-  `start_time` varchar(20) DEFAULT NULL,
-  `end_date` date DEFAULT NULL,
-  `end_time` varchar(20) DEFAULT NULL,
-  `id_project` int(11) DEFAULT NULL,
-  `id_task` int(11) DEFAULT NULL,
-  `id_employee` int(11) DEFAULT NULL,
-  `note` varchar(255) DEFAULT NULL,
-  `description` text,
-  `status` tinyint(1) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `start_date` date NULL DEFAULT NULL,
+  `start_time` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `end_date` date NULL DEFAULT NULL,
+  `end_time` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_project` int(11) NULL DEFAULT NULL,
+  `id_task` int(11) NULL DEFAULT NULL,
+  `id_employee` int(11) NULL DEFAULT NULL,
+  `note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 96 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of project_timesheet
 -- ----------------------------
-BEGIN;
-INSERT INTO `project_timesheet` VALUES (1, '2019-09-05', '2:00 AM', '2019-09-05', '3:00 AM', 2, 2, NULL, 'Pholly', '', 1, NULL, NULL, 23, '2019-09-05 15:09:54');
+INSERT INTO `project_timesheet` VALUES (1, '2019-09-16', '1:00 AM', '2019-09-16', '5:00 AM', 2, 2, NULL, 'Footer', '', 1, 23, '2019-10-16 16:13:36', 23, '2019-09-05 15:09:54');
 INSERT INTO `project_timesheet` VALUES (2, '2019-09-06', '8:00 AM', '2019-09-06', '9:00 AM', 1, 10, NULL, 'Sao Nang', '', 1, NULL, NULL, 27, '2019-09-06 16:39:23');
-COMMIT;
+INSERT INTO `project_timesheet` VALUES (3, '2019-10-11', '8:00 AM', '2019-10-11', '5:00 PM', 18, 219, NULL, 'Review System Hotel Link', '', 1, 28, '2019-10-12 11:02:13', 16, '2019-10-11 09:09:47');
+INSERT INTO `project_timesheet` VALUES (4, '2019-10-11', '8:00 AM', '2019-10-11', '5:00 PM', 4, 20, NULL, 'Create Dynamic Website ', '-Create Dynamic Website \r\nNote: Contact\r\n          Gallery\r\n', 1, 15, '2019-10-11 16:46:05', 15, '2019-10-11 16:45:46');
+INSERT INTO `project_timesheet` VALUES (5, '2019-10-12', '8:00 AM', '2019-10-12', '12:00 AM', 18, 219, NULL, 'Review System HLS', '', 1, NULL, NULL, 28, '2019-10-12 11:05:14');
+INSERT INTO `project_timesheet` VALUES (6, '2019-10-12', '8:00 AM', '2019-10-12', '12:00 PM', 4, 20, NULL, 'Health Check meeting & Assist team to do health check ', '*Out project\r\n-Health Check meeting\r\n-Assist team to do health check 6', 1, 15, '2019-10-12 12:06:50', 15, '2019-10-12 12:06:25');
+INSERT INTO `project_timesheet` VALUES (7, '2019-10-14', '10:00 AM', '2019-10-14', '11:00 AM', 19, 220, NULL, 'Booking Engine', '', 1, NULL, NULL, 31, '2019-10-14 09:51:00');
+INSERT INTO `project_timesheet` VALUES (8, '2019-10-14', '10:00 AM', '2019-10-14', '11:00 AM', 19, 220, NULL, 'Booking Widget', '', 1, NULL, NULL, 31, '2019-10-14 10:17:37');
+INSERT INTO `project_timesheet` VALUES (9, '2019-10-14', '8:00 AM', '2019-10-14', '5:00 PM', 4, 20, NULL, 'Do responsive page ', '-Weekly Meeting \r\n-Do responsive page \r\nNote: Home page\r\n*Out project\r\n-Go outside with B Theany (Sale consultant) to show HL system to client', 1, NULL, NULL, 15, '2019-10-14 19:53:54');
+INSERT INTO `project_timesheet` VALUES (10, '2019-10-16', '8:00 AM', '2019-10-16', '12:00 AM', 10, 59, NULL, 'Pholly', '', 1, 23, '2019-10-17 11:32:48', 23, '2019-10-16 09:51:17');
+INSERT INTO `project_timesheet` VALUES (11, '2019-10-16', '8:00 AM', '2019-10-16', '5:00 PM', 12, 236, NULL, 'Happy Hamster hotel', '', 1, 27, '2019-10-17 08:45:02', 27, '2019-10-16 10:25:23');
+INSERT INTO `project_timesheet` VALUES (12, '2019-10-14', '8:00 AM', '2019-10-14', '5:00 AM', 12, 236, NULL, 'Conding contact us page', '', 1, 27, '2019-10-16 11:30:41', 27, '2019-10-16 10:28:06');
+INSERT INTO `project_timesheet` VALUES (13, '2019-10-14', '8:00 AM', '2019-10-14', '4:00 PM', 20, 240, NULL, 'Setup', 'Awaiting for feedback and review.', 1, 21, '2019-10-16 10:50:54', 21, '2019-10-16 10:41:34');
+INSERT INTO `project_timesheet` VALUES (14, '2019-10-16', '8:00 AM', '2019-10-16', '11:00 AM', 2, 242, NULL, 'Front Page > Spa Recent', '', 1, NULL, NULL, 17, '2019-10-16 11:33:28');
+INSERT INTO `project_timesheet` VALUES (15, '2019-10-16', '11:00 AM', '2019-10-16', '2:30 PM', 2, 242, NULL, 'Fetch All Spa', '', 1, NULL, NULL, 17, '2019-10-16 11:34:24');
+INSERT INTO `project_timesheet` VALUES (16, '2019-10-16', '2:30 PM', '2019-10-16', '4:00 PM', 2, 242, NULL, 'Fetch Spa Item Detail', '', 1, NULL, NULL, 17, '2019-10-16 11:35:01');
+INSERT INTO `project_timesheet` VALUES (17, '2019-10-16', '11:00 AM', '2019-10-16', '12:00 PM', 23, 249, NULL, 'Fix problem', '', 1, NULL, NULL, 23, '2019-10-16 16:44:43');
+INSERT INTO `project_timesheet` VALUES (18, '2019-10-16', '8:00 AM', '2019-10-16', '5:00 PM', 4, 20, NULL, 'Do responsive page', 'Do the responsive page\r\nNote:  Home page\r\n          About Us\r\n          Menu\r\n          Contact ', 1, NULL, NULL, 15, '2019-10-16 17:04:32');
+INSERT INTO `project_timesheet` VALUES (19, '2019-10-16', '8:00 AM', '2019-10-16', '5:00 PM', 18, 219, NULL, 'Learning System HLS', '', 1, NULL, NULL, 28, '2019-10-17 08:29:13');
+INSERT INTO `project_timesheet` VALUES (20, '2019-10-17', '8:00 AM', '2019-10-17', '8:00 PM', 12, 236, NULL, 'Happy hamster hostel', '', 1, 27, '2019-10-18 16:56:48', 27, '2019-10-17 08:43:52');
+INSERT INTO `project_timesheet` VALUES (21, '2019-10-17', '8:00 AM', '2019-10-17', '11:00 AM', 10, 59, NULL, 'Codding', '', 1, NULL, NULL, 23, '2019-10-17 11:09:16');
+INSERT INTO `project_timesheet` VALUES (22, '2019-10-17', '8:00 AM', '2019-10-17', '5:00 PM', 18, 219, NULL, 'Front Desk in system HLS', '', 1, NULL, NULL, 28, '2019-10-17 16:44:59');
+INSERT INTO `project_timesheet` VALUES (23, '2019-10-17', '8:00 AM', '2019-10-17', '5:00 PM', 4, 20, NULL, 'Do responsive page & Create a new website', '-Do the responsive page | Finished \r\nNote: Gallery \r\n-Create a new website \r\nNote: Install Wordpress\r\n           Install plugins', 1, NULL, NULL, 15, '2019-10-17 17:09:58');
+INSERT INTO `project_timesheet` VALUES (24, '2019-10-17', '1:00 AM', '2019-10-17', '3:00 AM', 2, 2, NULL, 'page about us,page single rooms', '', 1, 23, '2019-10-18 08:18:28', 23, '2019-10-18 08:15:54');
+INSERT INTO `project_timesheet` VALUES (25, '2019-10-18', '8:00 AM', '2019-10-18', '5:00 PM', 12, 236, NULL, 'Happy Hamster Hostel ', '', 1, NULL, NULL, 27, '2019-10-18 16:56:27');
+INSERT INTO `project_timesheet` VALUES (26, '2019-10-18', '8:00 AM', '2019-10-18', '5:00 PM', 4, 18, NULL, 'Create a new website ', '-Create a new website \r\nNote: Menu\r\n          Banner ', 1, NULL, NULL, 15, '2019-10-18 23:42:40');
+INSERT INTO `project_timesheet` VALUES (27, '2019-10-18', '8:30 AM', '2019-10-19', '10:30 AM', 18, 219, NULL, 'Website', '', 1, NULL, NULL, 31, '2019-10-19 09:21:48');
+INSERT INTO `project_timesheet` VALUES (28, '2019-10-18', '8:30 AM', '2019-10-19', '10:30 AM', 19, 220, NULL, 'Website', '', 1, NULL, NULL, 31, '2019-10-19 09:36:34');
+INSERT INTO `project_timesheet` VALUES (29, '2019-10-19', '9:30 AM', '2019-10-19', '11:30 AM', 19, 220, NULL, 'Mobile Website', '', 1, NULL, NULL, 31, '2019-10-19 09:38:07');
+INSERT INTO `project_timesheet` VALUES (30, '2019-10-19', '8:00 AM', '2019-10-19', '12:00 PM', 4, 18, NULL, 'Create a new website and update weekly report ', '-Create a new website \r\nNote: Content \r\n           -Room Type\r\n           -Story\r\n*Out project\r\n-Update weekly report ', 1, 15, '2019-10-19 11:56:55', 15, '2019-10-19 11:42:14');
+INSERT INTO `project_timesheet` VALUES (31, '2019-10-19', '8:00 AM', '2019-10-19', '12:01 PM', 18, 219, NULL, 'Review HLS', '', 1, NULL, NULL, 28, '2019-10-19 11:52:14');
+INSERT INTO `project_timesheet` VALUES (32, '2019-10-21', '9:00 AM', '2019-10-21', '10:30 AM', 19, 220, NULL, 'Website ', '', 1, 31, '2019-10-21 14:19:11', 31, '2019-10-21 09:02:12');
+INSERT INTO `project_timesheet` VALUES (33, '2019-10-21', '2:17 PM', '2019-10-21', '3:30 PM', 19, 220, NULL, 'mobile website', '', 1, NULL, NULL, 31, '2019-10-21 14:18:52');
+INSERT INTO `project_timesheet` VALUES (34, '2019-10-21', '8:00 AM', '2019-10-21', '5:00 PM', 12, 236, NULL, 'Happy Hamster hostel', '', 1, 27, '2019-10-21 16:42:47', 27, '2019-10-21 16:11:32');
+INSERT INTO `project_timesheet` VALUES (35, '2019-10-21', '8:00 AM', '2019-10-21', '5:00 PM', 12, 236, NULL, 'Happy hamster hostel', '', 1, 27, '2019-10-21 16:13:16', 27, '2019-10-21 16:12:46');
+INSERT INTO `project_timesheet` VALUES (36, '2019-10-21', '8:00 AM', '2019-10-21', '5:00 PM', 18, 219, NULL, 'Reports', '', 1, 16, '2019-10-22 16:52:43', 28, '2019-10-21 16:47:46');
+INSERT INTO `project_timesheet` VALUES (37, '2019-10-21', '8:00 AM', '2019-10-21', '5:00 PM', 4, 20, NULL, 'Finished static home page and start dynamic', '-Weekly meeting\r\n-Start dynamic home page \r\nNote: Menu\r\n           Banner\r\n           Room Type \r\n', 1, NULL, NULL, 15, '2019-10-21 18:52:30');
+INSERT INTO `project_timesheet` VALUES (38, '2019-10-22', '8:17 AM', '2019-10-22', '9:30 AM', 19, 220, NULL, 'Channel Management ', '', 1, NULL, NULL, 31, '2019-10-22 09:10:14');
+INSERT INTO `project_timesheet` VALUES (39, '2019-10-22', '2:20 PM', '2019-10-22', '3:30 PM', 19, 220, NULL, 'social media ', '', 1, NULL, NULL, 31, '2019-10-22 15:47:25');
+INSERT INTO `project_timesheet` VALUES (40, '2019-10-22', '3:50 PM', '2019-10-22', '4:20 PM', 19, 220, NULL, 'front desk', '', 1, NULL, NULL, 31, '2019-10-22 15:50:04');
+INSERT INTO `project_timesheet` VALUES (41, '2019-10-22', '8:00 AM', '2019-10-22', '5:00 PM', 12, 236, NULL, 'Happy hamster hostel', '', 1, 27, '2019-10-22 16:46:51', 27, '2019-10-22 16:34:13');
+INSERT INTO `project_timesheet` VALUES (42, '2019-10-22', '8:00 AM', '2019-10-22', '5:00 PM', 18, 219, NULL, 'Reports', '', 1, NULL, NULL, 28, '2019-10-22 16:55:16');
+INSERT INTO `project_timesheet` VALUES (43, '2019-10-24', '9:40 AM', '2019-10-24', '11:00 AM', 19, 220, NULL, 'Booking Engine-Front desk', '', 1, NULL, NULL, 31, '2019-10-24 09:23:42');
+INSERT INTO `project_timesheet` VALUES (44, '2019-10-22', '8:00 AM', '2019-10-22', '5:00 PM', 4, 20, NULL, 'Dynamic page ', '-Dynamic page \r\n +Restaurant \r\n +About Us\r\n +Gallery\r\n +Footer', 1, NULL, NULL, 15, '2019-10-24 09:45:39');
+INSERT INTO `project_timesheet` VALUES (45, '2019-10-24', '8:00 AM', '2019-10-24', '5:00 PM', 18, 219, NULL, 'Learning HLS', '', 1, NULL, NULL, 28, '2019-10-24 16:39:51');
+INSERT INTO `project_timesheet` VALUES (46, '2019-10-24', '8:00 AM', '2019-10-24', '5:00 PM', 4, 20, NULL, 'Dynamic page and single ', '-Dynamic page: \r\n +Contact\r\n-Dynamic single page:\r\n +Room Type\r\n +Restaurant \r\n', 1, NULL, NULL, 15, '2019-10-24 16:50:39');
+INSERT INTO `project_timesheet` VALUES (47, '2019-10-25', '8:00 AM', '2019-10-25', '5:00 PM', 12, 236, NULL, 'happy hamster hostel', '', 1, 27, '2019-10-25 17:07:00', 27, '2019-10-25 13:37:40');
+INSERT INTO `project_timesheet` VALUES (48, '2019-10-25', '8:00 AM', '2019-10-25', '3:00 PM', 15, 68, NULL, 'Processing ', '', 1, NULL, NULL, 28, '2019-10-25 14:25:00');
+INSERT INTO `project_timesheet` VALUES (49, '2019-10-25', '8:00 AM', '2019-10-25', '5:00 PM', 4, 20, NULL, 'Do the responsive page', '-Do the responsive page\r\nNote: Menu', 1, NULL, NULL, 15, '2019-10-26 08:20:36');
+INSERT INTO `project_timesheet` VALUES (50, '2019-10-26', '8:00 AM', '2019-10-26', '12:00 PM', 4, 20, NULL, 'Do the responsive page', '-Do the responsive page \r\n Note: Done Menu\r\n          Contact Us (fixing)\r\n*Out of project\r\n -Update weekly report', 1, NULL, NULL, 15, '2019-10-26 11:50:52');
+INSERT INTO `project_timesheet` VALUES (51, '2019-10-26', '8:30 AM', '2019-10-26', '12:00 PM', 18, 219, NULL, 'Review system HLS', '', 1, NULL, NULL, 28, '2019-10-26 11:54:08');
+INSERT INTO `project_timesheet` VALUES (52, '2019-10-26', '8:00 AM', '2019-10-26', '5:00 PM', 12, 236, NULL, 'Rithyma', '', 1, NULL, NULL, 27, '2019-10-26 12:10:37');
+INSERT INTO `project_timesheet` VALUES (53, '2019-10-28', '3:00 PM', '2019-10-28', '3:30 PM', 19, 220, NULL, 'Hotel link solution Review ', '', 1, NULL, NULL, 31, '2019-10-28 15:28:38');
+INSERT INTO `project_timesheet` VALUES (54, '2019-10-28', '3:30 PM', '2019-10-28', '4:00 PM', 19, 220, NULL, 'Opening system', '', 1, NULL, NULL, 31, '2019-10-28 15:33:14');
+INSERT INTO `project_timesheet` VALUES (55, '2019-10-28', '8:00 AM', '2019-10-28', '5:00 PM', 12, 236, NULL, 'Happy Hamster hotel', '', 1, NULL, NULL, 27, '2019-10-28 17:01:12');
+INSERT INTO `project_timesheet` VALUES (56, '2019-10-28', '8:00 AM', '2019-10-28', '5:00 PM', 4, 20, NULL, 'Do responsive page and Install new Xampp', '-Do responsive page and try to share xampp on mobile (cannot share ip)\r\nNote: Contact us\r\n-Install new Xampp and ask the team (Rith & Pholly )to help fix the database in PHPMyAdmin', 1, NULL, NULL, 15, '2019-10-28 17:03:12');
+INSERT INTO `project_timesheet` VALUES (57, '2019-10-30', '9:00 AM', '2019-10-30', '10:30 AM', 19, 220, NULL, 'Booking Website', '', 1, NULL, NULL, 31, '2019-10-30 09:34:08');
+INSERT INTO `project_timesheet` VALUES (58, '2019-11-01', '8:10 AM', '2019-11-01', '9:10 AM', 19, 220, NULL, 'view system ', '', 1, 31, '2019-11-01 08:11:41', 31, '2019-11-01 08:11:18');
+INSERT INTO `project_timesheet` VALUES (59, '2019-11-02', '9:10 AM', '2019-11-02', '10:10 AM', 19, 220, NULL, 'review system', '', 1, NULL, NULL, 31, '2019-11-02 09:06:41');
+INSERT INTO `project_timesheet` VALUES (60, '2019-11-04', '2:30 PM', '2019-11-04', '3:30 PM', 19, 220, NULL, 'review system', '', 1, NULL, NULL, 31, '2019-11-04 14:34:17');
+INSERT INTO `project_timesheet` VALUES (61, '2019-11-05', '9:00 AM', '2019-11-05', '10:30 AM', 19, 220, NULL, 'review system', '', 1, NULL, NULL, 31, '2019-11-05 10:29:03');
+INSERT INTO `project_timesheet` VALUES (62, '2019-11-08', '3:00 PM', '2019-11-08', '5:00 PM', 19, 220, NULL, 'Review system', '', 1, NULL, NULL, 31, '2019-11-08 14:53:00');
+INSERT INTO `project_timesheet` VALUES (63, '2019-11-08', '8:00 AM', '2019-11-08', '5:00 PM', 12, 301, NULL, 'Nang', '', 1, NULL, NULL, 27, '2019-11-08 17:03:55');
+INSERT INTO `project_timesheet` VALUES (64, '2019-11-13', '1:00 PM', '2019-11-13', '5:00 PM', 12, 317, NULL, 'Health Check', '', 1, 27, '2019-11-13 17:00:14', 27, '2019-11-13 16:57:42');
+INSERT INTO `project_timesheet` VALUES (65, '2019-11-14', '9:10 AM', '2019-11-14', '10:00 AM', 19, 220, NULL, 'Review System', '', 1, NULL, NULL, 31, '2019-11-14 09:10:28');
+INSERT INTO `project_timesheet` VALUES (66, '2019-11-14', '2:10 PM', '2019-11-14', '4:00 PM', 19, 220, NULL, 'Review system', '', 1, NULL, NULL, 31, '2019-11-14 14:10:14');
+INSERT INTO `project_timesheet` VALUES (67, '2019-11-14', '8:00 AM', '2019-11-14', '5:00 PM', 12, 317, NULL, 'Time sheet', '', 1, 27, '2019-11-15 17:08:48', 27, '2019-11-14 14:35:44');
+INSERT INTO `project_timesheet` VALUES (68, '2019-11-15', '8:11 AM', '2019-11-15', '10:00 AM', 19, 220, NULL, 'Review and read system', '', 1, NULL, NULL, 31, '2019-11-15 08:11:55');
+INSERT INTO `project_timesheet` VALUES (69, '2019-11-13', '8:00 AM', '2019-11-13', '12:00 PM', 28, 287, NULL, 'Assist team to do health check and meeting ', '-Done health check 5\r\n-Meeting health check', 1, NULL, NULL, 15, '2019-11-15 09:38:36');
+INSERT INTO `project_timesheet` VALUES (70, '2019-11-13', '1:00 PM', '2019-11-13', '5:00 PM', 27, 329, NULL, 'Done exercise from B. Pov', '-Done model box\r\n-Padding tap, check all boxes, and status bar', 1, NULL, NULL, 15, '2019-11-15 09:40:50');
+INSERT INTO `project_timesheet` VALUES (71, '2019-11-14', '8:00 AM', '2019-11-14', '12:00 PM', 27, 330, NULL, 'Complete weekly report and meeting with team', '', 1, NULL, NULL, 15, '2019-11-15 09:50:02');
+INSERT INTO `project_timesheet` VALUES (72, '2019-11-14', '1:00 PM', '2019-11-14', '5:00 PM', 27, 329, NULL, 'Done checkbox (Ask B. Pov to assist)', '-Done checkbox (Ask B. Pov to assist)\r\nNote: Animation of the checkbox\r\n         Skip Tab and status bar', 1, NULL, NULL, 15, '2019-11-15 09:54:57');
+INSERT INTO `project_timesheet` VALUES (73, '2019-11-15', '8:00 AM', '2019-11-15', '5:00 PM', 27, 338, NULL, 'PHP', '', 1, 15, '2019-11-15 17:02:28', 15, '2019-11-15 17:01:25');
+INSERT INTO `project_timesheet` VALUES (74, '2019-11-15', '8:00 AM', '2019-11-15', '5:00 PM', 12, 317, NULL, 'Time sheet', '', 1, 27, '2019-11-15 17:09:56', 27, '2019-11-15 17:08:02');
+INSERT INTO `project_timesheet` VALUES (75, '2019-11-16', '8:00 AM', '2019-11-16', '5:00 PM', 12, 317, NULL, 'Time sheet ', '', 1, NULL, NULL, 27, '2019-11-16 11:16:19');
+INSERT INTO `project_timesheet` VALUES (76, '2019-11-16', '8:00 AM', '2019-11-16', '12:00 PM', 27, 284, NULL, 'Learning PHP ', '-Learning PHP \r\nNote: Variable scope \r\n          Superglobals variables (pending $_REQUEST)', 1, 15, '2019-11-16 12:09:46', 15, '2019-11-16 12:08:07');
+INSERT INTO `project_timesheet` VALUES (77, '2019-11-18', '8:00 AM', '2019-11-18', '9:00 AM', 19, 220, NULL, 'meeting and review produce ', '', 1, NULL, NULL, 31, '2019-11-18 09:09:02');
+INSERT INTO `project_timesheet` VALUES (78, '2019-11-18', '9:00 AM', '2019-11-18', '10:00 AM', 19, 220, NULL, 'review produce ', '', 1, NULL, NULL, 31, '2019-11-18 09:10:48');
+INSERT INTO `project_timesheet` VALUES (79, '2019-11-18', '3:00 PM', '2019-11-18', '5:00 PM', 19, 220, NULL, 'review system', '', 1, NULL, NULL, 31, '2019-11-18 15:00:12');
+INSERT INTO `project_timesheet` VALUES (80, '2019-11-18', '8:00 AM', '2019-11-18', '5:00 PM', 12, 317, NULL, 'Time Sheet ', '', 1, NULL, NULL, 27, '2019-11-18 16:40:54');
+INSERT INTO `project_timesheet` VALUES (81, '2019-11-18', '8:00 AM', '2019-11-18', '9:00 AM', 32, 349, NULL, 'Meeting With Web Developer Theme', '', 1, NULL, NULL, 28, '2019-11-18 16:44:37');
+INSERT INTO `project_timesheet` VALUES (82, '2019-11-18', '9:00 AM', '2019-11-18', '10:00 AM', 32, 349, NULL, 'Errors in updating data to Expedia | Bayon Shadow Villa', '', 1, NULL, NULL, 28, '2019-11-18 16:46:59');
+INSERT INTO `project_timesheet` VALUES (83, '2019-11-18', '10:00 AM', '2019-11-18', '11:00 AM', 32, 349, NULL, 'Errors in updating data to Expedia | Kolab Sor Phnom Penh Hotel', '', 1, NULL, NULL, 28, '2019-11-18 16:48:20');
+INSERT INTO `project_timesheet` VALUES (84, '2019-11-18', '11:00 AM', '2019-11-18', '12:00 PM', 32, 349, NULL, 'Errors in updating data to Expedia | Bokre Angkor Hostel', '', 1, NULL, NULL, 28, '2019-11-18 16:49:43');
+INSERT INTO `project_timesheet` VALUES (85, '2019-11-18', '1:00 PM', '2019-11-18', '4:00 PM', 32, 349, NULL, 'Review HLS', '', 1, NULL, NULL, 28, '2019-11-18 16:51:06');
+INSERT INTO `project_timesheet` VALUES (86, '2019-11-18', '4:00 PM', '2019-11-18', '5:00 PM', 32, 350, NULL, 'Update Mapping for Booking.com | Le Cocon Boutique Hotel', '', 1, 28, '2019-11-18 16:57:15', 28, '2019-11-18 16:56:54');
+INSERT INTO `project_timesheet` VALUES (87, '2019-11-18', '8:00 AM', '2019-11-18', '12:00 PM', 27, 353, NULL, 'Learning PHP ', '-Learning PHP \r\nNote: Session and Cookies ', 1, 15, '2019-11-19 08:29:31', 15, '2019-11-18 17:04:47');
+INSERT INTO `project_timesheet` VALUES (88, '2019-11-18', '1:00 PM', '2019-11-18', '5:00 PM', 27, 285, NULL, 'Learning Yii2 ', '-Learning Yii2 \r\nNote: MVC ', 1, NULL, NULL, 15, '2019-11-18 17:05:34');
+INSERT INTO `project_timesheet` VALUES (89, '2019-11-19', '8:30 AM', '2019-11-19', '10:00 AM', 19, 220, NULL, 'Reading produce', '', 1, NULL, NULL, 31, '2019-11-19 08:40:20');
+INSERT INTO `project_timesheet` VALUES (90, '2019-11-19', '4:00 PM', '2019-11-19', '5:00 PM', 19, 220, NULL, 'Reading produce', '', 1, NULL, NULL, 31, '2019-11-19 15:56:03');
+INSERT INTO `project_timesheet` VALUES (91, '2019-11-19', '4:00 PM', '2019-11-19', '5:00 PM', 19, 220, NULL, 'Reading produce', '', 1, NULL, NULL, 31, '2019-11-19 15:56:03');
+INSERT INTO `project_timesheet` VALUES (92, '2019-11-19', '8:00 AM', '2019-11-19', '5:00 PM', 27, 285, NULL, 'Learning Yii2 ', '-Learning Yii2\r\nNote: Model \r\n          Install Yii and connect database ', 1, NULL, NULL, 15, '2019-11-19 16:52:03');
+INSERT INTO `project_timesheet` VALUES (93, '2019-11-19', '8:00 AM', '2019-11-19', '5:00 PM', 36, 364, NULL, 'Time sheet', '', 1, NULL, NULL, 27, '2019-11-19 17:10:12');
+INSERT INTO `project_timesheet` VALUES (94, '2019-11-20', '8:00 AM', '2019-11-20', '10:00 AM', 19, 220, NULL, 'Review system', '', 1, NULL, NULL, 31, '2019-11-20 08:38:14');
+INSERT INTO `project_timesheet` VALUES (95, '2019-11-20', '10:00 AM', '2019-11-20', '11:00 AM', 19, 220, NULL, 'Time to break', '', 1, NULL, NULL, 31, '2019-11-20 11:02:48');
 
 -- ----------------------------
 -- Table structure for project_timesheet_description
 -- ----------------------------
 DROP TABLE IF EXISTS `project_timesheet_description`;
-CREATE TABLE `project_timesheet_description` (
+CREATE TABLE `project_timesheet_description`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_project_timesheet` int(11) DEFAULT NULL,
-  `description` varchar(500) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `id_project_timesheet` int(11) NULL DEFAULT NULL,
+  `description` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 298 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of project_timesheet_description
 -- ----------------------------
-BEGIN;
-INSERT INTO `project_timesheet_description` VALUES (1, 1, 'Get Information');
 INSERT INTO `project_timesheet_description` VALUES (2, 2, 'Complete Home page');
-COMMIT;
+INSERT INTO `project_timesheet_description` VALUES (12, 4, '');
+INSERT INTO `project_timesheet_description` VALUES (18, 3, 'BOOKING ENGINE');
+INSERT INTO `project_timesheet_description` VALUES (19, 3, 'SETUP');
+INSERT INTO `project_timesheet_description` VALUES (20, 3, 'DASHBOARD');
+INSERT INTO `project_timesheet_description` VALUES (21, 3, 'FRONT DESK');
+INSERT INTO `project_timesheet_description` VALUES (22, 3, 'BOOKING WIDGET');
+INSERT INTO `project_timesheet_description` VALUES (23, 5, 'CHANNEL MANAGER');
+INSERT INTO `project_timesheet_description` VALUES (24, 5, 'SOCIAL MEDIA');
+INSERT INTO `project_timesheet_description` VALUES (26, 6, '');
+INSERT INTO `project_timesheet_description` VALUES (27, 7, 'review booking engine');
+INSERT INTO `project_timesheet_description` VALUES (28, 8, 'review ');
+INSERT INTO `project_timesheet_description` VALUES (29, 9, '');
+INSERT INTO `project_timesheet_description` VALUES (41, 13, 'Read eO-BMS Document > Setup');
+INSERT INTO `project_timesheet_description` VALUES (42, 13, 'Learning eO-BMS > Setup Processing flow');
+INSERT INTO `project_timesheet_description` VALUES (43, 12, 'Coding contact us page happyHamsterHotel website');
+INSERT INTO `project_timesheet_description` VALUES (44, 14, '');
+INSERT INTO `project_timesheet_description` VALUES (45, 15, '');
+INSERT INTO `project_timesheet_description` VALUES (46, 16, '');
+INSERT INTO `project_timesheet_description` VALUES (60, 1, 'add box shadow footer');
+INSERT INTO `project_timesheet_description` VALUES (61, 1, 'Change background in section Mobile app');
+INSERT INTO `project_timesheet_description` VALUES (62, 1, 'Change background in section Foods');
+INSERT INTO `project_timesheet_description` VALUES (63, 1, 'Add booking engine in single page rooms');
+INSERT INTO `project_timesheet_description` VALUES (64, 1, 'Remove detail rooms replace booking engine back');
+INSERT INTO `project_timesheet_description` VALUES (65, 1, 'Remove section Booking Form in front page');
+INSERT INTO `project_timesheet_description` VALUES (66, 1, 'Add link Booking to page reservation');
+INSERT INTO `project_timesheet_description` VALUES (67, 17, 'Can\'t Upload image in wordpress Note Done');
+INSERT INTO `project_timesheet_description` VALUES (74, 18, '   ');
+INSERT INTO `project_timesheet_description` VALUES (78, 19, 'Set up');
+INSERT INTO `project_timesheet_description` VALUES (79, 19, 'Room');
+INSERT INTO `project_timesheet_description` VALUES (80, 19, 'Rates and Availability');
+INSERT INTO `project_timesheet_description` VALUES (81, 19, 'Special Offers');
+INSERT INTO `project_timesheet_description` VALUES (82, 19, 'Booking Extras');
+INSERT INTO `project_timesheet_description` VALUES (85, 11, 'Coding about us page');
+INSERT INTO `project_timesheet_description` VALUES (86, 11, 'Coding Massage service page');
+INSERT INTO `project_timesheet_description` VALUES (87, 11, 'Coding massage  single page');
+INSERT INTO `project_timesheet_description` VALUES (88, 21, 'Add new header when scroll have logo and menu ');
+INSERT INTO `project_timesheet_description` VALUES (89, 21, 'responsive header');
+INSERT INTO `project_timesheet_description` VALUES (90, 21, 'live demo Yani Hotel');
+INSERT INTO `project_timesheet_description` VALUES (91, 21, 'Fix HTTP acc can\'t upload image big size');
+INSERT INTO `project_timesheet_description` VALUES (92, 10, 'Remover map on footer');
+INSERT INTO `project_timesheet_description` VALUES (93, 10, 'add Recent Gallery in footer');
+INSERT INTO `project_timesheet_description` VALUES (94, 10, 'add detail when hover on room list ');
+INSERT INTO `project_timesheet_description` VALUES (95, 10, 'fix page contact us');
+INSERT INTO `project_timesheet_description` VALUES (96, 10, 'check recommend again ');
+INSERT INTO `project_timesheet_description` VALUES (99, 22, 'Calendar');
+INSERT INTO `project_timesheet_description` VALUES (100, 22, 'Housekeeping ');
+INSERT INTO `project_timesheet_description` VALUES (101, 22, 'In-house Extra');
+INSERT INTO `project_timesheet_description` VALUES (102, 22, 'Guest Email');
+INSERT INTO `project_timesheet_description` VALUES (103, 22, 'Booking Management');
+INSERT INTO `project_timesheet_description` VALUES (104, 22, 'Create Booking');
+INSERT INTO `project_timesheet_description` VALUES (108, 23, '');
+INSERT INTO `project_timesheet_description` VALUES (113, 24, 'Remove award from page about us');
+INSERT INTO `project_timesheet_description` VALUES (114, 24, 'remove slider image from page single page');
+INSERT INTO `project_timesheet_description` VALUES (115, 24, 'change background color on front page');
+INSERT INTO `project_timesheet_description` VALUES (116, 25, 'Coding Term and condition page');
+INSERT INTO `project_timesheet_description` VALUES (117, 25, 'Coding location page');
+INSERT INTO `project_timesheet_description` VALUES (118, 25, 'Coding Giveback project page');
+INSERT INTO `project_timesheet_description` VALUES (119, 25, 'Coding promotion page');
+INSERT INTO `project_timesheet_description` VALUES (120, 20, 'Coding page feed back us (not approve )');
+INSERT INTO `project_timesheet_description` VALUES (121, 20, 'meet Rithyma client');
+INSERT INTO `project_timesheet_description` VALUES (122, 20, 'Coding gallery page');
+INSERT INTO `project_timesheet_description` VALUES (123, 26, '');
+INSERT INTO `project_timesheet_description` VALUES (124, 27, 'Review Website ');
+INSERT INTO `project_timesheet_description` VALUES (125, 27, 'Review Mobile Website');
+INSERT INTO `project_timesheet_description` VALUES (126, 28, 'Review Webside');
+INSERT INTO `project_timesheet_description` VALUES (127, 29, 'Review website and mobile web');
+INSERT INTO `project_timesheet_description` VALUES (129, 31, 'Dashboard');
+INSERT INTO `project_timesheet_description` VALUES (130, 31, 'Set up');
+INSERT INTO `project_timesheet_description` VALUES (131, 30, '');
+INSERT INTO `project_timesheet_description` VALUES (133, 33, 'Review more');
+INSERT INTO `project_timesheet_description` VALUES (134, 32, 'Review more');
+INSERT INTO `project_timesheet_description` VALUES (141, 35, 'Coding promotion page');
+INSERT INTO `project_timesheet_description` VALUES (147, 34, 'Meeting teams');
+INSERT INTO `project_timesheet_description` VALUES (148, 34, 'Live demo happy hamster hostel');
+INSERT INTO `project_timesheet_description` VALUES (149, 34, 'met happyhamster client');
+INSERT INTO `project_timesheet_description` VALUES (150, 34, 'Coding single promotion page');
+INSERT INTO `project_timesheet_description` VALUES (151, 34, 'Change style menu to fixed background');
+INSERT INTO `project_timesheet_description` VALUES (152, 34, '');
+INSERT INTO `project_timesheet_description` VALUES (161, 37, 'Finished static home page');
+INSERT INTO `project_timesheet_description` VALUES (162, 37, 'Start dynamic home page ');
+INSERT INTO `project_timesheet_description` VALUES (163, 38, 'reading Channel and review website mobile website');
+INSERT INTO `project_timesheet_description` VALUES (164, 39, 'reading and review channel management  and front desk ');
+INSERT INTO `project_timesheet_description` VALUES (165, 40, 'Reading and review social media ');
+INSERT INTO `project_timesheet_description` VALUES (171, 41, 'Responsive menu');
+INSERT INTO `project_timesheet_description` VALUES (172, 41, 'Responsive front page');
+INSERT INTO `project_timesheet_description` VALUES (173, 41, 'Fixed or Edit page');
+INSERT INTO `project_timesheet_description` VALUES (174, 36, 'Daily Meeting with Theme Web developer talk about weekly reports');
+INSERT INTO `project_timesheet_description` VALUES (175, 36, 'Arrival List Report');
+INSERT INTO `project_timesheet_description` VALUES (176, 36, 'Departure List Report');
+INSERT INTO `project_timesheet_description` VALUES (177, 36, 'Inhouse-Guest List Report');
+INSERT INTO `project_timesheet_description` VALUES (178, 36, 'Guest Details Report');
+INSERT INTO `project_timesheet_description` VALUES (179, 36, 'Daily Payment Report');
+INSERT INTO `project_timesheet_description` VALUES (180, 36, 'Details Revenue Report');
+INSERT INTO `project_timesheet_description` VALUES (181, 36, 'Revenue Report by bookings');
+INSERT INTO `project_timesheet_description` VALUES (182, 42, 'Revenue Report by Room Type');
+INSERT INTO `project_timesheet_description` VALUES (183, 42, 'Revenue Report by Booking Seurces');
+INSERT INTO `project_timesheet_description` VALUES (184, 42, 'Booking Report');
+INSERT INTO `project_timesheet_description` VALUES (185, 42, 'Operation Report');
+INSERT INTO `project_timesheet_description` VALUES (186, 42, 'Room Occupaycy Report');
+INSERT INTO `project_timesheet_description` VALUES (187, 42, 'Performance Report');
+INSERT INTO `project_timesheet_description` VALUES (188, 43, 'Review all of system ');
+INSERT INTO `project_timesheet_description` VALUES (189, 44, '');
+INSERT INTO `project_timesheet_description` VALUES (190, 45, 'Learning Set up ');
+INSERT INTO `project_timesheet_description` VALUES (191, 45, 'Create room type');
+INSERT INTO `project_timesheet_description` VALUES (192, 45, 'Rates and Availability');
+INSERT INTO `project_timesheet_description` VALUES (193, 45, 'Create Rates Plan');
+INSERT INTO `project_timesheet_description` VALUES (194, 45, 'Monthly Rates Plan Updates');
+INSERT INTO `project_timesheet_description` VALUES (195, 45, 'Stop Sell');
+INSERT INTO `project_timesheet_description` VALUES (196, 46, '');
+INSERT INTO `project_timesheet_description` VALUES (198, 48, 'Booking Engine ');
+INSERT INTO `project_timesheet_description` VALUES (199, 48, 'Set Up');
+INSERT INTO `project_timesheet_description` VALUES (200, 48, 'Set up room');
+INSERT INTO `project_timesheet_description` VALUES (201, 48, 'Set up rates');
+INSERT INTO `project_timesheet_description` VALUES (209, 47, 'Create menu scroll happy hamster hostel');
+INSERT INTO `project_timesheet_description` VALUES (210, 47, 'Fix/update Rithyma');
+INSERT INTO `project_timesheet_description` VALUES (211, 47, 'Fix/Edit happy hamster hostel');
+INSERT INTO `project_timesheet_description` VALUES (212, 49, '');
+INSERT INTO `project_timesheet_description` VALUES (213, 50, '');
+INSERT INTO `project_timesheet_description` VALUES (214, 51, 'Front Desk');
+INSERT INTO `project_timesheet_description` VALUES (215, 51, 'Channel Manager');
+INSERT INTO `project_timesheet_description` VALUES (216, 51, 'Social Media');
+INSERT INTO `project_timesheet_description` VALUES (217, 52, 'Make Document for training client');
+INSERT INTO `project_timesheet_description` VALUES (218, 52, 'Fix Rithyma (Slide & Logo)');
+INSERT INTO `project_timesheet_description` VALUES (219, 53, 'review all of system ');
+INSERT INTO `project_timesheet_description` VALUES (220, 54, 'hotel link solution system');
+INSERT INTO `project_timesheet_description` VALUES (221, 55, 'add search widget happy hamster hotel ');
+INSERT INTO `project_timesheet_description` VALUES (222, 55, 'inform about training website to Rithyma');
+INSERT INTO `project_timesheet_description` VALUES (223, 55, 'Fix/Edit style happy hamster hostel & Rithyma ');
+INSERT INTO `project_timesheet_description` VALUES (224, 55, '');
+INSERT INTO `project_timesheet_description` VALUES (225, 56, '');
+INSERT INTO `project_timesheet_description` VALUES (226, 57, 'review  website system');
+INSERT INTO `project_timesheet_description` VALUES (228, 58, 'view system');
+INSERT INTO `project_timesheet_description` VALUES (229, 59, 'review system ');
+INSERT INTO `project_timesheet_description` VALUES (230, 60, '');
+INSERT INTO `project_timesheet_description` VALUES (231, 61, 'review system');
+INSERT INTO `project_timesheet_description` VALUES (232, 62, 'Review system');
+INSERT INTO `project_timesheet_description` VALUES (233, 63, 'Learn create jivo chat');
+INSERT INTO `project_timesheet_description` VALUES (234, 63, 'Check and fix happy hamster ');
+INSERT INTO `project_timesheet_description` VALUES (235, 63, 'Learn to do health check');
+INSERT INTO `project_timesheet_description` VALUES (236, 63, 'Find theme in pinteres');
+INSERT INTO `project_timesheet_description` VALUES (238, 64, 'Complete 2 health check');
+INSERT INTO `project_timesheet_description` VALUES (239, 65, 'Review system');
+INSERT INTO `project_timesheet_description` VALUES (240, 66, 'Review and read system');
+INSERT INTO `project_timesheet_description` VALUES (242, 68, 'Review and read system');
+INSERT INTO `project_timesheet_description` VALUES (243, 69, '');
+INSERT INTO `project_timesheet_description` VALUES (244, 70, '');
+INSERT INTO `project_timesheet_description` VALUES (245, 71, '');
+INSERT INTO `project_timesheet_description` VALUES (246, 72, '');
+INSERT INTO `project_timesheet_description` VALUES (250, 73, 'Variable ');
+INSERT INTO `project_timesheet_description` VALUES (251, 73, 'Data type');
+INSERT INTO `project_timesheet_description` VALUES (252, 73, 'Constant');
+INSERT INTO `project_timesheet_description` VALUES (253, 73, 'Operator');
+INSERT INTO `project_timesheet_description` VALUES (254, 73, 'If statement ');
+INSERT INTO `project_timesheet_description` VALUES (255, 73, 'Switch statement ');
+INSERT INTO `project_timesheet_description` VALUES (256, 73, 'Array');
+INSERT INTO `project_timesheet_description` VALUES (257, 73, 'Loop');
+INSERT INTO `project_timesheet_description` VALUES (260, 67, 'Complete 9 health check');
+INSERT INTO `project_timesheet_description` VALUES (264, 74, 'add SEO, Google search console on Rithma website assisting from Mr. Phally');
+INSERT INTO `project_timesheet_description` VALUES (265, 74, 'Design hotel template ');
+INSERT INTO `project_timesheet_description` VALUES (266, 74, 'Research template in google & pinterest');
+INSERT INTO `project_timesheet_description` VALUES (267, 75, 'Design template ');
+INSERT INTO `project_timesheet_description` VALUES (269, 76, '');
+INSERT INTO `project_timesheet_description` VALUES (270, 77, 'review produce with team and meeting ');
+INSERT INTO `project_timesheet_description` VALUES (271, 78, 'Review produce more ');
+INSERT INTO `project_timesheet_description` VALUES (272, 79, 'Review more time');
+INSERT INTO `project_timesheet_description` VALUES (273, 80, 'Add background image part 1 & 3');
+INSERT INTO `project_timesheet_description` VALUES (274, 80, 'Meeting team');
+INSERT INTO `project_timesheet_description` VALUES (275, 80, '');
+INSERT INTO `project_timesheet_description` VALUES (276, 81, 'Taking about Report weekly');
+INSERT INTO `project_timesheet_description` VALUES (277, 81, 'Taking about support theme');
+INSERT INTO `project_timesheet_description` VALUES (278, 82, 'Save email to BMS system');
+INSERT INTO `project_timesheet_description` VALUES (279, 82, 'Send Email');
+INSERT INTO `project_timesheet_description` VALUES (280, 83, 'Save Email to BMS system');
+INSERT INTO `project_timesheet_description` VALUES (281, 83, 'Send Email');
+INSERT INTO `project_timesheet_description` VALUES (282, 84, 'Save Email to BMS system');
+INSERT INTO `project_timesheet_description` VALUES (283, 84, 'Send Email');
+INSERT INTO `project_timesheet_description` VALUES (284, 85, 'Review HLS');
+INSERT INTO `project_timesheet_description` VALUES (286, 86, 'Save Email to BMS system');
+INSERT INTO `project_timesheet_description` VALUES (287, 86, 'Send Email');
+INSERT INTO `project_timesheet_description` VALUES (289, 88, '');
+INSERT INTO `project_timesheet_description` VALUES (290, 87, '');
+INSERT INTO `project_timesheet_description` VALUES (291, 89, 'Reading and Review system');
+INSERT INTO `project_timesheet_description` VALUES (292, 90, 'Reading and Review system ');
+INSERT INTO `project_timesheet_description` VALUES (293, 91, 'Reading and Review system ');
+INSERT INTO `project_timesheet_description` VALUES (294, 92, '');
+INSERT INTO `project_timesheet_description` VALUES (295, 93, 'Setup wordpress tekheangsin');
+INSERT INTO `project_timesheet_description` VALUES (296, 94, 'Reading system');
+INSERT INTO `project_timesheet_description` VALUES (297, 95, 'Study more language');
 
 -- ----------------------------
 -- Table structure for project_timesheet_member
 -- ----------------------------
 DROP TABLE IF EXISTS `project_timesheet_member`;
-CREATE TABLE `project_timesheet_member` (
+CREATE TABLE `project_timesheet_member`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_project_timesheet` int(11) DEFAULT NULL,
-  `id_employee` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `id_project_timesheet` int(11) NULL DEFAULT NULL,
+  `id_employee` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 121 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of project_timesheet_member
 -- ----------------------------
-BEGIN;
 INSERT INTO `project_timesheet_member` VALUES (1, 2, 16);
-COMMIT;
+INSERT INTO `project_timesheet_member` VALUES (5, 4, 4);
+INSERT INTO `project_timesheet_member` VALUES (7, 3, 17);
+INSERT INTO `project_timesheet_member` VALUES (9, 6, 4);
+INSERT INTO `project_timesheet_member` VALUES (10, 7, 20);
+INSERT INTO `project_timesheet_member` VALUES (11, 8, 20);
+INSERT INTO `project_timesheet_member` VALUES (12, 9, 4);
+INSERT INTO `project_timesheet_member` VALUES (16, 13, 10);
+INSERT INTO `project_timesheet_member` VALUES (17, 12, 16);
+INSERT INTO `project_timesheet_member` VALUES (18, 14, 6);
+INSERT INTO `project_timesheet_member` VALUES (19, 15, 6);
+INSERT INTO `project_timesheet_member` VALUES (20, 16, 6);
+INSERT INTO `project_timesheet_member` VALUES (24, 1, 12);
+INSERT INTO `project_timesheet_member` VALUES (25, 17, 12);
+INSERT INTO `project_timesheet_member` VALUES (26, 18, 4);
+INSERT INTO `project_timesheet_member` VALUES (27, 21, 12);
+INSERT INTO `project_timesheet_member` VALUES (28, 10, 12);
+INSERT INTO `project_timesheet_member` VALUES (29, 23, 4);
+INSERT INTO `project_timesheet_member` VALUES (32, 24, 12);
+INSERT INTO `project_timesheet_member` VALUES (33, 25, 16);
+INSERT INTO `project_timesheet_member` VALUES (34, 26, 4);
+INSERT INTO `project_timesheet_member` VALUES (35, 28, 20);
+INSERT INTO `project_timesheet_member` VALUES (36, 29, 20);
+INSERT INTO `project_timesheet_member` VALUES (38, 30, 4);
+INSERT INTO `project_timesheet_member` VALUES (40, 33, 20);
+INSERT INTO `project_timesheet_member` VALUES (41, 32, 20);
+INSERT INTO `project_timesheet_member` VALUES (44, 35, 16);
+INSERT INTO `project_timesheet_member` VALUES (46, 34, 16);
+INSERT INTO `project_timesheet_member` VALUES (47, 37, 4);
+INSERT INTO `project_timesheet_member` VALUES (48, 38, 20);
+INSERT INTO `project_timesheet_member` VALUES (49, 39, 20);
+INSERT INTO `project_timesheet_member` VALUES (50, 40, 20);
+INSERT INTO `project_timesheet_member` VALUES (53, 41, 16);
+INSERT INTO `project_timesheet_member` VALUES (54, 43, 20);
+INSERT INTO `project_timesheet_member` VALUES (55, 44, 4);
+INSERT INTO `project_timesheet_member` VALUES (56, 46, 4);
+INSERT INTO `project_timesheet_member` VALUES (59, 47, 16);
+INSERT INTO `project_timesheet_member` VALUES (60, 49, 4);
+INSERT INTO `project_timesheet_member` VALUES (61, 50, 4);
+INSERT INTO `project_timesheet_member` VALUES (62, 53, 20);
+INSERT INTO `project_timesheet_member` VALUES (63, 54, 20);
+INSERT INTO `project_timesheet_member` VALUES (64, 55, 16);
+INSERT INTO `project_timesheet_member` VALUES (65, 56, 4);
+INSERT INTO `project_timesheet_member` VALUES (66, 57, 20);
+INSERT INTO `project_timesheet_member` VALUES (68, 58, 20);
+INSERT INTO `project_timesheet_member` VALUES (69, 59, 20);
+INSERT INTO `project_timesheet_member` VALUES (70, 60, 20);
+INSERT INTO `project_timesheet_member` VALUES (71, 61, 20);
+INSERT INTO `project_timesheet_member` VALUES (72, 62, 20);
+INSERT INTO `project_timesheet_member` VALUES (73, 63, 16);
+INSERT INTO `project_timesheet_member` VALUES (75, 64, 16);
+INSERT INTO `project_timesheet_member` VALUES (76, 65, 20);
+INSERT INTO `project_timesheet_member` VALUES (77, 66, 20);
+INSERT INTO `project_timesheet_member` VALUES (79, 68, 20);
+INSERT INTO `project_timesheet_member` VALUES (80, 69, 4);
+INSERT INTO `project_timesheet_member` VALUES (81, 70, 4);
+INSERT INTO `project_timesheet_member` VALUES (82, 71, 4);
+INSERT INTO `project_timesheet_member` VALUES (83, 72, 4);
+INSERT INTO `project_timesheet_member` VALUES (85, 73, 4);
+INSERT INTO `project_timesheet_member` VALUES (87, 67, 16);
+INSERT INTO `project_timesheet_member` VALUES (89, 74, 16);
+INSERT INTO `project_timesheet_member` VALUES (90, 75, 16);
+INSERT INTO `project_timesheet_member` VALUES (92, 76, 4);
+INSERT INTO `project_timesheet_member` VALUES (93, 77, 20);
+INSERT INTO `project_timesheet_member` VALUES (94, 78, 20);
+INSERT INTO `project_timesheet_member` VALUES (95, 79, 20);
+INSERT INTO `project_timesheet_member` VALUES (96, 80, 16);
+INSERT INTO `project_timesheet_member` VALUES (97, 81, 5);
+INSERT INTO `project_timesheet_member` VALUES (98, 81, 17);
+INSERT INTO `project_timesheet_member` VALUES (99, 82, 5);
+INSERT INTO `project_timesheet_member` VALUES (100, 82, 17);
+INSERT INTO `project_timesheet_member` VALUES (101, 83, 5);
+INSERT INTO `project_timesheet_member` VALUES (102, 83, 17);
+INSERT INTO `project_timesheet_member` VALUES (103, 84, 5);
+INSERT INTO `project_timesheet_member` VALUES (104, 84, 17);
+INSERT INTO `project_timesheet_member` VALUES (105, 85, 5);
+INSERT INTO `project_timesheet_member` VALUES (106, 85, 17);
+INSERT INTO `project_timesheet_member` VALUES (109, 86, 5);
+INSERT INTO `project_timesheet_member` VALUES (110, 86, 17);
+INSERT INTO `project_timesheet_member` VALUES (112, 88, 4);
+INSERT INTO `project_timesheet_member` VALUES (113, 87, 4);
+INSERT INTO `project_timesheet_member` VALUES (114, 89, 20);
+INSERT INTO `project_timesheet_member` VALUES (115, 90, 20);
+INSERT INTO `project_timesheet_member` VALUES (116, 91, 20);
+INSERT INTO `project_timesheet_member` VALUES (117, 92, 4);
+INSERT INTO `project_timesheet_member` VALUES (118, 93, 16);
+INSERT INTO `project_timesheet_member` VALUES (119, 94, 20);
+INSERT INTO `project_timesheet_member` VALUES (120, 95, 20);
 
 -- ----------------------------
 -- Table structure for project_timesheet_tag
 -- ----------------------------
 DROP TABLE IF EXISTS `project_timesheet_tag`;
-CREATE TABLE `project_timesheet_tag` (
+CREATE TABLE `project_timesheet_tag`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_project_timesheet` int(11) DEFAULT NULL,
-  `id_tag` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `id_project_timesheet` int(11) NULL DEFAULT NULL,
+  `id_tag` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of project_timesheet_tag
 -- ----------------------------
-BEGIN;
 INSERT INTO `project_timesheet_tag` VALUES (1, 2, 'website');
-COMMIT;
+INSERT INTO `project_timesheet_tag` VALUES (6, 4, 'dynamic');
+INSERT INTO `project_timesheet_tag` VALUES (7, 4, 'contact');
+INSERT INTO `project_timesheet_tag` VALUES (8, 4, 'gallery');
+INSERT INTO `project_timesheet_tag` VALUES (9, 4, 'website');
+INSERT INTO `project_timesheet_tag` VALUES (11, 6, 'healthcheck');
+INSERT INTO `project_timesheet_tag` VALUES (16, 1, 'website');
+INSERT INTO `project_timesheet_tag` VALUES (17, 17, 'website');
+INSERT INTO `project_timesheet_tag` VALUES (18, 21, 'website');
+INSERT INTO `project_timesheet_tag` VALUES (19, 10, 'website');
+INSERT INTO `project_timesheet_tag` VALUES (22, 24, 'website');
+INSERT INTO `project_timesheet_tag` VALUES (23, 25, 'Website');
+INSERT INTO `project_timesheet_tag` VALUES (24, 63, 'website');
 
 -- ----------------------------
 -- Table structure for proposal
 -- ----------------------------
 DROP TABLE IF EXISTS `proposal`;
-CREATE TABLE `proposal` (
+CREATE TABLE `proposal`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `related_id` int(11) DEFAULT NULL COMMENT '1= lead 2 = customer',
-  `date` date DEFAULT NULL,
-  `open_till` date DEFAULT NULL,
-  `currency` int(11) DEFAULT NULL,
-  `discount_type` int(11) DEFAULT NULL,
-  `allow_comment` tinyint(11) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `assigned` int(11) DEFAULT NULL,
-  `to` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `city` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `country` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `zip_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `total` decimal(10,2) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `id_lead_customer` int(11) DEFAULT NULL,
-  `id_discount` int(11) DEFAULT NULL,
-  `discount_value` decimal(10,2) DEFAULT NULL,
-  `discount_amount` decimal(10,2) DEFAULT NULL,
-  `id_tax` int(11) DEFAULT NULL,
-  `is_tax` tinyint(1) DEFAULT NULL,
-  `tax_amount` decimal(10,2) DEFAULT NULL,
-  `sub_total` decimal(10,2) DEFAULT NULL,
-  `grand_total` decimal(10,2) DEFAULT NULL,
-  `id_project` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `related_id` int(11) NULL DEFAULT NULL COMMENT '1= lead 2 = customer',
+  `date` date NULL DEFAULT NULL,
+  `open_till` date NULL DEFAULT NULL,
+  `currency` int(11) NULL DEFAULT NULL,
+  `discount_type` int(11) NULL DEFAULT NULL,
+  `allow_comment` tinyint(11) NULL DEFAULT NULL,
+  `status` int(11) NULL DEFAULT NULL,
+  `assigned` int(11) NULL DEFAULT NULL,
+  `to` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `city` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `country` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `zip_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `total` decimal(10, 2) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `id_lead_customer` int(11) NULL DEFAULT NULL,
+  `id_discount` int(11) NULL DEFAULT NULL,
+  `discount_value` decimal(10, 2) NULL DEFAULT NULL,
+  `discount_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `id_tax` int(11) NULL DEFAULT NULL,
+  `is_tax` tinyint(1) NULL DEFAULT NULL,
+  `tax_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `sub_total` decimal(10, 2) NULL DEFAULT NULL,
+  `grand_total` decimal(10, 2) NULL DEFAULT NULL,
+  `id_project` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for proposal_data
 -- ----------------------------
 DROP TABLE IF EXISTS `proposal_data`;
-CREATE TABLE `proposal_data` (
+CREATE TABLE `proposal_data`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_proposal` int(11) DEFAULT NULL,
-  `id_item` int(11) DEFAULT NULL,
-  `item_name` varchar(255) DEFAULT NULL,
-  `description` longtext,
-  `qty` int(11) DEFAULT NULL,
-  `rate` decimal(10,2) DEFAULT NULL,
-  `discount_type` int(11) DEFAULT NULL,
-  `discount_amount` decimal(10,2) DEFAULT NULL,
-  `amount` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+  `id_proposal` int(11) NULL DEFAULT NULL,
+  `id_item` int(11) NULL DEFAULT NULL,
+  `item_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `qty` int(11) NULL DEFAULT NULL,
+  `rate` decimal(10, 2) NULL DEFAULT NULL,
+  `discount_type` int(11) NULL DEFAULT NULL,
+  `discount_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `amount` decimal(10, 2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of proposal_data
 -- ----------------------------
-BEGIN;
 INSERT INTO `proposal_data` VALUES (6, 3, 6, 'Premium Website (Professional)', '', 1, 2000.00, 1, 0.00, 2000.00);
 INSERT INTO `proposal_data` VALUES (15, 1, 1, 'Premium Website (Standard)', '', 1, 1000.00, 1, 0.00, 1000.00);
 INSERT INTO `proposal_data` VALUES (16, 1, 15, 'eO-BMS (Standard Package) ', 'A Business Management System is a set of tools for planning and implementing policies, practices, guidelines, processes and procedures that are used in the development, deployment and execution of business plans and strategies and all associated managemen', 1, 159.00, 1, 0.00, 159.00);
@@ -5059,169 +5725,165 @@ INSERT INTO `proposal_data` VALUES (18, 2, 1, 'Premium Website (Standard)', '', 
 INSERT INTO `proposal_data` VALUES (19, 2, 1, 'Premium Website (Silver)', '-Maintenance  3 months-Website Speed 60 - 70', 1, 1000.00, 1, 0.00, 1000.00);
 INSERT INTO `proposal_data` VALUES (20, 2, 17, 'Premium Website (Gold)', '-Maintenance 6 months-Website Speed 70 - 80', 1, 1500.00, 1, 0.00, 1500.00);
 INSERT INTO `proposal_data` VALUES (21, 2, 6, 'Premium Website (Platinum)', '-Maintenance 9 months-Website Speed 80-90', 1, 2000.00, 1, 0.00, 2000.00);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for proposal_note
 -- ----------------------------
 DROP TABLE IF EXISTS `proposal_note`;
-CREATE TABLE `proposal_note` (
+CREATE TABLE `proposal_note`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_proposal` int(11) DEFAULT NULL,
-  `id_user` int(11) DEFAULT NULL,
-  `note` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_proposal` int(11) NULL DEFAULT NULL,
+  `id_user` int(11) NULL DEFAULT NULL,
+  `note` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for proposal_related_to
 -- ----------------------------
 DROP TABLE IF EXISTS `proposal_related_to`;
-CREATE TABLE `proposal_related_to` (
+CREATE TABLE `proposal_related_to`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `status` tinyint(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `status` tinyint(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of proposal_related_to
 -- ----------------------------
-BEGIN;
 INSERT INTO `proposal_related_to` VALUES (1, 'Customer', 1);
 INSERT INTO `proposal_related_to` VALUES (2, 'Lead', 1);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for proposal_status
 -- ----------------------------
 DROP TABLE IF EXISTS `proposal_status`;
-CREATE TABLE `proposal_status` (
+CREATE TABLE `proposal_status`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `css_class` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `css_class` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of proposal_status
 -- ----------------------------
-BEGIN;
 INSERT INTO `proposal_status` VALUES (1, 'Draft', 'label-default');
 INSERT INTO `proposal_status` VALUES (2, 'Sent', 'label-success');
 INSERT INTO `proposal_status` VALUES (3, 'Open', 'label-warning');
 INSERT INTO `proposal_status` VALUES (4, 'Revised', 'label-info');
 INSERT INTO `proposal_status` VALUES (5, 'Declined', 'label-danger');
 INSERT INTO `proposal_status` VALUES (6, 'Accepted', 'label-purple');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for quotation
 -- ----------------------------
 DROP TABLE IF EXISTS `quotation`;
-CREATE TABLE `quotation` (
+CREATE TABLE `quotation`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `id_customer` int(11) DEFAULT NULL COMMENT '1= lead 2 = customer',
-  `date` date DEFAULT NULL,
-  `open_till` date DEFAULT NULL,
-  `currency` int(11) DEFAULT NULL,
-  `discount_type` int(11) DEFAULT NULL,
-  `allow_comment` tinyint(11) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `assigned` int(11) DEFAULT NULL,
-  `to` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `city` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `country` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `zip_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `total` decimal(10,2) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `id_discount` int(11) DEFAULT NULL,
-  `discount_value` decimal(10,2) DEFAULT NULL,
-  `discount_amount` decimal(10,2) DEFAULT NULL,
-  `id_tax` int(11) DEFAULT NULL,
-  `is_tax` tinyint(1) DEFAULT NULL,
-  `tax_amount` decimal(10,2) DEFAULT NULL,
-  `sub_total` decimal(10,2) DEFAULT NULL,
-  `is_converted_from_proposal` tinyint(1) DEFAULT NULL,
-  `grand_total` decimal(10,2) DEFAULT NULL,
-  `id_project` int(11) DEFAULT NULL,
-  `close_sale_date` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `id_customer` int(11) NULL DEFAULT NULL COMMENT '1= lead 2 = customer',
+  `date` date NULL DEFAULT NULL,
+  `open_till` date NULL DEFAULT NULL,
+  `currency` int(11) NULL DEFAULT NULL,
+  `discount_type` int(11) NULL DEFAULT NULL,
+  `allow_comment` tinyint(11) NULL DEFAULT NULL,
+  `status` int(11) NULL DEFAULT NULL,
+  `assigned` int(11) NULL DEFAULT NULL,
+  `to` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `city` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `country` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `zip_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `total` decimal(10, 2) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `id_discount` int(11) NULL DEFAULT NULL,
+  `discount_value` decimal(10, 2) NULL DEFAULT NULL,
+  `discount_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `id_tax` int(11) NULL DEFAULT NULL,
+  `is_tax` tinyint(1) NULL DEFAULT NULL,
+  `tax_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `sub_total` decimal(10, 2) NULL DEFAULT NULL,
+  `is_converted_from_proposal` tinyint(1) NULL DEFAULT NULL,
+  `grand_total` decimal(10, 2) NULL DEFAULT NULL,
+  `id_project` int(11) NULL DEFAULT NULL,
+  `close_sale_date` date NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of quotation
+-- ----------------------------
+INSERT INTO `quotation` VALUES (1, NULL, 1, '2019-11-20', '2019-11-25', 1, NULL, 0, 2, 8, 'N/A', 'Svay Chek -Siem Reap', 'Siem Reap', 'Cambodia', '', 'sachikokojima@gmail.com', '', 'QUT19110001', 0.00, '2019-11-22 08:39:03', 21, NULL, NULL, 0, NULL, 0.00, 1, 0, 0.00, 0.00, NULL, 0.00, 1, NULL);
 
 -- ----------------------------
 -- Table structure for quotation_data
 -- ----------------------------
 DROP TABLE IF EXISTS `quotation_data`;
-CREATE TABLE `quotation_data` (
+CREATE TABLE `quotation_data`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_quotation` int(11) DEFAULT NULL,
-  `id_item` int(11) DEFAULT NULL,
-  `item_name` varchar(255) DEFAULT NULL,
-  `description` longtext,
-  `qty` int(11) DEFAULT NULL,
-  `rate` decimal(10,2) DEFAULT NULL,
-  `discount_type` int(11) DEFAULT NULL,
-  `discount_amount` decimal(10,2) DEFAULT NULL,
-  `amount` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+  `id_quotation` int(11) NULL DEFAULT NULL,
+  `id_item` int(11) NULL DEFAULT NULL,
+  `item_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `qty` int(11) NULL DEFAULT NULL,
+  `rate` decimal(10, 2) NULL DEFAULT NULL,
+  `discount_type` int(11) NULL DEFAULT NULL,
+  `discount_amount` decimal(10, 2) NULL DEFAULT NULL,
+  `amount` decimal(10, 2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of quotation_data
 -- ----------------------------
-BEGIN;
 INSERT INTO `quotation_data` VALUES (4, 2, 15, 'eO-BMS (Standard Package) ', 'A Business Management System is a set of tools for planning and implementing policies, practices, guidelines, processes and procedures that are used in the development, deployment and execution of business plans and strategies and all associated managemen', 1, 159.00, 1, 0.00, 159.00);
 INSERT INTO `quotation_data` VALUES (5, 3, 1, 'Premium Website (Silver)', '-Maintenance  3 months-Website Speed 60 - 70', 1, 1000.00, 1, 0.00, 1000.00);
 INSERT INTO `quotation_data` VALUES (6, 3, 17, 'Premium Website (Gold)', '-Maintenance 6 months-Website Speed 70 - 80', 1, 1500.00, 1, 0.00, 1500.00);
 INSERT INTO `quotation_data` VALUES (7, 3, 6, 'Premium Website (Platinum)', '-Maintenance 9 months-Website Speed 80-90', 1, 2000.00, 1, 0.00, 2000.00);
 INSERT INTO `quotation_data` VALUES (10, 4, 15, 'eO-BMS (Standard Package) ', 'A Business Management System is a set of tools for planning and implementing policies, practices, guidelines, processes and procedures that are used in the development, deployment and execution of business plans and strategies and all associated managemen', 1, 159.00, 1, 0.00, 159.00);
-COMMIT;
+INSERT INTO `quotation_data` VALUES (11, 1, NULL, '', '', 1, 0.00, 1, 0.00, 0.00);
 
 -- ----------------------------
 -- Table structure for quotation_status
 -- ----------------------------
 DROP TABLE IF EXISTS `quotation_status`;
-CREATE TABLE `quotation_status` (
+CREATE TABLE `quotation_status`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `css_class` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `css_class` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of quotation_status
 -- ----------------------------
-BEGIN;
 INSERT INTO `quotation_status` VALUES (1, 'Draft', 'label-default');
 INSERT INTO `quotation_status` VALUES (2, 'Sent', 'label-success');
 INSERT INTO `quotation_status` VALUES (4, 'Expired', 'label-info');
 INSERT INTO `quotation_status` VALUES (5, 'Declined', 'label-danger');
 INSERT INTO `quotation_status` VALUES (6, 'Accepted', 'label-purple');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for repeater_type
 -- ----------------------------
 DROP TABLE IF EXISTS `repeater_type`;
-CREATE TABLE `repeater_type` (
+CREATE TABLE `repeater_type`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of repeater_type
 -- ----------------------------
-BEGIN;
 INSERT INTO `repeater_type` VALUES (1, 'None');
 INSERT INTO `repeater_type` VALUES (2, 'Day');
 INSERT INTO `repeater_type` VALUES (3, 'Week');
@@ -5231,454 +5893,736 @@ INSERT INTO `repeater_type` VALUES (6, '2 Months');
 INSERT INTO `repeater_type` VALUES (7, '3 Months');
 INSERT INTO `repeater_type` VALUES (8, '6 Months');
 INSERT INTO `repeater_type` VALUES (9, '1 Year');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for setting
 -- ----------------------------
 DROP TABLE IF EXISTS `setting`;
-CREATE TABLE `setting` (
+CREATE TABLE `setting`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `names` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `value` text COLLATE utf8_unicode_ci,
-  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `names` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `value` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of setting
 -- ----------------------------
-BEGIN;
-INSERT INTO `setting` VALUES (1, 'Item other price lable', 'Other charge', '', 1, '', NULL, NULL, 1, '2019-09-07 11:34:11');
-COMMIT;
+INSERT INTO `setting` VALUES (1, 'Item other price lable', 'Extra Charge', '', 1, '', NULL, NULL, 21, '2019-10-11 11:55:55');
 
 -- ----------------------------
 -- Table structure for sop_goal_setup
 -- ----------------------------
 DROP TABLE IF EXISTS `sop_goal_setup`;
-CREATE TABLE `sop_goal_setup` (
+CREATE TABLE `sop_goal_setup`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_position` int(11) DEFAULT NULL,
-  `id_employee` int(11) DEFAULT NULL,
-  `id_sop_step` int(11) DEFAULT NULL,
-  `id_sop_step_list` int(11) DEFAULT NULL,
-  `id_year` int(11) DEFAULT NULL,
-  `quarter_1` int(11) DEFAULT NULL,
-  `quarter_2` int(11) DEFAULT NULL,
-  `quarter_3` int(11) DEFAULT NULL,
-  `quarter_4` int(11) DEFAULT NULL,
-  `yearly` int(11) DEFAULT NULL,
-  `note` text,
-  `status` tinyint(1) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_position` int(11) NULL DEFAULT NULL,
+  `id_employee` int(11) NULL DEFAULT NULL,
+  `id_sop_step` int(11) NULL DEFAULT NULL,
+  `id_sop_step_list` int(11) NULL DEFAULT NULL,
+  `id_year` int(11) NULL DEFAULT NULL,
+  `quarter_1` int(11) NULL DEFAULT NULL,
+  `quarter_2` int(11) NULL DEFAULT NULL,
+  `quarter_3` int(11) NULL DEFAULT NULL,
+  `quarter_4` int(11) NULL DEFAULT NULL,
+  `yearly` int(11) NULL DEFAULT NULL,
+  `note` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for sop_goal_setup_data
 -- ----------------------------
 DROP TABLE IF EXISTS `sop_goal_setup_data`;
-CREATE TABLE `sop_goal_setup_data` (
+CREATE TABLE `sop_goal_setup_data`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_sop_set_up` int(11) DEFAULT NULL,
-  `id_month` int(11) DEFAULT NULL,
-  `daily` int(11) DEFAULT NULL,
-  `weekly` int(11) DEFAULT NULL,
-  `monthly` int(11) DEFAULT NULL,
-  `actual_id_month` int(11) DEFAULT NULL,
-  `actual_monthly` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_sop_set_up` int(11) NULL DEFAULT NULL,
+  `id_month` int(11) NULL DEFAULT NULL,
+  `daily` int(11) NULL DEFAULT NULL,
+  `weekly` int(11) NULL DEFAULT NULL,
+  `monthly` int(11) NULL DEFAULT NULL,
+  `actual_id_month` int(11) NULL DEFAULT NULL,
+  `actual_monthly` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for sop_set_up_assign_position
 -- ----------------------------
 DROP TABLE IF EXISTS `sop_set_up_assign_position`;
-CREATE TABLE `sop_set_up_assign_position` (
+CREATE TABLE `sop_set_up_assign_position`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sop_set_up_id` int(11) DEFAULT NULL,
-  `id_position` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `sop_set_up_id` int(11) NULL DEFAULT NULL,
+  `id_position` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for source
 -- ----------------------------
 DROP TABLE IF EXISTS `source`;
-CREATE TABLE `source` (
+CREATE TABLE `source`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of source
 -- ----------------------------
-BEGIN;
 INSERT INTO `source` VALUES (1, 'Facebook', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `source` VALUES (2, 'Google', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `source` VALUES (3, 'Market Research', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `source` VALUES (4, 'Other', NULL, NULL, NULL, NULL, 1);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for standard_operation
 -- ----------------------------
 DROP TABLE IF EXISTS `standard_operation`;
-CREATE TABLE `standard_operation` (
+CREATE TABLE `standard_operation`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `assign_to` int(11) DEFAULT NULL,
-  `id_employee_possition` int(11) DEFAULT NULL,
-  `id_standard_operation_step` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` datetime DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `start_date` date DEFAULT NULL,
-  `due_date` date DEFAULT NULL,
-  `deadline` date DEFAULT NULL,
-  `id_priority` int(11) DEFAULT NULL,
-  `id_related_to` int(11) DEFAULT NULL,
-  `id_related_profile` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `assign_to` int(11) NULL DEFAULT NULL,
+  `id_employee_possition` int(11) NULL DEFAULT NULL,
+  `id_standard_operation_step` int(11) NULL DEFAULT NULL,
+  `id_task` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` datetime(0) NULL DEFAULT NULL,
+  `task_status` int(1) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `start_date` date NULL DEFAULT NULL,
+  `due_date` date NULL DEFAULT NULL,
+  `deadline` date NULL DEFAULT NULL,
+  `id_priority` int(11) NULL DEFAULT NULL,
+  `id_related_to` int(11) NULL DEFAULT NULL,
+  `id_related_profile` int(11) NULL DEFAULT NULL,
+  `id_employee_position` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for standard_operation_check_list
 -- ----------------------------
 DROP TABLE IF EXISTS `standard_operation_check_list`;
-CREATE TABLE `standard_operation_check_list` (
+CREATE TABLE `standard_operation_check_list`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `assign_to` int(11) DEFAULT NULL,
-  `id_standard_operation` int(11) DEFAULT NULL,
-  `id_standard_operation_step` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` datetime DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `is_done` int(1) DEFAULT NULL,
-  `description` text,
-  `id_standard_operation_step_list` int(11) DEFAULT NULL,
-  `done_date` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `assign_to` int(11) NULL DEFAULT NULL,
+  `id_standard_operation` int(11) NULL DEFAULT NULL,
+  `id_standard_operation_step` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` datetime(0) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `is_done` int(1) NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `id_standard_operation_step_list` int(11) NULL DEFAULT NULL,
+  `done_date` date NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 64 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of standard_operation_check_list
+-- ----------------------------
+INSERT INTO `standard_operation_check_list` VALUES (1, NULL, NULL, 3, NULL, '2019-11-23 09:53:03', 21, NULL, NULL, 1, 0, 'excavation', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (2, NULL, NULL, 3, NULL, '2019-11-23 09:53:03', 21, NULL, NULL, 1, 0, 'soil excavation', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (3, NULL, NULL, 3, NULL, '2019-11-23 10:23:46', 21, NULL, NULL, 1, 0, 'excavation', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (4, NULL, NULL, 3, NULL, '2019-11-23 10:23:46', 21, NULL, NULL, 1, 0, 'soil excavation', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (5, NULL, NULL, 2, NULL, '2019-11-23 10:24:28', 21, NULL, NULL, 1, 0, 'Site Preparation', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (6, NULL, NULL, 2, NULL, '2019-11-23 10:24:28', 21, NULL, NULL, 1, 0, 'Cleaning', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (7, NULL, NULL, 2, NULL, '2019-11-23 10:24:28', 21, NULL, NULL, 1, 0, 'Electricty', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (8, NULL, NULL, 2, NULL, '2019-11-23 10:28:32', 21, NULL, NULL, 1, 0, 'Earth Works', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (9, NULL, NULL, 2, NULL, '2019-11-23 10:28:32', 21, NULL, NULL, 1, 0, 'Excavator ', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (10, NULL, NULL, 2, NULL, '2019-11-23 10:28:32', 21, NULL, NULL, 1, 0, 'Soil Excavator', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (11, NULL, NULL, 2, NULL, '2019-11-23 10:28:32', 21, NULL, NULL, 1, 0, 'Concrete in substructure', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (12, NULL, NULL, 2, NULL, '2019-11-23 10:28:32', 21, NULL, NULL, 1, 0, 'Concrete work for footing', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (13, NULL, NULL, 2, NULL, '2019-11-23 10:28:32', 21, NULL, NULL, 1, 0, 'Compact stone under footing', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (14, NULL, NULL, 3, NULL, '2019-11-23 10:32:36', 21, NULL, NULL, 1, 0, 'Concrete column', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (15, NULL, NULL, 3, NULL, '2019-11-23 10:32:36', 21, NULL, NULL, 1, 0, 'Concrete in superstructure ', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (16, NULL, NULL, 3, NULL, '2019-11-23 10:32:36', 21, NULL, NULL, 1, 0, 'Concrete work ground beam', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (17, NULL, NULL, 3, NULL, '2019-11-23 10:32:36', 21, NULL, NULL, 1, 0, 'Concrete ground beam', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (18, NULL, NULL, 3, NULL, '2019-11-23 10:32:36', 21, NULL, NULL, 1, 0, 'Hollow Brick Thickness 200 mm', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (19, NULL, NULL, 3, NULL, '2019-11-23 10:32:36', 21, NULL, NULL, 1, 0, 'Under ground beam', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (20, NULL, NULL, 3, NULL, '2019-11-23 10:32:36', 21, NULL, NULL, 1, 0, 'Concrete Column in ground floor', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (21, NULL, NULL, 3, NULL, '2019-11-23 10:32:36', 21, NULL, NULL, 1, 0, 'Concrete Column', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (22, NULL, NULL, 3, NULL, '2019-11-23 10:32:36', 21, NULL, NULL, 1, 0, 'Concrete for roof beam', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (23, NULL, NULL, 3, NULL, '2019-11-23 10:32:36', 21, NULL, NULL, 1, 0, 'Concrete beam', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (24, NULL, NULL, 3, NULL, '2019-11-23 10:32:36', 21, NULL, NULL, 1, 0, 'Concrete Lintel', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (25, NULL, NULL, 3, NULL, '2019-11-23 10:32:36', 21, NULL, NULL, 1, 0, 'Concrete', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (26, NULL, NULL, 2, NULL, '2019-11-23 10:38:27', 21, NULL, NULL, 1, 0, 'Site Preparation (Cleaning, electricity)', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (27, NULL, NULL, 4, NULL, '2019-11-23 10:39:08', 21, NULL, NULL, 1, 0, 'Exavation', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (28, NULL, NULL, 4, NULL, '2019-11-23 10:39:08', 21, NULL, NULL, 1, 0, 'Soil Vexation ', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (29, NULL, NULL, 6, NULL, '2019-11-23 11:12:46', 21, NULL, NULL, 1, 0, 'Tiling , skirting works', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (30, NULL, NULL, 6, NULL, '2019-11-23 11:12:46', 21, NULL, NULL, 1, 0, 'Ground floor Tiling', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (31, NULL, NULL, 6, NULL, '2019-11-23 11:12:46', 21, NULL, NULL, 1, 0, 'Floor tile for ground floor', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (32, NULL, NULL, 6, NULL, '2019-11-23 11:12:46', 21, NULL, NULL, 1, 0, 'Bathroom Floor Tile for Ground Floor', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (33, NULL, NULL, 6, NULL, '2019-11-23 11:12:46', 21, NULL, NULL, 1, 0, 'Bathroom Wall tile for Ground Floor(H=1.20m)', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (34, NULL, NULL, 6, NULL, '2019-11-23 11:12:46', 21, NULL, NULL, 1, 0, 'Bathroom Wall Tile for Ground Floor(H=2.2m)', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (35, NULL, NULL, 11, NULL, '2019-11-23 11:42:38', 21, NULL, NULL, 1, 0, '60x120cm/W60(Frame W60xH120cm)', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (36, NULL, NULL, 11, NULL, '2019-11-23 11:42:38', 21, NULL, NULL, 1, 0, 'Glass Block', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (37, NULL, NULL, 11, NULL, '2019-11-23 11:42:38', 21, NULL, NULL, 1, 0, 'Ventilation Block', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (38, NULL, NULL, 3, NULL, '2019-11-25 12:31:42', 21, NULL, NULL, 1, 0, 'Concrete column', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (39, NULL, NULL, 3, NULL, '2019-11-25 12:31:42', 21, NULL, NULL, 1, 0, 'Concrete in superstructure ', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (40, NULL, NULL, 3, NULL, '2019-11-25 12:31:42', 21, NULL, NULL, 1, 0, 'Concrete work ground beam', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (41, NULL, NULL, 3, NULL, '2019-11-25 12:31:42', 21, NULL, NULL, 1, 0, 'Concrete ground beam', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (42, NULL, NULL, 3, NULL, '2019-11-25 12:31:42', 21, NULL, NULL, 1, 0, 'Hollow Brick Thickness 200 mm', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (43, NULL, NULL, 3, NULL, '2019-11-25 12:31:42', 21, NULL, NULL, 1, 0, 'Under ground beam', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (44, NULL, NULL, 3, NULL, '2019-11-25 12:31:42', 21, NULL, NULL, 1, 0, 'Concrete Column in ground floor', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (45, NULL, NULL, 3, NULL, '2019-11-25 12:31:42', 21, NULL, NULL, 1, 0, 'Concrete Column', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (46, NULL, NULL, 3, NULL, '2019-11-25 12:31:42', 21, NULL, NULL, 1, 0, 'Concrete for roof beam', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (47, NULL, NULL, 3, NULL, '2019-11-25 12:31:42', 21, NULL, NULL, 1, 0, 'Concrete beam', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (48, NULL, NULL, 3, NULL, '2019-11-25 12:31:42', 21, NULL, NULL, 1, 0, 'Concrete Lintel', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (49, NULL, NULL, 3, NULL, '2019-11-25 12:31:42', 21, NULL, NULL, 1, 0, 'Concrete', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (50, NULL, NULL, 4, NULL, '2019-11-25 12:31:49', 21, NULL, NULL, 1, 0, 'Exavation', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (51, NULL, NULL, 4, NULL, '2019-11-25 12:31:49', 21, NULL, NULL, 1, 0, 'Soil Vexation ', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (52, NULL, NULL, 6, NULL, '2019-11-25 12:31:57', 21, NULL, NULL, 1, 0, 'Tiling , skirting works', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (53, NULL, NULL, 6, NULL, '2019-11-25 12:31:57', 21, NULL, NULL, 1, 0, 'Ground floor Tiling', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (54, NULL, NULL, 6, NULL, '2019-11-25 12:31:57', 21, NULL, NULL, 1, 0, 'Floor tile for ground floor', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (55, NULL, NULL, 6, NULL, '2019-11-25 12:31:57', 21, NULL, NULL, 1, 0, 'Bathroom Floor Tile for Ground Floor', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (56, NULL, NULL, 6, NULL, '2019-11-25 12:31:57', 21, NULL, NULL, 1, 0, 'Bathroom Wall tile for Ground Floor(H=1.20m)', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (57, NULL, NULL, 6, NULL, '2019-11-25 12:31:57', 21, NULL, NULL, 1, 0, 'Bathroom Wall Tile for Ground Floor(H=2.2m)', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (58, NULL, NULL, 2, NULL, '2019-11-25 12:32:07', 21, NULL, NULL, 1, 0, 'Site Preparation (Cleaning, electricity)', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (59, NULL, NULL, 5, NULL, '2019-11-25 12:32:15', 21, NULL, NULL, 1, 0, 'Brick Wall ground floor', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (60, NULL, NULL, 5, NULL, '2019-11-25 12:32:15', 21, NULL, NULL, 1, 0, 'Hollow Brick Thickness200mm under Ground Beam', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (61, NULL, NULL, 5, NULL, '2019-11-25 12:32:15', 21, NULL, NULL, 1, 0, 'Hollow clay brick wall 200mm thick', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (62, NULL, NULL, 5, NULL, '2019-11-25 12:32:15', 21, NULL, NULL, 1, 0, 'Hollow clay brick wall 100mm thick', NULL, NULL);
+INSERT INTO `standard_operation_check_list` VALUES (63, NULL, NULL, 5, NULL, '2019-11-25 12:32:15', 21, NULL, NULL, 1, 0, 'Plastering brick wall', NULL, NULL);
+
+-- ----------------------------
+-- Table structure for standard_operation_member
+-- ----------------------------
+DROP TABLE IF EXISTS `standard_operation_member`;
+CREATE TABLE `standard_operation_member`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_standard_operation` int(11) NULL DEFAULT NULL,
+  `id_position` int(11) NULL DEFAULT NULL,
+  `id_employee` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 94 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of standard_operation_member
+-- ----------------------------
+INSERT INTO `standard_operation_member` VALUES (1, 1, NULL, 2);
+INSERT INTO `standard_operation_member` VALUES (2, 19, NULL, 2);
+INSERT INTO `standard_operation_member` VALUES (10, 7, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (11, 306, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (16, 8, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (21, 10, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (22, 311, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (28, 317, NULL, 16);
+INSERT INTO `standard_operation_member` VALUES (29, 327, NULL, 16);
+INSERT INTO `standard_operation_member` VALUES (31, 13, NULL, 16);
+INSERT INTO `standard_operation_member` VALUES (32, 326, NULL, 16);
+INSERT INTO `standard_operation_member` VALUES (37, 340, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (38, 339, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (40, 337, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (41, 336, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (42, 334, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (43, 325, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (44, 310, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (45, 324, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (46, 312, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (47, 313, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (48, 314, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (49, 316, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (50, 319, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (51, 320, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (52, 322, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (53, 323, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (54, 272, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (55, 276, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (56, 279, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (57, 289, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (59, 298, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (60, 299, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (61, 307, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (62, 228, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (64, 68, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (67, 333, NULL, 1);
+INSERT INTO `standard_operation_member` VALUES (72, 342, NULL, 7);
+INSERT INTO `standard_operation_member` VALUES (74, 9, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (75, 341, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (76, 343, NULL, 17);
+INSERT INTO `standard_operation_member` VALUES (77, 344, NULL, 17);
+INSERT INTO `standard_operation_member` VALUES (78, 284, NULL, 4);
+INSERT INTO `standard_operation_member` VALUES (79, 309, NULL, 5);
+INSERT INTO `standard_operation_member` VALUES (80, 347, NULL, 7);
+INSERT INTO `standard_operation_member` VALUES (81, 332, NULL, 10);
+INSERT INTO `standard_operation_member` VALUES (83, 285, NULL, 4);
+INSERT INTO `standard_operation_member` VALUES (85, 348, NULL, 22);
+INSERT INTO `standard_operation_member` VALUES (86, 356, NULL, 22);
+INSERT INTO `standard_operation_member` VALUES (87, 358, NULL, 10);
+INSERT INTO `standard_operation_member` VALUES (88, 357, NULL, 22);
+INSERT INTO `standard_operation_member` VALUES (90, 219, NULL, 17);
+INSERT INTO `standard_operation_member` VALUES (91, 363, NULL, 22);
+INSERT INTO `standard_operation_member` VALUES (92, 355, NULL, 22);
+INSERT INTO `standard_operation_member` VALUES (93, 143, NULL, 1);
 
 -- ----------------------------
 -- Table structure for standard_operation_procedure_article
 -- ----------------------------
 DROP TABLE IF EXISTS `standard_operation_procedure_article`;
-CREATE TABLE `standard_operation_procedure_article` (
+CREATE TABLE `standard_operation_procedure_article`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `id_standard_operation_procedure_set_up` int(11) DEFAULT NULL,
-  `id_position` int(11) DEFAULT NULL,
-  `short_description` varchar(255) DEFAULT NULL,
-  `description` text,
-  `status` int(1) DEFAULT NULL,
-  `created_date` date DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` date DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `id_standard_operation_procedure_set_up` int(11) NULL DEFAULT NULL,
+  `id_position` int(11) NULL DEFAULT NULL,
+  `short_description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `created_date` date NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` date NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for standard_operation_procedure_set_up
 -- ----------------------------
 DROP TABLE IF EXISTS `standard_operation_procedure_set_up`;
-CREATE TABLE `standard_operation_procedure_set_up` (
+CREATE TABLE `standard_operation_procedure_set_up`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `id_position` int(11) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `created_date` date DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` date DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `description` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `created_date` date NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` date NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for standard_operation_step
 -- ----------------------------
 DROP TABLE IF EXISTS `standard_operation_step`;
-CREATE TABLE `standard_operation_step` (
+CREATE TABLE `standard_operation_step`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `id_employee_possition` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` datetime DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `css` varchar(255) DEFAULT NULL,
-  `sort` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_employee_possition` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` datetime(0) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `css` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sort` int(11) NULL DEFAULT NULL,
+  `id_employee_position` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for standard_operation_step_list
 -- ----------------------------
 DROP TABLE IF EXISTS `standard_operation_step_list`;
-CREATE TABLE `standard_operation_step_list` (
+CREATE TABLE `standard_operation_step_list`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `id_standard_operation_step` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` datetime DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `sort` int(11) DEFAULT NULL,
-  `is_track` varchar(5) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_standard_operation_step` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` datetime(0) NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `sort` int(11) NULL DEFAULT NULL,
+  `is_track` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Table structure for supplier_department
+-- ----------------------------
+DROP TABLE IF EXISTS `supplier_department`;
+CREATE TABLE `supplier_department`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of supplier_department
+-- ----------------------------
+INSERT INTO `supplier_department` VALUES (1, 'Opeartion', 1, '2019-10-22 08:49:13', 1, NULL, NULL);
+
+-- ----------------------------
+-- Table structure for supplier_position
+-- ----------------------------
+DROP TABLE IF EXISTS `supplier_position`;
+CREATE TABLE `supplier_position`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `department_id` int(11) NULL DEFAULT NULL,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of supplier_position
+-- ----------------------------
+INSERT INTO `supplier_position` VALUES (1, 1, 'Driver', 1, '2019-10-22 08:53:16', 1, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for supplier_profile
 -- ----------------------------
 DROP TABLE IF EXISTS `supplier_profile`;
-CREATE TABLE `supplier_profile` (
+CREATE TABLE `supplier_profile`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_supplier_profile_type` int(11) DEFAULT NULL,
-  `id_city` int(11) DEFAULT NULL,
-  `supplier_name` varchar(250) DEFAULT NULL,
-  `company_name` varchar(250) DEFAULT NULL,
-  `phone_number` varchar(50) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `address` varchar(250) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `img_url` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_supplier_profile_type` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `supplier_name` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `company_name` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `phone_number` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `address` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `img_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_city` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Table structure for supplier_profile_contact
+-- ----------------------------
+DROP TABLE IF EXISTS `supplier_profile_contact`;
+CREATE TABLE `supplier_profile_contact`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `supplier_id` int(11) NULL DEFAULT NULL,
+  `prefix` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `date_of_birth` date NULL DEFAULT NULL,
+  `gender_id` tinyint(1) NULL DEFAULT NULL,
+  `position_id` int(11) NULL DEFAULT NULL,
+  `department_id` int(11) NULL DEFAULT NULL,
+  `mobile` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `credit_note` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `id_transport`(`supplier_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of supplier_profile_contact
+-- ----------------------------
+INSERT INTO `supplier_profile_contact` VALUES (1, 1, 'Mr.', 'Komsot Sne', NULL, 1, 1, 1, '', '0', '', '', 1, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for supplier_profile_tag
 -- ----------------------------
 DROP TABLE IF EXISTS `supplier_profile_tag`;
-CREATE TABLE `supplier_profile_tag` (
+CREATE TABLE `supplier_profile_tag`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_supplier` int(11) DEFAULT NULL,
-  `id_tag` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_supplier` int(11) NULL DEFAULT NULL,
+  `id_tag` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for supplier_profile_type
 -- ----------------------------
 DROP TABLE IF EXISTS `supplier_profile_type`;
-CREATE TABLE `supplier_profile_type` (
+CREATE TABLE `supplier_profile_type`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for system_setting
 -- ----------------------------
 DROP TABLE IF EXISTS `system_setting`;
-CREATE TABLE `system_setting` (
+CREATE TABLE `system_setting`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `active` int(11) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `active` int(11) NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of system_setting
 -- ----------------------------
-BEGIN;
 INSERT INTO `system_setting` VALUES (1, 1, '1 => EOT, 2 => EOH, 3 => Other');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for tag
 -- ----------------------------
 DROP TABLE IF EXISTS `tag`;
-CREATE TABLE `tag` (
+CREATE TABLE `tag`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for task
 -- ----------------------------
 DROP TABLE IF EXISTS `task`;
-CREATE TABLE `task` (
+CREATE TABLE `task`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `task_name` varchar(255) DEFAULT NULL,
-  `id_billing_type` int(11) DEFAULT NULL,
-  `rate` decimal(10,2) DEFAULT NULL,
-  `start_date` date DEFAULT NULL,
-  `due_date` date DEFAULT NULL,
-  `deadline` date DEFAULT NULL,
-  `id_priority` int(11) DEFAULT NULL,
-  `id_repeater` int(11) DEFAULT NULL,
-  `id_related_to` int(11) DEFAULT NULL,
-  `id_related_profile` int(11) DEFAULT NULL,
-  `description` text,
-  `status` tinyint(1) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `id_assign_type` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `task_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_billing_type` int(11) NULL DEFAULT NULL,
+  `rate` decimal(10, 2) NULL DEFAULT NULL,
+  `start_date` date NULL DEFAULT NULL,
+  `due_date` date NULL DEFAULT NULL,
+  `deadline` date NULL DEFAULT NULL,
+  `id_priority` int(11) NULL DEFAULT NULL,
+  `id_repeater` int(11) NULL DEFAULT NULL,
+  `id_related_to` int(11) NULL DEFAULT NULL,
+  `id_related_profile` int(11) NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `id_assign_type` tinyint(1) NULL DEFAULT NULL,
+  `is_related_kpi` tinyint(4) NULL DEFAULT NULL,
+  `kpi_status` tinyint(4) NULL DEFAULT NULL,
+  `id_employee_position` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of task
+-- ----------------------------
+INSERT INTO `task` VALUES (2, 'General works', NULL, NULL, '2019-10-18', NULL, '2019-11-21', 2, NULL, 3, 1, '', 3, 21, '2019-11-25 12:32:07', 21, '2019-11-23 09:49:15', 1, NULL, NULL, 19);
+INSERT INTO `task` VALUES (3, 'Concrete works for stub column', NULL, NULL, '2019-10-18', NULL, NULL, 1, NULL, 3, 1, '', 3, 21, '2019-11-25 12:31:42', 21, '2019-11-23 09:52:36', 1, NULL, NULL, 19);
+INSERT INTO `task` VALUES (4, 'Earth Work', NULL, NULL, '2019-10-18', NULL, NULL, 2, NULL, 3, 1, '', 3, 21, '2019-11-25 12:31:49', 21, '2019-11-23 10:23:23', 1, NULL, NULL, 19);
+INSERT INTO `task` VALUES (5, 'Masony works and Plastering', NULL, NULL, '2019-10-18', NULL, NULL, 2, NULL, 3, 1, '', 3, 21, '2019-11-25 12:32:15', 21, '2019-11-23 11:01:34', 1, NULL, NULL, 1);
+INSERT INTO `task` VALUES (6, 'Fishing works Tilling, Skirting works', NULL, NULL, '2019-10-18', NULL, NULL, 2, NULL, 3, 1, '', 3, 21, '2019-11-25 12:31:57', 21, '2019-11-23 11:07:59', 1, NULL, NULL, 1);
+INSERT INTO `task` VALUES (7, 'Sanitary Material', NULL, NULL, '2019-10-18', NULL, NULL, 2, NULL, 3, 1, '', 3, NULL, NULL, 21, '2019-11-23 11:16:58', 1, NULL, NULL, 1);
+INSERT INTO `task` VALUES (8, 'Painting work', NULL, NULL, '2019-10-18', NULL, NULL, 1, NULL, 3, 1, '', 3, NULL, NULL, 21, '2019-11-23 11:31:35', 1, NULL, NULL, 1);
+INSERT INTO `task` VALUES (9, 'Ceiling work', NULL, NULL, '2019-10-18', NULL, NULL, 1, NULL, 3, 1, '', 3, NULL, NULL, 21, '2019-11-23 11:33:45', 1, NULL, NULL, 1);
+INSERT INTO `task` VALUES (10, 'Wood Floor with wooden frame', NULL, NULL, '2019-10-18', NULL, NULL, 2, NULL, 3, 1, '', 3, NULL, NULL, 21, '2019-11-23 11:34:57', 1, NULL, NULL, 1);
+INSERT INTO `task` VALUES (11, 'Glass Window Glass Block and Ventilation Block', NULL, NULL, '2019-10-18', NULL, NULL, 1, NULL, 3, 1, '', 3, 21, '2019-11-23 11:42:38', 21, '2019-11-23 11:41:38', 1, NULL, NULL, 1);
+INSERT INTO `task` VALUES (12, 'Handrail', NULL, NULL, '2019-10-18', NULL, NULL, 2, NULL, 3, 1, '', 3, NULL, NULL, 21, '2019-11-23 11:44:14', 1, NULL, NULL, 1);
+INSERT INTO `task` VALUES (13, 'Roof Tile', NULL, NULL, '2019-10-18', NULL, NULL, 2, NULL, 3, 1, '', 3, NULL, NULL, 21, '2019-11-23 11:47:36', 1, NULL, NULL, 1);
 
 -- ----------------------------
 -- Table structure for task_check_list
 -- ----------------------------
 DROP TABLE IF EXISTS `task_check_list`;
-CREATE TABLE `task_check_list` (
+CREATE TABLE `task_check_list`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_task` int(11) DEFAULT NULL,
-  `description` varchar(500) DEFAULT NULL,
-  `from_time` varchar(20) DEFAULT NULL,
-  `to_time` varchar(20) DEFAULT NULL,
-  `status` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_task` int(11) NULL DEFAULT NULL,
+  `description` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `from_time` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `to_time` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` tinyint(4) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 97 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of task_check_list
+-- ----------------------------
+INSERT INTO `task_check_list` VALUES (52, 7, 'Cotto/Cotto water closet', '8:00 AM', '5:00 PM', 0);
+INSERT INTO `task_check_list` VALUES (53, 7, 'Cotto/Cotto Basin', '8:00 AM', '5:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (54, 7, 'Shower', '8:00 AM', '5:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (55, 7, 'Dish Wash basin', '8:00 AM', '5:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (56, 8, 'Ground Floor Painting Work', '8:00 AM', '5:00 PM', 0);
+INSERT INTO `task_check_list` VALUES (57, 8, 'Wall Painting inside ', '8:00 AM', '5:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (58, 8, 'Wall Painting outside', '7:00 AM', '5:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (59, 9, 'Ground Floor Ceilling ', '8:00 AM', '5:00 PM', 0);
+INSERT INTO `task_check_list` VALUES (60, 9, 'Ceilling area inside only', '8:00 AM', '5:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (61, 9, 'Door and windows works', '8:00 AM', '5:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (62, 10, 'D90(Frame 90x220cm) Room Door', '8:00 AM', '5:00 PM', 0);
+INSERT INTO `task_check_list` VALUES (63, 10, 'D80(Frame80x220cm) WC Door', '8:00 AM', '5:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (66, 11, '60x120cm/W60(Frame W60xH120cm)', '8:00 AM', '5:00 PM', 0);
+INSERT INTO `task_check_list` VALUES (67, 11, 'Glass Block', '8:00 AM', '5:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (68, 11, 'Ventilation Block', '8:00 AM', '5:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (69, 12, 'Handrail for Staircase', '8:00 AM', '5:00 PM', 0);
+INSERT INTO `task_check_list` VALUES (70, 13, 'Mechanical Electrical and Plumping Material', '8:00 AM', '5:00 PM', 0);
+INSERT INTO `task_check_list` VALUES (71, 3, 'Concrete column', '8:00 AM', '11:00 AM', 0);
+INSERT INTO `task_check_list` VALUES (72, 3, 'Concrete in superstructure ', '11:00 AM', '3:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (73, 3, 'Concrete work ground beam', '11:00 AM', '3:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (74, 3, 'Concrete ground beam', '11:00 AM', '3:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (75, 3, 'Hollow Brick Thickness 200 mm', '11:00 AM', '3:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (76, 3, 'Under ground beam', '11:00 AM', '3:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (77, 3, 'Concrete Column in ground floor', '11:00 AM', '3:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (78, 3, 'Concrete Column', '11:00 AM', '3:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (79, 3, 'Concrete for roof beam', '11:00 AM', '3:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (80, 3, 'Concrete beam', '11:00 AM', '3:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (81, 3, 'Concrete Lintel', '11:00 AM', '3:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (82, 3, 'Concrete', '11:00 AM', '3:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (83, 4, 'Exavation', '8:00 AM', '5:00 PM', 0);
+INSERT INTO `task_check_list` VALUES (84, 4, 'Soil Vexation ', '8:00 AM', '5:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (85, 6, 'Tiling , skirting works', '8:00 AM', '5:00 PM', 0);
+INSERT INTO `task_check_list` VALUES (86, 6, 'Ground floor Tiling', '8:00 AM', '5:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (87, 6, 'Floor tile for ground floor', '8:00 AM', '5:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (88, 6, 'Bathroom Floor Tile for Ground Floor', '8:00 AM', '5:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (89, 6, 'Bathroom Wall tile for Ground Floor(H=1.20m)', '8:00 AM', '5:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (90, 6, 'Bathroom Wall Tile for Ground Floor(H=2.2m)', '8:00 AM', '5:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (91, 2, 'Site Preparation (Cleaning, electricity)', '8:00 AM', '5:00 PM', 0);
+INSERT INTO `task_check_list` VALUES (92, 5, 'Brick Wall ground floor', '8:00 AM', '5:00 PM', 0);
+INSERT INTO `task_check_list` VALUES (93, 5, 'Hollow Brick Thickness200mm under Ground Beam', '8:00 AM', '5:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (94, 5, 'Hollow clay brick wall 200mm thick', '8:00 AM', '5:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (95, 5, 'Hollow clay brick wall 100mm thick', '8:00 AM', '5:00 PM', NULL);
+INSERT INTO `task_check_list` VALUES (96, 5, 'Plastering brick wall', '8:00 AM', '5:00 PM', NULL);
 
 -- ----------------------------
 -- Table structure for task_member
 -- ----------------------------
 DROP TABLE IF EXISTS `task_member`;
-CREATE TABLE `task_member` (
+CREATE TABLE `task_member`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_task` int(11) DEFAULT NULL,
-  `id_employee` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_task` int(11) NULL DEFAULT NULL,
+  `id_employee` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of task_member
+-- ----------------------------
+INSERT INTO `task_member` VALUES (2, 8, 12);
 
 -- ----------------------------
 -- Table structure for task_related_to
 -- ----------------------------
 DROP TABLE IF EXISTS `task_related_to`;
-CREATE TABLE `task_related_to` (
+CREATE TABLE `task_related_to`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of task_related_to
+-- ----------------------------
+INSERT INTO `task_related_to` VALUES (1, 'Project');
+INSERT INTO `task_related_to` VALUES (2, 'Invoice');
+INSERT INTO `task_related_to` VALUES (3, 'Customer');
+INSERT INTO `task_related_to` VALUES (4, 'Expense');
+INSERT INTO `task_related_to` VALUES (5, 'Contract');
+INSERT INTO `task_related_to` VALUES (6, 'Lead');
+INSERT INTO `task_related_to` VALUES (7, 'Proposal');
+INSERT INTO `task_related_to` VALUES (8, 'Other activity');
 
 -- ----------------------------
 -- Table structure for task_status
 -- ----------------------------
 DROP TABLE IF EXISTS `task_status`;
-CREATE TABLE `task_status` (
+CREATE TABLE `task_status`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `css_class` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `css_class` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of task_status
 -- ----------------------------
-BEGIN;
 INSERT INTO `task_status` VALUES (1, 'Not Started', 'label-mint');
 INSERT INTO `task_status` VALUES (2, 'In Progress', 'label-success');
 INSERT INTO `task_status` VALUES (3, 'Testing', 'label-warning');
 INSERT INTO `task_status` VALUES (4, 'Awaiting Feedback', 'label-danger');
 INSERT INTO `task_status` VALUES (5, 'Complete', 'label-info');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for task_tag
 -- ----------------------------
 DROP TABLE IF EXISTS `task_tag`;
-CREATE TABLE `task_tag` (
+CREATE TABLE `task_tag`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_task` int(11) DEFAULT NULL,
-  `id_tag` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `id_task` int(11) NULL DEFAULT NULL,
+  `id_tag` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for tax
 -- ----------------------------
 DROP TABLE IF EXISTS `tax`;
-CREATE TABLE `tax` (
+CREATE TABLE `tax`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tax_name` varchar(255) DEFAULT NULL,
-  `value` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `tax_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `value` decimal(10, 2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tax
 -- ----------------------------
-BEGIN;
 INSERT INTO `tax` VALUES (1, 'VAT', 5.00);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for testing
 -- ----------------------------
 DROP TABLE IF EXISTS `testing`;
-CREATE TABLE `testing` (
+CREATE TABLE `testing`  (
   `id` int(11) NOT NULL,
-  `Testing` varchar(255) DEFAULT NULL,
-  `status` bit(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `Testing` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` bit(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of testing
 -- ----------------------------
-BEGIN;
 INSERT INTO `testing` VALUES (1, '23234', b'0');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for uploaded_file
 -- ----------------------------
 DROP TABLE IF EXISTS `uploaded_file`;
-CREATE TABLE `uploaded_file` (
+CREATE TABLE `uploaded_file`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) DEFAULT NULL,
-  `filename` varchar(256) DEFAULT NULL,
-  `size` int(11) DEFAULT NULL,
-  `type` varchar(32) DEFAULT NULL,
-  `thumbnail` varchar(255) DEFAULT NULL,
+  `name` varchar(64) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `filename` varchar(256) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `size` int(11) NULL DEFAULT NULL,
+  `type` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `thumbnail` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `status` bit(1) NOT NULL DEFAULT b'1',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 175 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of uploaded_file
 -- ----------------------------
-BEGIN;
 INSERT INTO `uploaded_file` VALUES (1, 'NoPicAvailable.jpg', '/backend/uploads/NoPicAvailable.jpg', 65927, 'image/jpeg', NULL, b'1');
 INSERT INTO `uploaded_file` VALUES (2, '60972540_846849689006961_3545995067674066944_n.jpg', 'backend/uploads/users/05/555b4ba7fd1258aa34320e3686ab20_60972540_846849689006961_3545995067674066944_n.jpg', 76838, 'image/jpeg', NULL, b'1');
 INSERT INTO `uploaded_file` VALUES (3, 'unnamed.jpg', '/Applications/XAMPP/xamppfiles/htdocs/cataMMS/backend/web/backend/uploads/membership-profile/8b/f617810497fffa1b9e26a9dd8797e6_unnamed.jpg', 13553, 'image/jpeg', NULL, b'1');
@@ -5695,7 +6639,7 @@ INSERT INTO `uploaded_file` VALUES (16, '64928238_1098443577031984_1099220682396
 INSERT INTO `uploaded_file` VALUES (17, '65372280_425946121583765_6722478276213735424_n.jpg', 'backend/uploads/users/6c/6d26d691e6a1b9aee2f6b89bbdce0a_65372280_425946121583765_6722478276213735424_n.jpg', 74886, 'image/jpeg', NULL, b'1');
 INSERT INTO `uploaded_file` VALUES (18, '65314999_2334304963451496_5645665237064482816_n.jpg', 'backend/uploads/users/0c/a4899277b2303f14b4d8887c2c1eaa_65314999_2334304963451496_5645665237064482816_n.jpg', 49284, 'image/jpeg', NULL, b'1');
 INSERT INTO `uploaded_file` VALUES (19, '65372280_425946121583765_6722478276213735424_n.jpg', '/Applications/XAMPP/xamppfiles/htdocs/cataMMS/backend/web/backend/uploads/users/5d/c0443cbfc55398c593302e30d08563_65372280_425946121583765_6722478276213735424_n.jpg', 74886, 'image/jpeg', NULL, b'1');
-INSERT INTO `uploaded_file` VALUES (20, 'comple.png', '/Applications/XAMPP/xamppfiles/htdocs/dropbox/eOCRM/backend/web/backend/uploads/users/fc/a4d1c2a20d1983172a336362972c81_comple.png', 355615, 'image/png', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (20, 'comple.png', 'backend/uploads/users/fc/a4d1c2a20d1983172a336362972c81_comple.png', 355615, 'image/png', NULL, b'1');
 INSERT INTO `uploaded_file` VALUES (21, 'evan.png', '/Applications/XAMPP/xamppfiles/htdocs/dropbox/eOCRM/backend/web/backend/uploads/employee-profile/46/0df142f1c8925ae900e0fab2b09f93_evan.png', 213820, 'image/png', NULL, b'1');
 INSERT INTO `uploaded_file` VALUES (22, 'logo transparent.png', '/Applications/XAMPP/xamppfiles/htdocs/dropbox/eOCRM/backend/web/backend/uploads/company-profile/09/19e6e56406ac6dc57bd9f8b21c4c9b_logo transparent.png', 45796, 'image/png', NULL, b'1');
 INSERT INTO `uploaded_file` VALUES (23, 'Screen Shot 2019-07-25 at 10.22.02 AM.png', '/Applications/XAMPP/xamppfiles/htdocs/dropbox/eOCRM/backend/web/backend/uploads/supplier-profile/f4/da5c0e81f7c91f4a6ebd407b0e753e_Screen Shot 2019-07-25 at 10.22.02 AM.png', 798665, 'image/png', NULL, b'1');
@@ -5817,149 +6761,155 @@ INSERT INTO `uploaded_file` VALUES (139, 'mara.jpg', 'backend/uploads/employee-p
 INSERT INTO `uploaded_file` VALUES (140, 'skype.jpg', 'backend/uploads/employee-profile/5b/b8a388763e005ea77203d38750dadf_skype.jpg', 195165, 'image/jpeg', NULL, b'1');
 INSERT INTO `uploaded_file` VALUES (141, 'pholly.jpg', 'backend/uploads/employee-profile/5d/ab57136b188c6c4d3690d873ab572b_pholly.jpg', 82531, 'image/jpeg', NULL, b'1');
 INSERT INTO `uploaded_file` VALUES (142, 'photo_2019-03-19_21-45-00.jpg', 'backend/uploads/employee-profile/d8/434e78957509b183a3719eb31653ae_photo_2019-03-19_21-45-00.jpg', 36460, 'image/jpeg', NULL, b'1');
-INSERT INTO `uploaded_file` VALUES (143, 'original-logo.png', 'backend/uploads/company-profile/ad/f89b35348cbd2d2b5a9f0f1c5df18f_original-logo.png', 45866, 'image/png', NULL, b'1');
-INSERT INTO `uploaded_file` VALUES (144, 'a.jpg', 'backend/uploads/employee-profile/55/898703cc476cb5ad6658aeaa4b8ce8_a.jpg', 209227, 'image/jpeg', NULL, b'1');
-INSERT INTO `uploaded_file` VALUES (145, 'empty-avatar.png', 'backend/uploads/employee-profile/f1/3ee7f3f893b102b4c5bc3554c1bcf1_empty-avatar.png', 2758, 'image/png', NULL, b'1');
-INSERT INTO `uploaded_file` VALUES (146, 'empty-avatar.png', 'backend/uploads/employee-profile/ae/50c821bd8d14652ccce61e1279a1db_empty-avatar.png', 2758, 'image/png', NULL, b'1');
-INSERT INTO `uploaded_file` VALUES (147, 'a.jpg', 'backend/uploads/employee-profile/1e/f9d6b492557f3c9629ec5a920d864e_a.jpg', 209227, 'image/jpeg', NULL, b'1');
-INSERT INTO `uploaded_file` VALUES (148, 'signature.png', 'backend/uploads/employee-profile/d7/b07f7e08e6ddc2cddf5088ec390ab0_signature.png', 4726, 'image/png', NULL, b'1');
-INSERT INTO `uploaded_file` VALUES (149, 'logo_makro.png', 'backend/uploads/employee-profile/6b/eb35eb862949c3211e36fe119a2cdb_logo_makro.png', 10132, 'image/png', NULL, b'1');
-INSERT INTO `uploaded_file` VALUES (150, 'empty-avatar.png', 'backend/uploads/employee-profile/9a/d02931dc6134cf2bd621e3c0e017df_empty-avatar.png', 2758, 'image/png', NULL, b'1');
-COMMIT;
+INSERT INTO `uploaded_file` VALUES (143, 'BMS-cover.jpg', 'backend/uploads/employee-profile/cd/a1fb75f948b7f90cfbb157a08c7249_BMS-cover.jpg', 214717, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (144, 'photo_2019-10-05_10-50-23.jpg', 'backend/uploads/employee-profile/43/7c16098f3fd25ebf570b743da5d3a7_photo_2019-10-05_10-50-23.jpg', 33894, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (145, 'signature.png', 'backend/uploads/employee-profile/c6/ccb629e02e815a8492efef62a23add_signature.png', 4726, 'image/png', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (146, 'signature.png', 'backend/uploads/employee-profile/c6/ded8713f946dff52fdb61bbbec6726_signature.png', 26445, 'image/png', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (147, 'saody.jpg', 'backend/uploads/employee-profile/f4/29cbf8956c4369c07baa11da2aa065_saody.jpg', 54763, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (148, 'maco-signature.png', 'backend/uploads/employee-profile/dd/a88947669abff9cfd1a43be6d15fb7_maco-signature.png', 31922, 'image/png', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (149, 'a.jpg', 'backend/uploads/employee-profile/4f/1eb0c5194f3ebb7517e562363ce59d_a.jpg', 209227, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (150, 'namecheaplogo.png', 'backend/uploads/supplier-profile/e9/8fa8347018f4f61adfcc3bf5d48fef_namecheaplogo.png', 32796, 'image/png', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (151, 'Screen Shot 2019-10-19 at 8.36.54 AM.png', 'backend/uploads/expense-attachment/9e/e6a9780043baacb0ec114566b38f8c_Screen Shot 2019-10-19 at 8.36.54 AM.png', 148730, 'image/png', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (152, '72533070_111023243649560_3278084765915283456_n.jpg', 'backend/uploads/employee-profile/81/c94324b908fba0c658f3408112ccee_72533070_111023243649560_3278084765915283456_n.jpg', 113821, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (153, '2019-10-21 16.07.31.jpg', 'backend/uploads/employee-profile/5e/f98064ce817e6c560547e03ddc3200_2019-10-21 16.07.31.jpg', 25205, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (154, '2019-10-21 16.07.31.jpg', 'backend/uploads/employee-profile/60/fbda393e1e85a2d9914be9e12503a3_2019-10-21 16.07.31.jpg', 25205, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (155, '2019-10-21 16.07.31.jpg', 'backend/uploads/employee-profile/e2/b7bd8cec73c6bdc0339a8a1a699b24_2019-10-21 16.07.31.jpg', 25205, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (156, '012568c003ab32a987eaa2c57b5d8db6.jpg', 'backend/uploads/employee-profile/73/072e7e6cd3e69471ef0a4f5e6eae4a_012568c003ab32a987eaa2c57b5d8db6.jpg', 65994, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (157, '012568c003ab32a987eaa2c57b5d8db6.jpg', 'backend/uploads/employee-profile/aa/ea11b1928e21e1e46a09f59fd18de9_012568c003ab32a987eaa2c57b5d8db6.jpg', 65994, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (158, 'dalot.jpg', 'backend/uploads/employee-profile/6c/5dfc403a5fbe78cfe283d33f6fecaf_dalot.jpg', 31340, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (159, 'dalot.jpg', 'backend/uploads/employee-profile/bd/58822d2456c6434a1f380c5afc4efd_dalot.jpg', 31340, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (160, 'rachhiv.jpg', 'backend/uploads/employee-profile/b5/c1b66c64fd89437966ee8f79848724_rachhiv.jpg', 23385, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (161, 'rachhiv.jpg', 'backend/uploads/employee-profile/38/3d36592c051e72465ce45c11acf4f6_rachhiv.jpg', 23385, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (162, '69267088_117533652951802_5483756158395088896_n.jpg', 'backend/uploads/employee-profile/eb/f7790f1daad72d06d3415090223ec4_69267088_117533652951802_5483756158395088896_n.jpg', 58658, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (163, '20046355_2324075154484236_7636522323287692108_n.jpg', 'backend/uploads/employee-profile/f0/3a9ea2b8e1bb36209b1cf98be53e1d_20046355_2324075154484236_7636522323287692108_n.jpg', 65095, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (164, 'IMG_4223.JPG', 'backend/uploads/employee-profile/82/740ae3c82aa99892103f0676ee6802_IMG_4223.JPG', 302200, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (165, '19396652_225985924575217_2078063200282217288_n.jpg', 'backend/uploads/employee-profile/26/863d764664629d662b6a22e8bb479e_19396652_225985924575217_2078063200282217288_n.jpg', 63179, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (166, '19396652_225985924575217_2078063200282217288_n.jpg', 'backend/uploads/employee-profile/aa/50f3be5621c80dbfafa8f92d68ad12_19396652_225985924575217_2078063200282217288_n.jpg', 63179, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (167, '2019-10-21 16.07.31.jpg', 'backend/uploads/employee-profile/a2/7dd87c29f2031937acd42266bd14c6_2019-10-21 16.07.31.jpg', 25205, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (168, 'signature5dad7de4a6ede.png', 'backend/uploads/employee-profile/ce/a9258a1990c643e1323d140ea07071_signature5dad7de4a6ede.png', 7742, 'image/png', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (169, 'a.jpg', 'backend/uploads/employee-profile/fd/0e59efcfef47cf4212c143ec20cb82_a.jpg', 209227, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (170, 'Wooden Iron Storage Holders Home Shelf Wall Hanging Box Flower P', 'backend/uploads/employee-profile/81/045a8fc81234069530056ce6b680c5_Wooden Iron Storage Holders Home Shelf Wall Hanging Box Flower Pots Book Storage Racks Decoration_.jpg', 57785, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (171, 'skypeprofile.jpg', 'backend/uploads/employee-profile/8e/cabe50222110d3d1fd47a1db9131a8_skypeprofile.jpg', 195165, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (172, 'photo_2018-07-13_11-37-31.jpg', 'backend/uploads/employee-profile/7b/22f3d069d3493eb476e8009ae294be_photo_2018-07-13_11-37-31.jpg', 101475, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (173, '1.jpg', 'backend/uploads/employee-profile/5d/3b5e0bff93f801e60bf48b521bab74_1.jpg', 408378, 'image/jpeg', NULL, b'1');
+INSERT INTO `uploaded_file` VALUES (174, 'image_2019-11-22_08-47-09.png', 'backend/uploads/company-profile\\b7\\3641d490a48ef08ecc59640f23340b_image_2019-11-22_08-47-09.png', 61632, 'image/png', NULL, b'1');
 
 -- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
+CREATE TABLE `user`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_type_id` int(11) DEFAULT NULL,
-  `email` varchar(500) DEFAULT NULL,
-  `password_hash` varchar(500) DEFAULT NULL,
-  `password_reset_token` varchar(500) DEFAULT NULL,
-  `auth_key` varchar(500) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `is_deleted` int(11) DEFAULT NULL,
-  `deleted_at` datetime DEFAULT NULL,
-  `deleted_by` int(11) DEFAULT NULL,
-  `first_name` varchar(50) DEFAULT NULL,
-  `last_name` varchar(50) DEFAULT NULL,
-  `gender` varchar(50) DEFAULT NULL,
-  `telephone` varchar(50) DEFAULT NULL,
-  `img_url` varchar(500) DEFAULT NULL,
-  `username` varchar(50) DEFAULT NULL,
-  `membership_id` int(11) DEFAULT NULL,
-  `id_employee` int(11) DEFAULT NULL,
-  `id_position` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `user_type_id` int(11) NULL DEFAULT NULL,
+  `email` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `password_hash` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `password_reset_token` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `auth_key` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` int(11) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `is_deleted` int(11) NULL DEFAULT NULL,
+  `deleted_at` datetime(0) NULL DEFAULT NULL,
+  `deleted_by` int(11) NULL DEFAULT NULL,
+  `first_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `last_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `gender` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `telephone` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `img_url` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `username` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `membership_id` int(11) NULL DEFAULT NULL,
+  `id_employee` int(11) NULL DEFAULT NULL,
+  `id_position` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-BEGIN;
-INSERT INTO `user` VALUES (1, 1, 'systemadmin@eocambo.com', '$2y$13$rLz818nPmSgnbwUt4S38Ue5Y6T3Kl1DJPvGInU6Uz116PXtbUwoG6', NULL, '8tdRr0KstxcAKFdZ00UWb_SjnK73M5uz', 1, 1, '2019-07-10 20:07:12', '2019-07-17 08:38:48', 1, NULL, NULL, NULL, 'System', 'Admin', '', '', '20', 'systemadmin', 2, NULL, NULL);
-INSERT INTO `user` VALUES (12, 1, '', '$2y$13$d23ealFT5MPlMCVu9Z7sUubxy5ZXVWAm98MA1FJ/mlYSA/ca0OKcS', NULL, 'Rf-bG_nU_70CyzceIIapXAUpx4UpeILm', 1, 1, '2019-08-03 08:46:40', '2019-10-05 08:58:24', 1, NULL, NULL, NULL, 'Horn ', 'Choch', 'Mr.', '', '150', 'hornchoch', NULL, 1, 2);
-INSERT INTO `user` VALUES (13, 1, 'maco@eocambo.com', '$2y$13$eom9Mz6C3TmvcgRrL2JjDugmIqdcrDd24ysJVJPYoTgUklm09VLUm', NULL, 'NAZwFCCGeYCTAsp27KkNeUr5aK7RWHj_', 1, 1, '2019-08-03 08:49:44', '2019-10-04 17:24:52', 13, NULL, NULL, NULL, 'THEOM', 'Buntheoun (Maco)', 'Mr.', '010 448 054', '144', 'maco', NULL, 2, 4);
-INSERT INTO `user` VALUES (14, 1, 'saody@eocambo.com', '$2y$13$sVBNpHj5Ylxm2F07icXWWuVmLTY/TcMvEcvMPsSeE9iBc.ePbfh7a', NULL, 'eVpNFWV4TeqjD6CaTrI0iKAnRVc8AHWp', 1, 12, '2019-08-03 08:52:43', '2019-10-04 15:42:31', 30, NULL, NULL, NULL, 'Saody', 'Phal', 'Mr.', '087 691 777', '120', 'saody', NULL, 3, 2);
-INSERT INTO `user` VALUES (15, 1, 'maranet@eocambo.com', '$2y$13$cxArtdbVfo1H1Hr95/vrMu2ha.t3ZIzq50a7OIs4yuH/6AlLbURJ6', NULL, 'UmvsENYmPKALlWz7zWp1m1MlWJoLEbRN', 1, 12, '2019-08-03 09:25:09', '2019-10-04 16:32:19', 13, NULL, NULL, NULL, 'Maranet', 'Mey', 'Ms.', '086 907 907', '139', 'maranet', NULL, 4, 6);
-INSERT INTO `user` VALUES (16, 5, 'bunchhay@eocambo.com', '$2y$13$9VEN3OkA6nh1Z/h81LwPEObthWLI7VyRklICoYecs1afFKs2m2r86', NULL, 'UvCalegkL4JooI7iOlbsA6xesgxOUvci', 1, 1, '2019-08-05 13:40:28', '2019-10-04 15:43:37', 30, NULL, NULL, NULL, 'Bunchhay', 'Yoeurn ', 'Mr.', '096 596 33 22', '126', 'chhay', NULL, 5, 5);
-INSERT INTO `user` VALUES (17, 3, 'dararith365@gmail.com', '$2y$13$Rn9WnqCASBhK4v0LqYNHiO7m.YZokLlwPCI9Hyfo4UArP.igGGO.q', NULL, 'aBz7LZM2BYuMf0cftWGgMyeL0C2miTLQ', 1, 1, '2019-08-05 13:53:45', '2019-10-04 15:43:48', 30, NULL, NULL, NULL, 'Kreom', 'Dararith', 'Mr.', '096 858 57 89', '127', 'rith', NULL, 6, 2);
-INSERT INTO `user` VALUES (18, 5, 'chhunrachhen961@gmail.com', '$2y$13$bOmiOxB2wD5ovErH5mkxHehWw7tSIxQe8FHLm9M2mCuPwP2Tzefd2', NULL, '_oH9qfZw40pBVO-Lxya7kpfgl4fdBFLP', 1, 1, '2019-08-05 14:05:36', '2019-10-04 15:43:57', 30, NULL, NULL, NULL, 'Rachhen', 'Chhun ', 'Mr.', '096 967 4239', '128', 'chhen', NULL, 7, 2);
-INSERT INTO `user` VALUES (19, 1, 'pengai.ear@gmail.com', '$2y$13$acAyrlMNJHV.Y25z3GFy8eKPlPIUTJnyOzRYgODrRv/w09tmz31oi', NULL, 'JjKcqTklLy6x4LDQ4sZQOk90b43FR76y', 1, NULL, '2019-08-05 14:08:38', '2019-10-04 15:44:07', 30, NULL, NULL, NULL, 'Peng Ai', 'Ear ', 'Mr.', '070 914 156', '129', 'ai', NULL, 8, 2);
-INSERT INTO `user` VALUES (20, 1, 'rithyraeck@eocambo.com', '$2y$13$8/9Qyg2gQYvvUlBkmx5P/..ryuVFkd.G41jm09OGJw.Mvl9P3fuPC', NULL, '5T2hwgkgVnVXf3Gy8HCjPGZ-DWX2ZyQE', 1, 15, '2019-08-05 14:18:58', '2019-10-04 15:44:29', 30, NULL, NULL, NULL, 'Rithyraeck', 'SOEUNG', 'Mr.', '095/010 80 85 90', '130', 'raeck', NULL, 9, 4);
-INSERT INTO `user` VALUES (21, 1, 'measmengtry@eocambo.com', '$2y$13$bbb4wMn7DRbDnN3j4J8PbO9Uq.UnBzx0pIhL6zU1YILgXOxdelmg2', NULL, 'pYBSh24N3Np8WNo73kwENMtE1QyM-ThB', 1, 15, '2019-08-05 14:22:11', '2019-10-04 16:38:49', 21, NULL, NULL, NULL, 'Mengtry', 'Meas ', 'Mr.', '092 30 50 85', '142', 'try', NULL, 10, 2);
-INSERT INTO `user` VALUES (22, 2, 'uan.theany@gmail.com', '$2y$13$8EKm7SuTf1jDb2iGvXZmP.9K.RtCp1wfUc1h8zTWpjtcjHIbytd3m', NULL, 'vfzM7JphAqj9AwGx5zTD9-4tRkBPcsV5', 1, 15, '2019-08-05 14:24:41', '2019-10-04 15:44:51', 30, NULL, NULL, NULL, 'Theany', 'Uan ', 'Mrs.', '070 307 888', '132', 'theany', NULL, 11, 4);
-INSERT INTO `user` VALUES (23, 1, 'pholly@eocambo.com', '$2y$13$CRT2ZgZhy9enAUmHtUbmQedZoJFlFjtUJY1DsJYvoiWTPtH.iAT8C', NULL, '5ttm-BZ9xptuWn8ZvOj11aGTuuaBW5NS', 1, 15, '2019-08-05 14:26:48', '2019-10-04 16:34:59', 23, NULL, NULL, NULL, 'Pholly', 'Chinh ', 'Mr.', '010 328 929', '141', 'pholly', NULL, 12, 6);
-INSERT INTO `user` VALUES (24, 2, 'mollikaou070@gmail.com', '$2y$13$MYDhQJrOiz8zFs/.nRaXZuGd3unqwa8KtZZv9n3wlw9tdhjuVvDCy', NULL, 'QC137mI4dQFY2CRltlamd_0X4k2id564', 1, 15, '2019-08-05 14:30:07', '2019-10-04 15:45:23', 30, NULL, NULL, NULL, 'Mollika ', 'Ou ', 'Ms.', '070 609 640', '135', 'mollika', NULL, 13, 7);
-INSERT INTO `user` VALUES (25, 2, 'ranick252001@gmail.com', '$2y$13$23.rPr.5cr5lsP7pKFAlGesUlfvN3w8KdPSkgwj4ixuXsyZZgtMnu', NULL, '0YLOhCvzsbMSVH3IyAvfASfmVo5W5Yba', 1, 15, '2019-08-05 14:31:59', '2019-10-04 15:45:14', 30, NULL, NULL, NULL, 'Soranick', 'Sen ', 'Ms.', '095 623 523', '134', 'ranick', NULL, 14, 7);
-INSERT INTO `user` VALUES (26, 2, 'hohong0005@gmail.com', '$2y$13$WzogbeWC3y8QHipw5ugn7eEFqBvHRSeobdt4HCYsrGVNEeOlXJHhu', NULL, 'jTP2Epopauzv5WXq2tT_xNpBH00439dM', 1, 15, '2019-08-05 14:33:38', '2019-10-04 16:27:45', 13, NULL, NULL, NULL, 'Hong', 'Ho ', 'Ms.', '098 440 005', '124', 'hong', NULL, 15, 7);
-INSERT INTO `user` VALUES (27, 3, 'sainangreall99@gmail.com', '$2y$13$k2U4bylX99ZureECJqqQlOALrXsOOiF4Z9UIkWX91SAyU/814mDyu', NULL, 'HUVlTevQBnMtoEEu2aa04R3kx7CpFODX', 1, 1, '2019-09-04 09:05:45', '2019-10-04 15:55:02', 27, NULL, NULL, NULL, 'Sao ', 'Nang', 'Mr.', '090493990', '136', 'saonang', NULL, 16, 6);
-INSERT INTO `user` VALUES (28, 5, 'rachhiv.hor@gmail.com', '$2y$13$NyvFSl.jzZ5gGz5ME1shn.OmC7Ng852qQCMTzQsH4VJJhtB61nKxy', NULL, 'uMajuhr0y5ZPAp0SclXHV8afuUQv3roZ', 1, 1, '2019-09-11 14:44:40', '2019-10-04 15:42:58', 30, NULL, NULL, NULL, 'Hor', 'Rachhiv', 'Mr.', '081497790', '122', 'rachhiv', NULL, 17, 5);
-INSERT INTO `user` VALUES (29, 6, 'vichna@eocambo.com', '$2y$13$9mfeo7JZY5tlWydq1Xu4kuTT2aovPCO4.1Lk1XR5BYAev3vd7my86', NULL, 'cdlE_NINiicUrcWsR0-Jopz2GAvutrYm', 1, 1, '2019-09-13 14:40:56', '2019-10-04 15:42:49', 30, NULL, NULL, NULL, 'Vichna', 'Run', 'Mrs.', '010448054', '121', 'vichna', NULL, 18, 9);
-INSERT INTO `user` VALUES (30, 1, 'steven@eocambo.com', '$2y$13$3Y7/JFtyprD1P08S4N9.b.2NYD8NCrY3YsuKwTY1s.IcaGhb7ZqZe', NULL, 'RquCcUe_f11wMDqFmNUDfoqttgIFNYDn', 1, 1, '2019-10-04 15:30:35', '2019-10-04 15:50:10', 30, NULL, NULL, NULL, 'Steven', 'Phich', 'Mr.', '092991005', '117', 'steven', NULL, 19, 10);
-INSERT INTO `user` VALUES (31, 1, '', '$2y$13$h9rN3Heu35Wx5f8JKN3w/./woTY3Tdebyge9AZ0uworNX.n0bl9T6', NULL, 'HcYKi-o_F1CBq8AJ9Q2g53R_W81t-jXA', 1, 1, '2019-10-05 08:38:57', NULL, NULL, NULL, NULL, NULL, 'Horn ', 'Choch', 'Mr.', '', NULL, 'hornchoch', NULL, 1, 2);
-COMMIT;
+INSERT INTO `user` VALUES (21, 1, 'info@2bc.com', '$2y$13$bbb4wMn7DRbDnN3j4J8PbO9Uq.UnBzx0pIhL6zU1YILgXOxdelmg2', NULL, 'pYBSh24N3Np8WNo73kwENMtE1QyM-ThB', 1, 15, '2019-08-05 14:22:11', '2019-11-19 17:00:24', 1, NULL, NULL, NULL, '2bc', 'business', '0', '092 30 50 85', '', 'superadmin', NULL, 10, 2);
 
 -- ----------------------------
 -- Table structure for user_type
 -- ----------------------------
 DROP TABLE IF EXISTS `user_type`;
-CREATE TABLE `user_type` (
+CREATE TABLE `user_type`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` bit(1) DEFAULT NULL,
-  `user_type_name` varchar(500) DEFAULT NULL,
-  `default_view_id` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  `status` bit(1) NULL DEFAULT NULL,
+  `user_type_name` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `default_view_id` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of user_type
 -- ----------------------------
-BEGIN;
-INSERT INTO `user_type` VALUES (1, b'1', 'Super Admin', 1, NULL, NULL, '2019-09-17 13:33:53', 1);
-COMMIT;
+INSERT INTO `user_type` VALUES (1, b'1', 'Super Admin', 1, NULL, NULL, '2019-11-08 14:40:59', 1);
+INSERT INTO `user_type` VALUES (2, b'1', 'Sales', 1, NULL, NULL, '2019-09-06 13:59:58', 1);
+INSERT INTO `user_type` VALUES (3, b'1', 'Web Developer', 1, NULL, NULL, '2019-09-05 13:04:13', 14);
+INSERT INTO `user_type` VALUES (4, b'1', 'Senior Web Developer', NULL, '2019-09-04 10:01:05', 1, '2019-11-18 11:46:14', 1);
+INSERT INTO `user_type` VALUES (5, b'1', 'Support', NULL, '2019-09-05 15:17:07', 1, '2019-09-11 14:38:08', 1);
+INSERT INTO `user_type` VALUES (6, b'1', 'Senior - Accountant', NULL, '2019-09-14 09:30:30', 1, '2019-10-19 10:05:28', 1);
+INSERT INTO `user_type` VALUES (7, b'1', 'Senior Web Application', NULL, '2019-10-08 08:19:58', 1, '2019-10-08 14:00:50', 1);
+INSERT INTO `user_type` VALUES (8, b'1', 'Finance & Accountant', NULL, '2019-11-18 10:33:51', 1, '2019-11-18 10:35:50', 1);
+INSERT INTO `user_type` VALUES (9, b'1', 'Web Application', NULL, '2019-11-18 11:21:31', 1, '2019-11-18 11:29:06', 1);
 
 -- ----------------------------
 -- Table structure for working_group
 -- ----------------------------
 DROP TABLE IF EXISTS `working_group`;
-CREATE TABLE `working_group` (
+CREATE TABLE `working_group`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `description` text,
-  `status` tinyint(1) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `created_by` int(11) NULL DEFAULT NULL,
+  `created_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for working_group_data
 -- ----------------------------
 DROP TABLE IF EXISTS `working_group_data`;
-CREATE TABLE `working_group_data` (
+CREATE TABLE `working_group_data`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_working_group` int(11) DEFAULT NULL,
-  `id_user` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_working_group` int(11) NULL DEFAULT NULL,
+  `id_user` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for working_group_department
 -- ----------------------------
 DROP TABLE IF EXISTS `working_group_department`;
-CREATE TABLE `working_group_department` (
+CREATE TABLE `working_group_department`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_working_group` int(11) DEFAULT NULL,
-  `id_department` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_working_group` int(11) NULL DEFAULT NULL,
+  `id_department` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for year_list
 -- ----------------------------
 DROP TABLE IF EXISTS `year_list`;
-CREATE TABLE `year_list` (
+CREATE TABLE `year_list`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(4) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+  `name` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of year_list
 -- ----------------------------
-BEGIN;
 INSERT INTO `year_list` VALUES (1, '2019');
 INSERT INTO `year_list` VALUES (2, '2020');
 INSERT INTO `year_list` VALUES (3, '2021');
@@ -5972,18 +6922,5 @@ INSERT INTO `year_list` VALUES (9, '2027');
 INSERT INTO `year_list` VALUES (10, '2028');
 INSERT INTO `year_list` VALUES (11, '2029');
 INSERT INTO `year_list` VALUES (12, '2030');
-COMMIT;
-
--- ----------------------------
--- Procedure structure for DropGeometryColumn
--- ----------------------------
-DROP PROCEDURE IF EXISTS `DropGeometryColumn`;
-delimiter ;;
-CREATE DEFINER=`` PROCEDURE `DropGeometryColumn`(catalog varchar(64), t_schema varchar(64),
-   t_name varchar(64), geometry_column varchar(64))
-begin
-  set @qwe= concat('ALTER TABLE ', t_schema, '.', t_name, ' DROP ', geometry_column); PREPARE ls from @qwe; execute ls; deallocate prepare ls; end;
-;;
-delimiter ;
 
 SET FOREIGN_KEY_CHECKS = 1;

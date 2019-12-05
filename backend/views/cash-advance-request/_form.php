@@ -17,7 +17,6 @@ $dollar_template = '{label}</br><div class="input-group">
 
 $sql = "SELECT * FROM chart_account WHERE id_account_type =3 AND id NOT IN( SELECT is_parent FROM chart_account WHERE id_account_type =3)";
 $chart_of_account = \backend\models\ChartAccount::findBySql($sql)->all();
-
 $account_type = ArrayHelper::map($chart_of_account, 'id', 'names');
 
 $available_amount = 0;
@@ -38,7 +37,6 @@ if(!$model->isNewRecord){
     $available_amount = $chart_of_account_bank_amount + $model->amount;
 }
 $available_amount = number_format($available_amount, 2, '.', '');
-
 $this->registerJsFile(
     '@web/js/sweetalert.js',
     ['depends' => [\yii\web\JqueryAsset::className()]]
@@ -57,6 +55,9 @@ if(!$model->isNewRecord){
         }
     }  
     if($canApprove == 0){
+        $employee_advance = ArrayHelper::map(\backend\models\EmployeeProfile::find()
+        ->all(), 'id', function($model){return $model->id_prefix . ' '. $model->first_name . ' ' . $model->last_name;});
+
         $employee_list = ArrayHelper::map(\backend\models\EmployeeProfile::find()
         ->where(['id' => $id_employee])
         ->all(), 'id', function($model){return $model->id_prefix . ' '. $model->first_name . ' ' . $model->last_name;});
@@ -68,37 +69,40 @@ if(!$model->isNewRecord){
 ?>
 
 <style type="text/css">
-    .label-input input[type='text']{
-        border-radius: 0px;
-        border: none !important;
-        box-shadow: none !important;
-        border-bottom: 1px solid gainsboro !important;
-        }
-        .form-control:focus, .has-error .form-control, .has-error .form-control:focus {
-        box-shadow: none;
-    }
-    .label-input .form-control[readonly] {
-        background: #fff !important;
-        cursor: text !important;
-        border-bottom: 1px solid gainsboro !important;
-    }
-    textarea {
-        resize: none;
-    }
-    .field-cashadvancerequest-chart_of_account .input-group-btn button{
-        min-width: 100px !important;
-    }
+.label-input input[type='text'] {
+    border-radius: 0px;
+    border: none !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid gainsboro !important;
+}
+
+.form-control:focus,
+.has-error .form-control,
+.has-error .form-control:focus {
+    box-shadow: none;
+}
+
+.label-input .form-control[readonly] {
+    background: #fff !important;
+    cursor: text !important;
+    border-bottom: 1px solid gainsboro !important;
+}
+
+textarea {
+    resize: none;
+}
+
+.field-cashadvancerequest-chart_of_account .input-group-btn button {
+    min-width: 100px !important;
+}
 </style>
 
 <div class="cash-advance-request-form">
-
     <?php
-
         $validationUrl = ['cash-advance-request/validation'];
         if (!$model->isNewRecord){
             $validationUrl['id'] = $model->id;
         }
-
         $form = ActiveForm::begin([
             'id' => $model->formName(),
             'enableAjaxValidation' => false,
@@ -107,27 +111,9 @@ if(!$model->isNewRecord){
             'validationUrl' => $validationUrl
         ]);
     ?>
-        <div class="row"> 
-            
-            <div class="col-md-6">
-                <?= $form->field($model, 'date', ['template'=>$date_template])->textInput(['value'=>$model->isNewRecord?date('Y-m-d'):$model->date, 'readonly' => true, 'style'=>'background: #fff !important;']) ?>
-            </div>
-            <div class="col-md-6">
-                <?= $form->field($model, 'id_employee')->widget(Select2::classname(), [
-                    'data' => $employee_list,
-                    'theme' => Select2::THEME_DEFAULT,
-                    'options' => ['placeholder' => 'Select'],
-                    'language' => 'eg',
-                    'pluginOptions' => [
-                        'allowClear' => true
-                    ],
-                ]); ?>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <?= $form->field($model, 'chart_of_account')->widget(Select2::classname(), [
+    <div class="row">
+        <div class="col-md-12">
+            <?= $form->field($model, 'chart_of_account')->widget(Select2::classname(), [
                     'data' => $account_type,
                     'theme' => Select2::THEME_DEFAULT,
                     'language' => 'eg',
@@ -143,37 +129,57 @@ if(!$model->isNewRecord){
                         ]
                     ],
                     'options' => 
-                       ['placeholder' => 'Select']
+                    [
+                        'class'=>'col-md-3','id'=>'id_select',
+                        'placeholder' => 'Select'
+                    ]
                     ,
                     'pluginOptions' => [
                         'allowClear' => false
                     ]]);
-                ?>          
-            </div>
-        
+                ?>
         </div>
+    </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <?= $form->field($model, 'amount', ['template'=>$dollar_template])->textInput(['type' => 'number', 'step'=>0.01]) ?>
-            </div>
+    <div class="row">
+
+        <div class="col-md-6">
+            <?= $form->field($model, 'date', ['template'=>$date_template])->textInput(['value'=>$model->isNewRecord?date('Y-m-d'):$model->date, 'readonly' => true, 'style'=>'background: #fff !important;']) ?>
         </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <?= $form->field($model, 'amount_in_word')->textInput(['maxlength' => true, 'readonly'=>true, 'style'=>'letter-spacing: 2px; background: #fff4f4; font-weight: bolder;']) ?>
-            </div>
+        <div class="col-md-6">
+            <?= $form->field($model, 'id_employee')->widget(Select2::classname(), [
+                    'data' => $employee_advance,
+                    'theme' => Select2::THEME_DEFAULT,
+                    'options' => ['placeholder' => 'Select'],
+                    'language' => 'eg',
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ]); ?>
         </div>
+    </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <?= $form->field($model, 'reason')->textArea(['rows' => 4]) ?>
-            </div>
+    <div class="row">
+        <div class="col-md-12">
+            <?= $form->field($model, 'amount', ['template'=>$dollar_template])->textInput(['type' => 'number', 'step'=>0.01]) ?>
         </div>
+    </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <?= $form->field($model, 'id_pay_type')->widget(Select2::classname(), [
+    <div class="row">
+        <div class="col-md-12">
+            <?= $form->field($model, 'amount_in_word')->textInput(['maxlength' => true, 'readonly'=>true, 'style'=>'letter-spacing: 2px; background: #fff4f4; font-weight: bolder;']) ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <?= $form->field($model, 'reason')->textArea(['rows' => 4]) ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <?= $form->field($model, 'id_pay_type')->widget(Select2::classname(), [
                     'data' => $pay_type_name,
                     'theme' => Select2::THEME_DEFAULT,
                     'language' => 'eg',
@@ -181,10 +187,10 @@ if(!$model->isNewRecord){
                         'allowClear' => false
                     ],
                 ]); ?>
-            </div>
-        
-            <div class="col-md-6">
-                <?= $form->field($model, 'approved_by')->widget(Select2::classname(), [
+        </div>
+
+        <div class="col-md-6">
+            <?= $form->field($model, 'approved_by')->widget(Select2::classname(), [
                     'data' => $employee_list,
                     'theme' => Select2::THEME_DEFAULT,
                     'options' => ['placeholder' => 'Select'],
@@ -193,30 +199,64 @@ if(!$model->isNewRecord){
                         'allowClear' => true
                     ],
                 ]); ?>
-            </div>
         </div>
+    </div>
 
 
-    <div class="text-right <?= $model->isNewRecord? '' : $model->status == 0 ? 'hide' : '' ?>"> 
+    <div class="text-right <?= $model->isNewRecord? '' : $model->status == 0 ? 'hide' : '' ?>">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success btn-rounded', 'id'=>'pay-button']) ?>
-    </div> 
-    
+    </div>
+
     <?php ActiveForm::end(); ?>
 </div>
-
 <?php 
 
 $script = <<<JS
 
+
     var base_url = "$base_url";
     
-    $('#cashadvancerequest-date').datepicker({
-        format: 'yyyy-mm-dd',
-        changeMonth: true,
-        changeYear: true,
-        autoclose: true,
-        todayBtn: "linked",
+    $("#id_select").change(function(){
+        var id = $(this).val();
+
+        $.ajax({
+            url: base_url+'/cash-advance-request/index',
+            type: 'post',
+            data: {
+                id: id,
+                action: 'chart_of_account_amount'
+            },
+            success: function(response){
+                var data = JSON.parse(response);
+                $('#chart_of_account_amount').text(parseFloat(data['chart_of_account_bank_amount']).toFixed(2));
+    
+                CheckBeforeSave();
+
+                var minDate = data['date'];
+
+                console.log(minDate);
+
+                $('#cashadvancerequest-date').datepicker({
+                    format: 'yyyy-mm-dd',
+                    changeMonth: true,
+                    changeYear: true,
+                    autoclose: true,
+                    todayBtn: "linked"
+                });
+
+                $('#cashadvancerequest-date').datepicker('setStartDate', minDate);
+
+            },
+            error:function(response){
+                console.log(response);
+            }
+        });
+
     });
+
+
+
+
 
     $(document).on('change','input[type=number]',function(){
         if($(this).val() == '' || $(this).val() < 0){
@@ -236,18 +276,17 @@ $script = <<<JS
             },
             success: function(response){
                 var data = JSON.parse(response);
+                console.log(data);
                 $('#chart_of_account_amount').text(parseFloat(data).toFixed(2));
-
                 CheckBeforeSave();
             },
             error:function(response){
                 console.log(response);
             }
         });
-
     });
 
-
+   
     function CheckBeforeSave() {
         var total_amount = $("#cashadvancerequest-amount").val();
         total_amount = parseFloat(total_amount);

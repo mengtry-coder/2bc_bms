@@ -16,6 +16,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Cookie;
 use common\models\GlobalFunction;
+use yii\base\Exception;
 /**
  * CustomerInvoiceController implements the CRUD actions for CustomerInvoice model.
  */

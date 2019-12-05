@@ -48,12 +48,12 @@ class CustomerProfile extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['customer_name', 'company_name', 'address','email_address'], 'required'],
+            [['customer_name', 'address'], 'required'],
             [['latitute', 'longitute'], 'number'],
             [['email_address'],'email'],
             [['customer_status','id_country', 'id_city', 'id_billing_city', 'id_billing_country', 'id_shipping_city', 'id_shipping_country', 'status', 'created_by', 'updated_by'], 'integer'],
             [['created_date', 'updated_date'], 'safe'],
-            [['customer_name', 'company_name', 'address', 'group_names', 'billing_address', 'shipping_address'], 'string', 'max' => 250],
+            [['customer_name', 'company_name', 'address', 'group_names', 'billing_address', 'shipping_address', 'company_name'], 'string', 'max' => 250],
             [['phone_number','zip_code'], 'string', 'max' => 50],
             [['img_url', 'position'], 'string', 'max' => 255],
             [['email_address'],'unique'],

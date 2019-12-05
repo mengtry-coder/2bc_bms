@@ -42,18 +42,18 @@ $item_type = \backend\models\ItemGroupType::find()->all();
                     ?>
                 </div>
                 <div class="col-md-3">
-                    <?= $form->field($model, 'rate', ['template'=>$dollar_template])->textInput(['type' => 'number','min'=>'0', 'value'=>$model->isNewRecord? 0 : $model->rate]) ?>
+                    <?= $form->field($model, 'rate', ['template'=>$dollar_template])->textInput(['type' => 'number', 'step' => '0.01', 'min'=>'0', 'value'=>$model->isNewRecord? 0 : $model->rate]) ?>
                 </div>
                 <div class="col-md-3">
                     <?php
                         if(GlobalFunction::SettingValue(1) !=""){ 
-                            echo $form->field($model, 'setup_fee', ['template'=>$dollar_template])->textInput(['type' => 'number','min'=>'0', 'value'=>$model->isNewRecord? 0 : $model->setup_fee])->label(GlobalFunction::SettingValue(1));
+                            echo $form->field($model, 'setup_fee', ['template'=>$dollar_template])->textInput(['type' => 'float','min'=>'0', 'value'=>$model->isNewRecord? 0 : $model->setup_fee])->label(GlobalFunction::SettingValue(1));
                         }
                     ?>
                 </div>
-            </div> 
+            </div>
             <?= $form->field($model, 'short_description')->textArea(['maxlength' => true]) ?>
-            
+
             <?= $form->field($model, 'long_description')->textArea(['rows' => 8]) ?>
 
             <?php $model->isNewRecord ? $model->status = 1: $model->status = $model->status;?>
@@ -65,9 +65,9 @@ $item_type = \backend\models\ItemGroupType::find()->all();
             <?php 
                 foreach ($item_type as $key => $value) {
             ?>
-               
-                <p class="text-uppercase text-semibold text-main"> <?= $value->name ?></p>
-                <?php 
+
+            <p class="text-uppercase text-semibold text-main"> <?= $value->name ?></p>
+            <?php 
                     $id_type = $value->id;
                     $id_item = $model->id;
                     $item_data = Yii::$app->db->createCommand("
@@ -83,20 +83,24 @@ $item_type = \backend\models\ItemGroupType::find()->all();
                     // $item_data = \backend\models\ItemGroupData::find()->where(['id_type'=>$value->id, 'status'=>1])->all();
                     foreach ($item_data as $k => $v) {
                 ?>
-                <div class="row" style="padding-bottom: 5px;">
-                    <div class="col-md-6">
-                        <div class="checkbox">
-                            <input id="checkbox_status_<?= $v['id'] ?>" <?= $v['status'] == 1 ? 'checked' : '' ?> value="1" name="checkbox_status[]" class="magic-checkbox checklist_box" data-id="<?= $v['id'] ?>" type="checkbox">
-                            <label for="checkbox_status_<?= $v['id'] ?>"><?= $v['title'] ?></label>
-                            <input type="hidden" value="<?= $v['status'] ?>" name="checkbox_id[]" id="checkbox_id_<?= $v['id'] ?>" data-id="<?= $v['id'] ?>" />
-                            <input type="hidden" value="<?= $v['id'] ?>" name="feature_id[]" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" name="feature[]" value="<?= $v['description'] ?>" placeholder="…" class="form-control" />
+            <div class="row" style="padding-bottom: 5px;">
+                <div class="col-md-6">
+                    <div class="checkbox">
+                        <input id="checkbox_status_<?= $v['id'] ?>" <?= $v['status'] == 1 ? 'checked' : '' ?> value="1"
+                            name="checkbox_status[]" class="magic-checkbox checklist_box" data-id="<?= $v['id'] ?>"
+                            type="checkbox">
+                        <label for="checkbox_status_<?= $v['id'] ?>"><?= $v['title'] ?></label>
+                        <input type="hidden" value="<?= $v['status'] ?>" name="checkbox_id[]"
+                            id="checkbox_id_<?= $v['id'] ?>" data-id="<?= $v['id'] ?>" />
+                        <input type="hidden" value="<?= $v['id'] ?>" name="feature_id[]" class="form-control" />
                     </div>
                 </div>
-                <?php } ?>
+                <div class="col-md-6">
+                    <input type="text" name="feature[]" value="<?= $v['description'] ?>" placeholder="…"
+                        class="form-control" />
+                </div>
+            </div>
+            <?php } ?>
             <?php } ?>
         </div>
     </div>

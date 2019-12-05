@@ -13,32 +13,35 @@ $this->title = 'Users';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <style>
-    .modal-lg{
-        width: 90%;
-    }
-    .row-table {
-        cursor: pointer;
-    }
-    #container .table td{
-        vertical-align: middle;
-    }
-    .td_img{
-        padding: 5px !important;
-    }
+.modal-lg {
+    width: 90%;
+}
+
+.row-table {
+    cursor: pointer;
+}
+
+#container .table td {
+    vertical-align: middle;
+}
+
+.td_img {
+    padding: 5px !important;
+}
 </style>
 <div class="user-index">
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-    <div class="panel"> 
-        <div class="panel-body">  
+    <div class="panel">
+        <div class="panel-body">
             <div class="row">
                 <div class="col-md-12">
                     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
                 </div>
             </div>
             <br>
-    
-        <?php
+
+            <?php
             Modal::begin([
                 'header' => ' <h4 class="modal-title">'.'Users'.'</h4>',
                 'id' => 'modal',
@@ -49,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
             Modal::end();
         
         ?>
-        <div class="table-responsive">
+            <div class="table-responsive">
                 <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'tableOptions' => [ 
@@ -91,7 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'contentOptions' => ['class' => 'text-center'],
                     'headerOptions' => ['class' => 'text-center text-muted'],
                     'value' => function ($data) { 
-                        if($data->employee->img_url ==""){
+                        if($data->employee->img_url == ""){
                             $img_url_id = 1;
                         }else{
                             $img_url_id = $data->employee->img_url;
@@ -192,7 +195,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 ],
             ]); ?>
-                                
+
             </div>
         </div>
     </div>

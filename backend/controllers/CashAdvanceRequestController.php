@@ -6,6 +6,8 @@ use Yii;
 use backend\models\PayPeriod;
 use backend\models\CashAdvanceRequest;
 use backend\models\CashAdvanceRequestSearch;
+use backend\models\ChartAccount;
+use backend\models\FinanceChartOfAccount;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -105,6 +107,29 @@ class CashAdvanceRequestController extends Controller
 
         $dataProvider->pagination->pageSize = $page_size;
         $dataProvider->pagination->page = $page;
+
+        if(Yii::$app->request->post('action') =='chart_of_account_amount'){
+            $chart_of_account = Yii::$app->request->post('id');
+            $chart_of_account_bank = \backend\models\FinanceChartOfAccount::find()
+                ->select(['COALESCE(balance, 0) as balance'])
+                ->where(['account_type'=>3, 'chart_of_account'=>$chart_of_account, 'status'=>1])
+                ->orderBy(['date'=>SORT_DESC, 'id'=>SORT_DESC])
+                ->limit(1)
+                ->one();
+            if(empty($chart_of_account_bank)){
+                $chart_of_account_bank_amount = 0;
+            }else{
+                $chart_of_account_bank_amount = $chart_of_account_bank->balance;
+            }
+
+
+            $chart_account_date = \backend\models\ChartAccount::findOne($chart_of_account);
+            $date = date_format(date_create($chart_account_date->created_date), 'Y-m-d');
+            $response = ['date' => $date, 'chart_of_account_bank_amount'=>$chart_of_account_bank_amount];
+
+            return json_encode($response);
+            
+        };
 
         return $this->render('index', [
             'page_size' => $page_size,

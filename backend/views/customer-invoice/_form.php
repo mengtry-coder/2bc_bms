@@ -58,46 +58,55 @@ $this->registerJsFile(
 ?>
 
 <style type="text/css">
-    .label-input input[type='text']{
-        border-radius: 0px;
-        border: none !important;
-        box-shadow: none !important;
-        border-bottom: 1px solid gainsboro !important;
-        }
-        .form-control:focus, .has-error .form-control, .has-error .form-control:focus {
-        box-shadow: none;
-    }
-    .label-input .form-control[readonly] {
-        background: #fff !important;
-        cursor: text !important;
-        border-bottom: 1px solid gainsboro !important;
-    }
-    .action_button {
-        width: 30px !important;
-        height: 30px !important;
-        padding: 0px !important;
-        border-radius: 50%;
-    }
-    .calculate_item input {
-        background: #fff !important;
-    }
-    .row_line {
-        padding-bottom: 15px;
-    }
-    #container .invoice-total>tbody>tr td:last-child {
-        width: 120px !important;
-    }
-    #container .invoice-total>tbody>tr td:first-child {
-        width: 120px !important;
-    }
+.label-input input[type='text'] {
+    border-radius: 0px;
+    border: none !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid gainsboro !important;
+}
 
-    #container .invoice-total {
-        max-width: 100% !important;
-    }
+.form-control:focus,
+.has-error .form-control,
+.has-error .form-control:focus {
+    box-shadow: none;
+}
 
-    .invoice-total tr td {
-        font-size: 15px;
-    }
+.label-input .form-control[readonly] {
+    background: #fff !important;
+    cursor: text !important;
+    border-bottom: 1px solid gainsboro !important;
+}
+
+.action_button {
+    width: 30px !important;
+    height: 30px !important;
+    padding: 0px !important;
+    border-radius: 50%;
+}
+
+.calculate_item input {
+    background: #fff !important;
+}
+
+.row_line {
+    padding-bottom: 15px;
+}
+
+#container .invoice-total>tbody>tr td:last-child {
+    width: 120px !important;
+}
+
+#container .invoice-total>tbody>tr td:first-child {
+    width: 120px !important;
+}
+
+#container .invoice-total {
+    max-width: 100% !important;
+}
+
+.invoice-total tr td {
+    font-size: 15px;
+}
 </style>
 <div class="customer-invoice-form">
 
@@ -272,7 +281,7 @@ $this->registerJsFile(
 
     <div class="row">
         <div class="col-md-12">
-            <hr/>
+            <hr />
             <h3 style="background: #eeeeee;padding: 10px;margin-bottom: 20px;">Add Items:</h3>
             <div class="row">
                 <div class="col-md-4">
@@ -288,7 +297,7 @@ $this->registerJsFile(
                     ]); ?>
                 </div>
             </div>
-            <hr/>
+            <hr />
         </div>
     </div>
 
@@ -324,17 +333,20 @@ $this->registerJsFile(
             ?>
             <div class="row row_line" data-id=1 id="row_line_1">
                 <div class="col-md-2">
-                    <input type="text" readonly name="item[]" placeholder="Description…" class="form-control item" data-id=1 id="item_1" />
+                    <input type="text" readonly name="item[]" placeholder="Description…" class="form-control item"
+                        data-id=1 id="item_1" />
                     <input type="hidden" name="item_id[]" class="form-control item_id" data-id=1 id="item_id_1" />
                 </div>
                 <div class="col-md-4">
-                    <input type="text" name="description[]" placeholder="Description…" class="form-control description" data-id=1 id="description_1" />
+                    <input type="text" name="description[]" placeholder="Description…" class="form-control description"
+                        data-id=1 id="description_1" />
                 </div>
                 <div class="col-md-1">
                     <input type="number" name="qty[]" value=1 min="1" class="form-control qty" data-id=1 id="qty_1" />
                 </div>
                 <div class="col-md-1">
-                    <input type="number" name="rate[]" value="<?= number_format(0,2) ?>" min="0" readonly class="form-control rate" data-id=1 id="rate_1" />
+                    <input type="number" name="rate[]" value="<?= number_format(0,2) ?>" min="0" readonly
+                        class="form-control rate" data-id=1 id="rate_1" />
                 </div>
                 <div class="col-md-1">
                     <select class="form-control discount_type" name="discount_type[]" data-id=1 id="discount_type_1">
@@ -343,13 +355,16 @@ $this->registerJsFile(
                     </select>
                 </div>
                 <div class="col-md-1">
-                    <input type="number" name="discount[]" value="0" min="0" class="form-control discount" data-id=1 id="discount_1" />
+                    <input type="number" name="discount[]" value="0" min="0" class="form-control discount" data-id=1
+                        id="discount_1" />
                 </div>
                 <div class="col-md-1">
-                    <input type="number" name="amount[]" min="0" value="<?= number_format(0,2) ?>" readonly class="form-control amount" data-id=1 id="amount_1" />
+                    <input type="number" name="amount[]" min="0" value="<?= number_format(0,2) ?>" readonly
+                        class="form-control amount" data-id=1 id="amount_1" />
                 </div>
                 <div class="col-md-1 text-center">
-                    <button type="button" class="btn btn-primary btn-sm btn-icon btn-circle" id="add_more"><i class="fa fa-plus"></i></button>
+                    <button type="button" class="btn btn-primary btn-sm btn-icon btn-circle" id="add_more"><i
+                            class="fa fa-plus"></i></button>
                 </div>
             </div>
             <?php
@@ -360,35 +375,46 @@ $this->registerJsFile(
             ?>
             <div class="row row_line" data-id="<?= $i; ?>" id="row_line_<?= $i; ?>">
                 <div class="col-md-2">
-                    <input type="text" readonly name="item[]" value="<?= $value->item_name; ?>" class="form-control item" data-id="<?= $i; ?>" id="item_<?= $i; ?>" />
-                    <input type="hidden" name="item_id[]" value="<?= $value->id_item; ?>" class="form-control item_id" data-id="<?= $i; ?>" id="item_id_<?= $i; ?>" />
+                    <input type="text" readonly name="item[]" value="<?= $value->item_name; ?>"
+                        class="form-control item" data-id="<?= $i; ?>" id="item_<?= $i; ?>" />
+                    <input type="hidden" name="item_id[]" value="<?= $value->id_item; ?>" class="form-control item_id"
+                        data-id="<?= $i; ?>" id="item_id_<?= $i; ?>" />
                 </div>
                 <div class="col-md-4">
-                    <input type="text" name="description[]" value="<?= $value->description; ?>" placeholder="Description…" class="form-control description" data-id="<?= $i; ?>" id="description_<?= $i; ?>" />
+                    <input type="text" name="description[]" value="<?= $value->description; ?>"
+                        placeholder="Description…" class="form-control description" data-id="<?= $i; ?>"
+                        id="description_<?= $i; ?>" />
                 </div>
                 <div class="col-md-1">
-                    <input type="number" name="qty[]" value="<?= $value->qty; ?>" min="0" class="form-control qty" data-id="<?= $i; ?>" id="qty_<?= $i; ?>" />
+                    <input type="number" step="0.01" min="0" name="qty[]" value="<?= $value->qty; ?>"
+                        class="form-control qty" data-id="<?= $i; ?>" id="qty_<?= $i; ?>" />
                 </div>
                 <div class="col-md-1">
-                    <input type="number" name="rate[]" value="<?= $value->rate; ?>" min="0" readonly class="form-control rate" data-id="<?= $i; ?>" id="rate_<?= $i; ?>" />
+                    <input type="number" name="rate[]" value="<?= $value->rate; ?>" min="0" readonly
+                        class="form-control rate" data-id="<?= $i; ?>" id="rate_<?= $i; ?>" />
                 </div>
                 <div class="col-md-1">
-                    <select class="form-control discount_type" name="discount_type[]" data-id="<?= $i; ?>" id="discount_type_<?= $i; ?>">
-                        <option value="1" <?= $value->discount_type == 1 ?'selected':'' ?> >%</option>
-                        <option value="2" <?= $value->discount_type == 2 ?'selected':'' ?> >Amount</option>
+                    <select class="form-control discount_type" name="discount_type[]" data-id="<?= $i; ?>"
+                        id="discount_type_<?= $i; ?>">
+                        <option value="1" <?= $value->discount_type == 1 ?'selected':'' ?>>%</option>
+                        <option value="2" <?= $value->discount_type == 2 ?'selected':'' ?>>Amount</option>
                     </select>
                 </div>
                 <div class="col-md-1">
-                    <input type="number" name="discount[]" value="<?= $value->discount_amount; ?>" min="0" class="form-control discount" data-id="<?= $i; ?>" id="discount_<?= $i; ?>" />
+                    <input type="number" name="discount[]" value="<?= $value->discount_amount; ?>" min="0"
+                        class="form-control discount" data-id="<?= $i; ?>" id="discount_<?= $i; ?>" />
                 </div>
                 <div class="col-md-1">
-                    <input type="number" name="amount[]" min="0" value="<?= $value->amount; ?>" readonly class="form-control amount" data-id="<?= $i; ?>" id="amount_<?= $i; ?>" />
+                    <input type="number" name="amount[]" min="0" value="<?= $value->amount; ?>" readonly
+                        class="form-control amount" data-id="<?= $i; ?>" id="amount_<?= $i; ?>" />
                 </div>
                 <div class="col-md-1 text-center">
                     <?php if($i == 1){ ?>
-                    <button type="button" class="btn btn-primary btn-sm btn-icon btn-circle" id="add_more"><i class="fa fa-plus"></i></button>
+                    <button type="button" class="btn btn-primary btn-sm btn-icon btn-circle" id="add_more"><i
+                            class="fa fa-plus"></i></button>
                     <?php }else{ ?>
-                    <button type='button' class='btn btn-danger btn-sm btn-icon btn-circle btn_remove' id='remove_row_<?= $i ?>' data-id="<?= $i ?>"><i class='fa fa-minus'></i></button>
+                    <button type='button' class='btn btn-danger btn-sm btn-icon btn-circle btn_remove'
+                        id='remove_row_<?= $i ?>' data-id="<?= $i ?>"><i class='fa fa-minus'></i></button>
                     <?php } ?>
                 </div>
             </div>
@@ -406,48 +432,71 @@ $this->registerJsFile(
                     <tbody>
                         <tr>
                             <td colspan="2"><strong>Sub Total :</strong>
-                                <input type="hidden" name="sub_total_amount_hidden" value="<?= number_format($model->isNewRecord?0:$model->sub_total,2, '.', '') ?>" id="sub_total_amount_hidden">
+                                <input type="hidden" name="sub_total_amount_hidden"
+                                    value="<?= number_format($model->isNewRecord?0:$model->sub_total,2, '.', '') ?>"
+                                    id="sub_total_amount_hidden">
                             </td>
-                            <td id="sub_total_amount"><?= number_format($model->isNewRecord?0:$model->sub_total,2, '.', '') ?> </td>
+                            <td id="sub_total_amount">
+                                <?= number_format($model->isNewRecord?0:$model->sub_total,2, '.', '') ?> </td>
                         </tr>
                         <tr>
                             <td><strong>Discount: </strong></td>
                             <td>
                                 <div class="input-group">
-                                    <input type="number" value="<?= number_format($model->isNewRecord?0:$model->discount_value,2, '.', '') ?>" id="discount_overall" min="0" step="0.01" name="discount_overall" class="form-control">
-                                    <input type="hidden" value="<?= number_format($model->isNewRecord?0:$model->discount_amount,2, '.', '') ?>" id="discount_overall_amount" min="0" step="0.01" name="discount_overall_amount" class="form-control">
+                                    <input type="number"
+                                        value="<?= number_format($model->isNewRecord?0:$model->discount_value,2, '.', '') ?>"
+                                        id="discount_overall" min="0" step="0.01" name="discount_overall"
+                                        class="form-control">
+                                    <input type="hidden"
+                                        value="<?= number_format($model->isNewRecord?0:$model->discount_amount,2, '.', '') ?>"
+                                        id="discount_overall_amount" min="0" step="0.01" name="discount_overall_amount"
+                                        class="form-control">
                                     <div class="input-group-btn">
-                                        <button type="button" class="btn btn-default dropdown-toggle btn-primary" id="label-discount" data-toggle="dropdown"> <?= $model->isNewRecord? '%' : $model->id_discount == 1? '%' : 'Amount' ?> <span class="caret"></span></button>
+                                        <button type="button" class="btn btn-default dropdown-toggle btn-primary"
+                                            id="label-discount" data-toggle="dropdown">
+                                            <?= $model->isNewRecord? '%' : $model->id_discount == 1? '%' : 'Amount' ?>
+                                            <span class="caret"></span></button>
                                         <ul class="dropdown-menu pull-right" id="discount_type_overall">
                                             <li data-id="1"><a href="#">%</a></li>
                                             <li data-id="2"><a href="#">Amount</a></li>
                                         </ul>
-                                        <input type="hidden" name="discount_type_overall_hidden" value="<?= $model->isNewRecord?1:$model->id_discount; ?>" id="discount_type_overall_hidden">
+                                        <input type="hidden" name="discount_type_overall_hidden"
+                                            value="<?= $model->isNewRecord?1:$model->id_discount; ?>"
+                                            id="discount_type_overall_hidden">
                                     </div>
                                 </div>
                             </td>
-                            <td id="total_discount" style="vertical-align: middle !important;"><?= number_format($model->isNewRecord?0:$model->discount_amount,2, '.', '') ?></td>
+                            <td id="total_discount" style="vertical-align: middle !important;">
+                                <?= number_format($model->isNewRecord?0:$model->discount_amount,2, '.', '') ?></td>
                         </tr>
                         <tr>
                             <td><strong>TAX Include: </strong></td>
                             <td>
                                 <div class="input-group mar-btm">
-                                    <input type="number" placeholder="TAX" value="<?= $tax_value; ?>" style="background-color: #fff;" readonly class="form-control">
+                                    <input type="number" placeholder="TAX" value="<?= $tax_value; ?>"
+                                        style="background-color: #fff;" readonly class="form-control">
                                     <div class="input-group-btn dropdown">
                                         <button class="btn btn-primary" type="button">
-                                            <input type="checkbox" value="1" <?= $model->is_tax ==1? 'checked':''; ?> id="allow_tax" name="allow_tax" /> VAT(%)
+                                            <input type="checkbox" value="1" <?= $model->is_tax ==1? 'checked':''; ?>
+                                                id="allow_tax" name="allow_tax" /> VAT(%)
                                         </button>
                                     </div>
                                 </div>
-                                <input type="hidden" name="total_tax_hidden" value="<?= number_format($model->isNewRecord?0:$model->tax_amount,2, '.', '') ?>" id="total_tax_hidden">
+                                <input type="hidden" name="total_tax_hidden"
+                                    value="<?= number_format($model->isNewRecord?0:$model->tax_amount,2, '.', '') ?>"
+                                    id="total_tax_hidden">
                             </td>
-                            <td id="total_tax" style="padding-top: 15px;"><?= number_format($model->isNewRecord?0:$model->tax_amount,2, '.', '') ?></td>
+                            <td id="total_tax" style="padding-top: 15px;">
+                                <?= number_format($model->isNewRecord?0:$model->tax_amount,2, '.', '') ?></td>
                         </tr>
                         <tr>
                             <td colspan="2"><strong>TOTAL :</strong>
-                                <input type="hidden" name="grand_total_amount_hidden" value="<?= number_format($model->isNewRecord?0:$model->total_amount,2, '.', '') ?>" id="grand_total_amount_hidden">
+                                <input type="hidden" name="grand_total_amount_hidden"
+                                    value="<?= number_format($model->isNewRecord?0:$model->total_amount,2, '.', '') ?>"
+                                    id="grand_total_amount_hidden">
                             </td>
-                            <td class="text-bold h4" id="grand_total_amount"><?= number_format($model->isNewRecord?0:$model->total_amount,2, '.', '') ?></td>
+                            <td class="text-bold h4" id="grand_total_amount">
+                                <?= number_format($model->isNewRecord?0:$model->total_amount,2, '.', '') ?></td>
                         </tr>
                     </tbody>
                 </table>

@@ -34,9 +34,9 @@ class CustomerInvoiceData extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_customer_invoice', 'id_item', 'qty', 'discount_type'], 'integer'],
+            [['id_customer_invoice', 'id_item', 'discount_type'], 'integer'],
             [['description'], 'string'],
-            [['rate', 'discount_amount', 'amount'], 'number'],
+            [['rate', 'discount_amount', 'amount', 'qty'], 'number'],
             [['item_name'], 'string', 'max' => 255],
         ];
     }

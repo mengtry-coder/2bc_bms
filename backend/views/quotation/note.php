@@ -34,13 +34,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="panel" style="border-top-left-radius: 0px;">
         <div class="panel-body">
-        <p class="text-main text-bold"><?= $this->title; ?></p>
-        <hr>
+            <p class="text-main text-bold"><?= $this->title; ?></p>
+            <hr>
             <div class="row task-overview">
 
                 <div class="proposal-timesheet-form">
 
-                <?php
+                    <?php
 
                 $validationUrl = ['proposal/validation'];
                 if (!$model->isNewRecord){
@@ -56,14 +56,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]);
                 ?>
 
-                <?= $form->field($model_note, 'note')->textArea(['id'=>"demo-summernote"])->label(false) ?>
+                    <?= $form->field($model_note, 'note')->textArea(['id'=>"demo-summernote"])->label(false) ?>
 
-                <div class="text-right">
-                    <?= Html::submitButton('Save', ['class' => 'btn btn-success btn-rounded']) ?>
+                    <div class="text-right">
+                        <?= Html::submitButton('Save', ['class' => 'btn btn-success btn-rounded']) ?>
+                    </div>
+
+                    <?php ActiveForm::end(); ?>
                 </div>
-
-                <?php ActiveForm::end(); ?>
-            </div>
 
             </div>
         </div>
